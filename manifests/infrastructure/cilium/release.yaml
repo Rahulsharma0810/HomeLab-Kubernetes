@@ -18,7 +18,7 @@ spec:
     ipam:
       mode: kubernetes
     hostFirewall:
-      enabled: false # Disabled per the helm upgrade command
+      enabled: true # Disabled per the helm upgrade command
     bpf:
       masquerade: true
     ipMasqAgent:
