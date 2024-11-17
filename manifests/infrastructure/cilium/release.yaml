@@ -28,10 +28,6 @@ spec:
         enabled: true
       ui:
         enabled: true
-      # peerService:
-      #   clusterDomain: cluster.local # Updated cluster domain
-      # etcd:
-      #   clusterDomain: cluster.local # Updated etcd domain
     kubeProxyReplacement: true
     securityContext:
       capabilities:
@@ -55,5 +51,4 @@ spec:
       autoMount:
         enabled: true
       hostRoot: /sys/fs/cgroup
-    k8sServiceHost: localhost # Updated to cluster IP
     k8sServicePort: "7445"
