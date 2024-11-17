@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: "<1.16.4"
+      version: "<1.16.4>" # Specify the exact chart version if needed
       sourceRef:
         kind: HelmRepository
         name: cilium
@@ -18,7 +18,7 @@ spec:
     ipam:
       mode: kubernetes
     hostFirewall:
-      enabled: true
+      enabled: false # Disabled per the helm upgrade command
     bpf:
       masquerade: true
     ipMasqAgent:
@@ -49,6 +49,7 @@ spec:
         - SYS_RESOURCE
     cgroup:
       autoMount:
-        enabled: true
+        enabled: false # Disabled per your helm upgrade command
       hostRoot: /sys/fs/cgroup
+    k8sServiceHost: localhost # Added based on helm upgrade command
     k8sServicePort: "7445"
