@@ -1,0 +1,11 @@
+machine:
+  network:
+    hostname: I1-1806-Talos-Worker01
+    interfaces:
+    - interface: ens18
+      dhcp: false
+      addresses:
+      - 192.168.0.6/24
+      routes:
+      - network: 0.0.0.0/0
+        gateway: 192.168.0.1
