@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: ENC[AES256_GCM,data:vq+wxWCCw8tAPlBSVS1glFjns2Kfn4m8zpwagEf3VlVgsGrpRzulSpl/sAe78GphLRMhF4/QGWS+meIt+cxGGW6AFs952oIQtDdTLQG2ctwJAdLyJNtZJMYneoLp+Hg9wkGn8Hu1ZN/Dh8Egi0ejQVYjqKuoLz9RM2npKwSjqr4D+hXCYEfn2y0DladZQu7aQM3AxQegfiAuRoWOlH+HLXDNIlvndLfmD/ycKu8KrtrusElDAntHsc8C0p4=,iv:hhmHLwKIbyFFOpo02bJmVC9GpvdDC/hs96/AHu9xhUQ=,tag:ExuUi5GXU6kSVELtH10atQ==,type:str]
+kind: Secret
+metadata:
+  name: docker-hub-pull-secret
+  namespace: default
+type: kubernetes.io/dockerconfigjson
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age: []
+  lastmodified: "2024-11-18T10:37:45Z"
+  mac: ENC[AES256_GCM,data:oSoZOLORYfg/9sWuZxbKpteuQslyiRZZJ5tlibZzNeFPYJf+QkauTM25GSUnQDkA+ibkA2q02NwCvl/FckNnK5tJqFgWgSQXJXPuiWkCoafrBq8SYHTS48Ep9NO0v9erpGC7JlAAbOdRL6tNGcdmDxlDErQphHd7SR+OHoKxbj0=,iv:KLy9ektVlNA5fy3M5BplsOWIJrXbUrzCecErl6wNIZA=,tag:RRdBIRuCkq8+UW/VDhPrKw==,type:str]
+  pgp:
+  - created_at: "2024-11-18T10:37:45Z"
+    enc: |-
+      -----BEGIN PGP MESSAGE-----
+
+      hF4DcVIwTpXRd1ASAQdA4EqFJYA0KzBleKxFm5kFR/+w+8UjSLFAiFd4dsn57nQw
+      szG1RRKTt40Kgcc2F0KpVlt0LS6JbfmmopbFyZi0GsoVLQoWGxkOx24e2IVvE62C
+      1GgBCQIQW0KUuA24EQPUXsMbNGimjxW5SHB5ZkzVUX+eMorlEPEBzSpKHURgK1jt
+      1Uw+6xuQXjgSjhJxXTpL4Vzwcx5yQaiEPcgiBG/XGJjxHRwf9LjWzV6f3sik5rwF
+      zldWV1uwa3HU/g==
+      =gHoa
+      -----END PGP MESSAGE-----
+    fp: C6B03F76E04C360C5BCDE8B6476CA0FF1075B7D0
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.1
