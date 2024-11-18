@@ -3,17 +3,17 @@
 creation_rules:
 - path_regex: manifests/.*\.yaml
   encrypted_regex: ^(data|stringData)$
-  pgp: >-
-    C6B03F76E04C360C5BCDE8B6476CA0FF1075B7D0
+  age: >-
+    age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
 
 - path_regex: talosconfig
   encrypted_regex: ^key$
-  pgp: C6B03F76E04C360C5BCDE8B6476CA0FF1075B7D0
+  age: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
 
 - path_regex: kubeconfig
   encrypted_regex: ^client-key-data$
-  pgp: C6B03F76E04C360C5BCDE8B6476CA0FF1075B7D0
+  age: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
 
 - path_regex: secrets.yaml
   encrypted_regex: ^(secret|bootstraptoken|secretboxencryptionsecret|token|key)$
-  pgp: C6B03F76E04C360C5BCDE8B6476CA0FF1075B7D0
+  age: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
