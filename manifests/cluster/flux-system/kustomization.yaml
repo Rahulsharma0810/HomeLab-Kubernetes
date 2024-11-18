@@ -6,3 +6,4 @@ resources:
 - cilium.yaml
 - pull-secrets.yaml
 - ingress.yaml
+- cert-manager.yaml
