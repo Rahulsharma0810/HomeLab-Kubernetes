@@ -1,10 +1,10 @@
 apiVersion: v1
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:3cJaL/m4mbFNjHthm/n2ZqSzsnf5DfiobRFQcMfxBaEpQcR9pFPTqjRGc/+2oI3CJtIAWjjJzQddyL/hLwx8qVMkGfEwaxz/FhaawnCWtF6IWtbTksFB3Z9eNmqDGxV563jce62XrLaIsiqev+WNoBKHPZnqPmukc1yw+pR0P4w3GnJZgNmUbjkjBG7KsjH8w58KInP3L4WmU0+3P61bzwI0sL7BmdWDxnZ9s8oO78x482VrPps/H2lPD38=,iv:XNotAfuG20Bn0alwZGAx0tgzc+C+KkP1CS5CMqVnrds=,tag:fINDq2rpBSyf0nKrE5n6fA==,type:str]
+    .dockerconfigjson: ENC[AES256_GCM,data:rLjz/Vty6fVZODq2J7OHiFADXdGgV+uEWiroWAXsCBCDN0XxqqNSY4dnuHiZ6YK+OCDOU7xfMIidLR+9+ginTzMswyCSEF02j16h6S3sR6L3HVASRBm8aCRQF7HaSNorUumXIF16HK7BJouLRRjGak/fRWbBVUgYrV9uuEicQ3L33k0jwklNHmUIiPO32oCnt3NiSVTeWsPkdUnO21ZhHlVcr6SKJ6aJnaxB+xdo7zT8qjOU59otH2sWuXLO31yqu6UGheBhfpoD+zlUzbKkJFkKa8dhtf/4d4Q0tZuMi1qTV1SaEMdzDg==,iv:EHdKs+XrNtSvtoGsXHmmiSA5x9skDCUET8U07Z4YDhw=,tag:Pxij0CdVauMKe9ZjTS9QAQ==,type:str]
 kind: Secret
 metadata:
     creationTimestamp: null
-    name: docker-hub-pull-secret
+    name: my-registry-secret
     namespace: default
 type: kubernetes.io/dockerconfigjson
 sops:
@@ -16,14 +16,14 @@ sops:
       - recipient: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
         enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTd3ZIZDdCYTJNdEYyNTZj
-            dGNhemFacXhkSWo0cFdWMm1ydE8vQit2SlI4Cmp0T3FOd2FEN2g0NVgwK0gxcGhS
-            YTRlOGRzTE8vWnFKemVsZ0lyZ09WeVkKLS0tIHNmOU9lTk1oRitmMnhVeTQ0aW8r
-            Y2xZOTMxZHFLVG85emMzNkdSdzNObXMK15FBbcGMa+LyG0nlFiuQRNFUW+KPod/Z
-            uUGKJr3eypkES0FjncTGINGVZvxjNJ9E0MNtsPBpOKzmb8eLSB7x5Q==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxV1JUd1dJUjdCRVY5RkFv
+            SHJXam5ja2NPUGVHMFFqUEhWSXp2RlcyUTJnCjk0OGdYZG0yRjZwMmdvL1d3c29t
+            WDVrNGxiY2IrRXh1ZG9peUovcDZuRFEKLS0tIGR5czVBcXo3QXRPZzFzbFkxNGtG
+            dHVzbmxqWTNWd2hUT3VRWVV6QStHL0kKwSSd4NCCzGTf3VYCIUWU3ehGmAqlmVoL
+            lP2KgRDg4x5+orsJsQY+dGr9MZ2XrmQx3Fr8ItZe01lRpCgVNcTunw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-18T15:07:21Z"
-    mac: ENC[AES256_GCM,data:60+PVw/U0jpIeblkGl3C8iRTChG+KcGE3zzhMAQTiY20pa21Unxwlh3ejZo0yeNqJkDiBNe7ALqBpoO4p8ALfVbvw5ESyhvxcosacgDJa0bgA9XX7cQ5DQsIReITIAVYNSNIEWhfawe11Pvbj29Y1CxDn8CBfd5dM+FloiCTkJ4=,iv:OZ8Tu4dOVTjaYL/Jnd8sj6ZSBckJhMfqEu/ZDtOYfKw=,tag:GdbbyA0bMZ8fHKKu6Zzh+Q==,type:str]
+    lastmodified: "2024-11-18T15:26:55Z"
+    mac: ENC[AES256_GCM,data:4BVNt/kvwmfqSTb9NwpggRAtCJqA55nFWGikotazxjAHfiOVlhg+gaSArkmhAU5N1tUmETRPIaG4Oz60ytD5PYjmsVnRXVTULe516rGIWF9+lOXCC2WdX4icLmmLKLb5R9VRYXNSH81JGihHY8UqVU7eqUH23yLRF/DKMTSoAt4=,iv:01+ATnlGhIPvGW4uNs5oh/MKKGy6wNWrQ5/agb7pD6E=,tag:tbLjk6f6TampYmdkFdVeAQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.9.1
