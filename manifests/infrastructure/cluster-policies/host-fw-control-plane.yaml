@@ -28,6 +28,10 @@ spec:
         protocol: "TCP"
       - port: "50001"
         protocol: "TCP"
+      - port: "80"
+        protocol: "TCP"
+      - port: "443"
+        protocol: "TCP"
 
   # Allow access to Hubble components (Relay, UI, etc.)
   - fromEntities:
