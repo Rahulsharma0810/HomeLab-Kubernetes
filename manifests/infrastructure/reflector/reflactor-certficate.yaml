@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: source
+  namespace: cert-manager
+spec:
+  secretName: ca-wildcard-rvsharma-cert-secret
+  commonName: source
+  issuerRef:
+    name: source-ca
+    kind: Issuer
+    group: cert-manager.io
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "kubernetes-dashboard,pihole,uptime-kuma,paperlessngx" # Control destination namespaces
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true" # Auto create reflection for matching namespaces
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "kubernetes-dashboard,pihole,uptime-kuma,paperlessngx" # Control auto-reflection namespaces
