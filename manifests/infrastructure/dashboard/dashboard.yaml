@@ -1,4 +1,4 @@
-# manifests/infrastructure/dashboard/dashboard.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/dashboard/dashboard.yaml
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
@@ -54,7 +54,7 @@ spec:
         hosts:
         - kubedash.rvsharma.com
         annotations:
-          ingressClassName: nginx
+          kubernetes.io/ingress.class: nginx
         tls:
           enabled: true
           secretName: ca-wildcard-rvsharma-cert-secret
