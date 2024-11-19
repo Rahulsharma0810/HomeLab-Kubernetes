@@ -13,8 +13,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age:
-        - recipient: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
-          enc: |
+      - recipient: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
+        enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
             YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0dnhZajlaNVJuemVGN2pM
             YVN0SDJUcjhGWEE4Q3Z1UTlkUHYrcVRKRWtFCnNCbnpEVHlsaFVJb1ZUVHVwL3or
