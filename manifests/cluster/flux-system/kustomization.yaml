@@ -6,4 +6,4 @@ resources:
 - cilium.yaml
 - pull-secrets.yaml
 - ingress.yaml
-- kubernetes-dashboard.yaml
+- dashboard.yaml

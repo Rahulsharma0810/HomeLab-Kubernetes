@@ -8,7 +8,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./manifests/infrastructure/kubernetes-dashboard
+  path: ./manifests/infrastructure/dashboard
   prune: true
   targetNamespace: kubernetes-dashboard
   wait: true
