@@ -17,24 +17,7 @@ spec:
   interval: 1m
   values:
     fullnameOverride: kubernetes-dashboard
-    namespace: kubernetes-dashboard
-    resources:
-      limits:
-        cpu: 200m
-        memory: 512Mi
-      requests:
-        cpu: 100m
-        memory: 256Mi
-    rbac:
-      create: true
-    serviceAccount:
-      create: true
-      name: kubernetes-dashboard
-    kong:
-      enabled: true
     metricsScraper:
-      enabled: false
-    metrics-server:
       enabled: false
     app:
       ingress:
@@ -50,5 +33,3 @@ spec:
           secretName: ca-wildcard-rvsharma-cert-secret
           hosts:
           - kubedash.rvsharma.com
-    extraArgs:
-    - --enable-insecure-login
