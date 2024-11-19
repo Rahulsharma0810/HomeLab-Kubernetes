@@ -1,29 +1,29 @@
+# HomeLab-Kubernetes/manifests/infrastructure/pull-secrets/docker-hub.yaml
 apiVersion: v1
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:aLNswsDL24XIvW2IUPzbFcA4mIB6QpN9G9JmoROxJ0MAE3VI5/Qjn5FtGorN0djGxtdp31m5yaaiZooiXXhSZh5jRT7Hh6eyceX0LDy0xk/BBl242tPLACE7+Ky/pIxlZ045aBd8oh7hTTcZDdNlgWQ3xfN4i/u6aCJ32UGgiZkF868VCnr79n/tZ2FApeEesfAqg6l4but8hokbQkpL4aNX+1inMma4TwNK0tW2cX5wBhGq93Cs7/V5t57uhzrtuKoTIgblvKzHsspy3kiHCQcO3ohkAt9ig6AYUcYMLH5ZfpFZPI5QEQ==,iv:vPTAmBqNmiEdHzAWdE7wb1mN+LUhrPqMLPjNJ4L4GKI=,tag:xD/0pMzt25LNRtVmREFCqQ==,type:str]
+  .dockerconfigjson: ENC[AES256_GCM,data:NZ9tMuaKJH56DNg6ls2hHPmjhE6lpAqW9gEBPw2kuENSzoXfL4SESFvUcR7GFG2AQXwrPojTIdjBN8VRRmfOtpNiqSJGOZgPp4RFwa/vx1+JGOqni9+jHxgO/KpxQJ7L6hh6oUQa/+mUNuWAkhgg3Nep1+GzBg+KCj291mG1WAGQJSVs5X8QBMRb7a5hBL8hr0WNLtcuLdHjxx+pUPWXDx1STX9gZAy415KLjv2jMG+2NXCGIELx7mYngZ8=,iv:tMOm+mMrkUdUvRZuXTLFc1Y3aOFVT1fh1uj47pIMf0M=,tag:oRGfj3zDkLN+yvHvoWM0kQ==,type:str]
 kind: Secret
 metadata:
-    creationTimestamp: null
-    name: docker-hub-pull-secret
-    namespace: flux-system
+  name: docker-hub-pull-secret
+  namespace: default
 type: kubernetes.io/dockerconfigjson
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-      - recipient: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
-        enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0dnhZajlaNVJuemVGN2pM
-            YVN0SDJUcjhGWEE4Q3Z1UTlkUHYrcVRKRWtFCnNCbnpEVHlsaFVJb1ZUVHVwL3or
-            ZDZudG8razRnSUFqTEZ0M1RDdldyL1UKLS0tIDBuNDV6WTU2SzRGN0hKdWNwR2x6
-            THB1bWRtSElaK2Q2STg1OVZweHgxcUEKDbAeravJ+ngLa8t19NWkw01axD9yHBLC
-            wou6A9SMJB+vwG+EAniYOMB1ECwkOVWsvrM2lzFXI1fcIjjmtKDrtQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-18T15:30:10Z"
-    mac: ENC[AES256_GCM,data:4agM9Q1Vq1I3NVslcVbA3tBsGt96nluuXL5FXE7On4VGBuZhOXmkRGB5vDAJrpqH7J65aB/u0KO8rDYDiSulz3IsJL8QlYBEs3cb7UqFEU0x3Cl6ssyOG2GXpddfn61s3vg8f3q7/s4QUgdf4sicmmDF4aZ9phCMlYLRY7qIQmQ=,iv:ib3QiwZlM++B+OyDEXiELvqkWfgogW+iGE5f8BK0+qw=,tag:HrrE7C4Y9MhT67rIs3kwBQ==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.9.1
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+  - recipient: age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
+    enc: |
+      -----BEGIN AGE ENCRYPTED FILE-----
+      YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiQmN1eERXOHh4MVlsQTNH
+      cW1USmRnL3Zxa0RBMVJuL0N4cUZpYU00TUZVCkNFR2NlSUNHUC9PTGtXOGVvS0U2
+      R29lbENJdjBDZFUydVVCREh6a2hGRG8KLS0tIHdZaUdNcG9NWDd2Z1lyUHJNRzBo
+      Q1ZCSzZ2QXBXSDJ4aEVPQ3FKeEc1eU0KG6b3tt1FKbo3Ff6iO8pFvu2Sdu3zg9XP
+      kFIfmvFMFfts1iW8dxkSiEbCEMOSQG6DUqY/K8wgOplA6tUa5Ovq8Q==
+      -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2024-11-19T20:52:44Z"
+  mac: ENC[AES256_GCM,data:q3adDQ0kayKG5RCPVeP8xk8IkDyowDnxYlmtmK3IAMWcPlZprdg7dXJbA6RrUZnS7U7THX/ccplC+1NrKhm8Hqo8Tyt8hcxZfDB7VDO1DWYhp/z/LGD/dA7xwubv0xAYm6QxnyhgxFl8jqf+xy/g1GvQ+3E72JKp9X1myS0TS9c=,iv:1yBFixdRMl1jLoxqF4P0Ga9Jq0Jo88ysKykk2u+Rx7Y=,tag:vGNHH1mUYRqZ0b5rxE+x6g==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.1

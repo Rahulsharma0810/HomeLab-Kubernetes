@@ -1,19 +1,19 @@
-# .sops.yaml
+# HomeLab-Kubernetes/.sops.yaml
 ---
 creation_rules:
 - path_regex: manifests/.*\.yaml
   encrypted_regex: ^(data|stringData)$
   age: >-
-    age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
+    age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
 
 - path_regex: talosconfig
   encrypted_regex: ^key$
-  age: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
+  age: age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
 
 - path_regex: kubeconfig
   encrypted_regex: ^client-key-data$
-  age: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
+  age: age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
 
 - path_regex: secrets.yaml
   encrypted_regex: ^(secret|bootstraptoken|secretboxencryptionsecret|token|key)$
-  age: age1g9f5g9a02tc60zhqezv3uhkup6g309ygnpk7k8yf8hys48gcw5zqghf0zx
+  age: age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
