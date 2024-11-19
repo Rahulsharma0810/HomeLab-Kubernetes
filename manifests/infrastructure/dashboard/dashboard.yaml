@@ -1,60 +1,14 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
 metadata:
   name: kubernetes-dashboard
   namespace: flux-system
 spec:
-  releaseName: kubernetes-dashboard
+  interval: 10m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./manifests/infrastructure/dashboard
+  prune: true
   targetNamespace: kubernetes-dashboard
-  chart:
-    spec:
-      chart: kubernetes-dashboard
-      sourceRef:
-        kind: HelmRepository
-        name: kubernetes-dashboard
-        namespace: flux-system
-      version: "6.0.5" # Update with the desired chart version
-  interval: 1m
-  values:
-    fullnameOverride: kubernetes-dashboard
-    namespace: kubernetes-dashboard
-    resources:
-      limits:
-        cpu: 200m
-        memory: 512Mi
-      requests:
-        cpu: 100m
-        memory: 256Mi
-    rbac:
-      create: true
-    serviceAccount:
-      create: true
-      name: kubernetes-dashboard
-    kong:
-      enabled: true
-    metricsScraper:
-      enabled: false
-    metrics-server:
-      enabled: false
-    app:
-      ingress:
-        enabled: true
-        paths:
-        - /
-        hosts:
-        - kubedash.rvsharma.com
-        annotations:
-          ingressClassName: nginx
-          # nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-        tls:
-          enabled: true
-          secretName: ca-wildcard-rvsharma-cert-secret
-          hosts:
-          - kubedash.rvsharma.com
-        metricsScraper:
-          enabled: true
-        metrics-server:
-          enabled: true
-    extraArgs:
-    # Additional container arguments
-    - --enable-insecure-login
+  wait: true
