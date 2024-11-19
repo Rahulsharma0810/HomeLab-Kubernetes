@@ -7,3 +7,4 @@ resources:
 - pull-secrets.yaml
 - ingress.yaml
 - cert-manager.yaml
+- kubernetes-dashboard.yaml
