@@ -1,4 +1,5 @@
 # HomeLab-Kubernetes/manifests/infrastructure/ingress-nginx/ingress-nginx.yaml
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -18,7 +19,7 @@ spec:
   chart:
     spec:
       chart: ingress-nginx
-      version: "<4.11.4"
+      version: "<4.11.3"
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
@@ -26,17 +27,14 @@ spec:
       interval: 1m
   values:
     controller:
-      autoscaling:
-        enabled: true
-      # hostNetwork: true
+      hostNetwork: true
       hostPort:
         enabled: true
-        # kind: DaemonSet
-        # ingressClassResource:
-        # default: true
+      kind: DaemonSet
+      ingressClassResource:
+        default: true
       service:
-        enabled: true
-        externalTrafficPolicy: "Local"
+        enabled: false
       extraArgs:
         enable-ssl-passthrough: ""
       config:
