@@ -7,6 +7,7 @@ resources:
 - gotk-sync.yaml
 - cilium.yaml
 - secrets.yaml
+- cloudflare-operator-system.yaml
 
 # - ingress.yaml
 # - dashboard.yaml

@@ -1,3 +1,4 @@
+# HomeLab-Kubernetes/manifests/infrastructure/dashboard/namespace.yaml
 apiVersion: v1
 kind: Namespace
 metadata:
