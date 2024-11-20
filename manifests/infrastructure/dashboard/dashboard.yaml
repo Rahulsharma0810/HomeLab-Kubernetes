@@ -54,6 +54,7 @@ spec:
         - kubedash.rvsharma.com
         annotations:
           kubernetes.io/ingress.class: nginx
+          nginx.ingress.kubernetes.io/enable-cors: "true"
         tls:
           enabled: true
           secretName: ca-wildcard-rvsharma-cert-secret
