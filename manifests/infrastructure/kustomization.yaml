@@ -1,0 +1,12 @@
+# HomeLab-Kubernetes/manifests/infrastructure/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- cert-manager
+- cilium
+- cluster-issuers
+- cluster-policies
+- dashboard
+- ingress-nginx
+- reflector
+- secrets
