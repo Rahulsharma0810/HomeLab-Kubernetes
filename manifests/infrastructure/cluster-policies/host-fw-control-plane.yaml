@@ -1,3 +1,4 @@
+# HomeLab-Kubernetes/manifests/infrastructure/cluster-policies/host-fw-control-plane.yaml
 apiVersion: "cilium.io/v2"
 kind: CiliumClusterwideNetworkPolicy
 metadata:
