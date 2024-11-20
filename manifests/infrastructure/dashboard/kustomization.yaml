@@ -1,6 +1,8 @@
+# HomeLab-Kubernetes/manifests/infrastructure/dashboard/kustomization.yaml
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - namespace.yaml
-- dashboard.yaml
+
+# - dashboard.yaml

@@ -1,0 +1,33 @@
+# HomeLab-Kubernetes/manifests/infrastructure/openobserve/openobserve.yaml
+config:
+  ZO_TELEMETRY: "false"
+  ZO_TELEMETRY_URL: "http://127.0.0.1"
+  ZO_WEB_URL: "https://openobserve.rvsharma.com"
+persistence:
+  size: 50Gi
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/issuer: ""
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+  hosts:
+  - host: openobserve.rvsharma.com
+    paths:
+    - path: /
+      pathType: ImplementationSpecific
+  tls:
+  - secretName: ca-wildcard-rvsharma-cert-secret
+    hosts:
+    - openobserve.rvsharma.com
+extraEnv:
+- name: ZO_ROOT_USER_EMAIL
+  valueFrom:
+    secretKeyRef:
+      name: openobserve-credentials
+      key: ZO_ROOT_USER_EMAIL
+- name: ZO_ROOT_USER_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: openobserve-credentials
+      key: ZO_ROOT_USER_PASSWORD
