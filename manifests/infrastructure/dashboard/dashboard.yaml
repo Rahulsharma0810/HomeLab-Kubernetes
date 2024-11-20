@@ -26,7 +26,6 @@ spec:
   targetNamespace: kubernetes-dashboard
   values:
     fullnameOverride: kubernetes-dashboard
-    namespace: kubernetes-dashboard
     resources:
       limits:
         cpu: 200m
