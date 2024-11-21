@@ -8,7 +8,7 @@ resources:
 - secrets.yaml
 - cloudflare-operator-system.yaml # For NS and Secrets.
 - cloudflare-operator-remote.yaml # For applying Remote Kustomization.
-- cloudnative-pg
+- cloudnative-pg.yaml
 - dashboard.yaml
 
 # - ingress.yaml
