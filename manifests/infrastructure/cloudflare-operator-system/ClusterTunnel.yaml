@@ -6,12 +6,10 @@ metadata:
   namespace: cloudflare-operator-system
 spec:
   newTunnel:
-    name: i1-1806-talos-proxmox-cluster-tunnel # Name of your new tunnel on Cloudflare
+    name: i1-1806-talos-proxmox-cluster-tunnel
   size: 1
   cloudflare:
-    email: sharmaR0810@gmail.com # Your email used to login to the Cloudflare Dashboard
-    domain: rvsharma.com # Domain under which the tunnel runs and adds DNS entries to
-    secret: cloudflare-secrets # The secret created before
-    # accountId and accountName cannot be both empty. If both are provided, Account ID is used if valid, else falls back to Account Name.
-    # accountName: <Cloudflare account name>
+    email: sharmaR0810@gmail.com
+    domain: rvsharma.com
+    secret: cloudflare-secrets
     accountId: dd8f22ea55fe9ce597a761450466a67f
