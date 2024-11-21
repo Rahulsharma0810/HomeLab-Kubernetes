@@ -1,0 +1,13 @@
+# HomeLab-Kubernetes/manifests/infrastructure/dashboard/tunnel-binding-ingress.yaml
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: kubedash-tunnel-binding
+  namespace: kubernetes-dashboard
+subjects:
+- name: kubernetes-dashboard
+  spec:
+    fqdn: kubedash.rvsharma.com
+tunnelRef:
+  kind: ClusterTunnel
+  name: i1-1806-k8s-cluster-tunnel
