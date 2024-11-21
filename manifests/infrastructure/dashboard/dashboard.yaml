@@ -40,6 +40,9 @@ spec:
       name: kubernetes-dashboard
     kong:
       enabled: true
+      proxy:
+        http:
+          enabled: true
     metricsScraper:
       enabled: false
     metrics-server:
