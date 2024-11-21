@@ -8,6 +8,7 @@ subjects:
 - name: kubernetes-dashboard-kubernetes-dashboard-kong-proxy
   spec:
     fqdn: kubedash.rvsharma.com
+    protocol: http
 tunnelRef:
   kind: ClusterTunnel
   name: i1-1806-talos-proxmox-cluster-tunnel
