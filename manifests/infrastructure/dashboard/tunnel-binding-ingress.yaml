@@ -10,4 +10,4 @@ subjects:
     fqdn: kubedash.rvsharma.com
 tunnelRef:
   kind: ClusterTunnel
-  name: i1-1806-k8s-cluster-tunnel
+  name: i1-1806-talos-proxmox-cluster-tunnel
