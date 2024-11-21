@@ -9,6 +9,7 @@ subjects:
   spec:
     fqdn: kubedash.rvsharma.com
     protocol: http
+    noTlsVerify: true
 tunnelRef:
   kind: ClusterTunnel
   name: i1-1806-talos-proxmox-cluster-tunnel
