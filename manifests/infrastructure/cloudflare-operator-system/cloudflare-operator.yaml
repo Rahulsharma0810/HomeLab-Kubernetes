@@ -1,3 +1,0 @@
-# HomeLab-Kubernetes/manifests/infrastructure/cloudflare-operator-system/cloudflare-operator.yaml
-resources:
-- https://github.com/adyanth/cloudflare-operator/config/default
