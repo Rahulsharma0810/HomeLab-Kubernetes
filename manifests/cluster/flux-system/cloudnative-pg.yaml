@@ -1,0 +1,12 @@
+# HomeLab-Kubernetes/manifests/cluster/flux-system/cloudnative-pg.yaml
+kind: Kustomization
+metadata:
+  name: cloudnative-pg
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./manifests/infrastructure/cloudnative-pg
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
