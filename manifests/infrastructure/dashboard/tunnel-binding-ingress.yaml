@@ -5,7 +5,7 @@ metadata:
   name: kubedash-tunnel-binding
   namespace: kubernetes-dashboard
 subjects:
-- name: kubernetes-dashboard
+- name: kubernetes-dashboard-web
   spec:
     fqdn: kubedash.rvsharma.com
 tunnelRef:
