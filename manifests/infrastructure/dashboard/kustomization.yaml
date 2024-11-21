@@ -6,3 +6,4 @@ resources:
 - namespace.yaml
 - dashboard.yaml
 - tunnel-binding-ingress.yaml
+- service-account.yaml
