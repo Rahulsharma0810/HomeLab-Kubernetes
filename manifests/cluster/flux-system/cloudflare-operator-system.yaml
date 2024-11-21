@@ -6,8 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./manifests/infrastructure/cloudflare-operator-system
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+    namespace: flux-system
+  path: ./manifests/infrastructure/cloudflare-operator-system
+  targetNamespace: cloudflare-operator-system
