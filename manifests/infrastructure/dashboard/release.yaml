@@ -42,25 +42,9 @@ spec:
       enabled: true
       proxy:
         http:
+          type: ClusterIP
           enabled: true
     metricsScraper:
       enabled: false
     metrics-server:
       enabled: false
-    # app:
-    #   ingress:
-    #     enabled: false
-    #     paths:
-    #     - /
-    #     hosts:
-    #     - kubedash.rvsharma.com
-    #     annotations:
-    #       kubernetes.io/ingress.class: nginx
-    #       nginx.ingress.kubernetes.io/enable-cors: "true"
-    #     tls:
-    #       enabled: true
-    #       secretName: ca-wildcard-rvsharma-cert-secret
-    #       hosts:
-    #       - kubedash.rvsharma.com
-    extraArgs:
-    - --enable-insecure-login

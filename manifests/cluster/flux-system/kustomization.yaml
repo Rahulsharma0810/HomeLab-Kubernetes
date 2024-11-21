@@ -1,5 +1,4 @@
 # HomeLab-Kubernetes/manifests/cluster/flux-system/kustomization.yaml
-
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -9,6 +8,7 @@ resources:
 - secrets.yaml
 - cloudflare-operator-system.yaml # For NS and Secrets.
 - cloudflare-operator-remote.yaml # For applying Remote Kustomization.
+- cloudnative-pg
 - dashboard.yaml
 
 # - ingress.yaml
