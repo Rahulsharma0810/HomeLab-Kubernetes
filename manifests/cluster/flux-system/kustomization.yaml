@@ -7,7 +7,8 @@ resources:
 - gotk-sync.yaml
 - cilium.yaml
 - secrets.yaml
-- cloudflare-operator-system.yaml
+- cloudflare-operator-system.yaml # For NS and Secrets.
+- cloudflare-operator-remote.yaml # For applying Remote Kustomization.
 
 # - ingress.yaml
 # - dashboard.yaml
