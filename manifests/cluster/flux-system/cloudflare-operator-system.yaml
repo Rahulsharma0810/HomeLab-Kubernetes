@@ -9,6 +9,21 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
+    name: cloudflare-operator # Reference to the GitRepository defined below
+    namespace: flux-system
+  path: ./config/default # Specify the path in the remote repository
+  targetNamespace: cloudflare-operator-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cloudflare-operator
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  sourceRef:
+    kind: GitRepository
     name: flux-system
     namespace: flux-system
   path: ./manifests/infrastructure/cloudflare-operator-system
