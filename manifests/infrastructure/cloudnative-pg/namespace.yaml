@@ -1,0 +1,5 @@
+# HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cnpg-system
