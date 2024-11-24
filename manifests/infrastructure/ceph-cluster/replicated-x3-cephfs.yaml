@@ -8,8 +8,8 @@ spec:
   # The metadata pool spec. Must use replication.
   metadataPool:
     replicated:
-      size: 3
-      requireSafeReplicaSize: true
+      size: 1
+      requireSafeReplicaSize: false
     parameters:
       # Inline compression mode for the data pool
       # Further reference: https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#inline-compression
