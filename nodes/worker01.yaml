@@ -1,3 +1,4 @@
+# HomeLab-Kubernetes/nodes/worker01.yaml
 machine:
   network:
     hostname: I1-1806-Talos-Worker01
