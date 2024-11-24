@@ -1,3 +1,4 @@
+# HomeLab-Kubernetes/nodes/controlplane.yaml
 machine:
   network:
     hostname: I1-1806-Talos-CP01
