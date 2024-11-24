@@ -1,0 +1,63 @@
+# HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-paperless-cluster.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cnpg-paperless-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual-paperless
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: "/mnt/disks/cnpg-paperless"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-paperless-cluster
+  namespace: cnpg-system
+spec:
+  affinity:
+    nodeSelector:
+      kubernetes.io/hostname: i1-1806-talos-worker01
+  instances: 1
+  storage:
+    pvcTemplate:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 20Gi
+      storageClassName: manual-paperless
+  monitoring:
+    enablePodMonitor: true
+  bootstrap:
+    initdb:
+      database: Paperless-pgsql
+      owner: Paperless-pgsql
+      secret:
+        name: cnpg-paperless-user
+  #   recovery:
+  #     database: Paperless-pgsql
+  #     owner: Paperless-pgsql
+  #     secret:
+  #       name: post-init-paperless-sql-secret
+  #     backup:
+  #       name: pg-paperless-cluster-backup-20240401000000
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: s3://i1-1806/
+  #     endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: r2-creds
+  #         key: ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: r2-creds
+  #         key: ACCESS_SECRET_KEY
+  #     wal:
+  #       compression: gzip
+  #       encryption: AES256
