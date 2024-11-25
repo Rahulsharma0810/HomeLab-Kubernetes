@@ -1,8 +1,8 @@
-# HomeLab-Kubernetes/manifests/infrastructure/ceph-cluster/replicated-x3-block-store.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/ceph-cluster/replicated-x1-block-store.yaml
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
-  name: replicated-x3-block-store
+  name: replicated-x1-block-store
   namespace: rook-ceph
 spec:
   failureDomain: host
@@ -12,13 +12,13 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: replicated-x3-block-store
+  name: replicated-x1-block-store
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
   clusterID: rook-ceph
-  pool: replicated-x3-block-store
+  pool: replicated-x1-block-store
   imageFormat: "2"
   imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
