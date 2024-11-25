@@ -48,7 +48,7 @@ spec:
   backup:
     retentionPolicy: "7d"
     barmanObjectStore:
-      destinationPath: s3://i1-1806/
+      destinationPath: s3://i1-1806
       endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
       s3Credentials:
         accessKeyId:
