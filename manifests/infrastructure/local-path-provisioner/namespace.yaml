@@ -5,3 +5,5 @@ metadata:
   name: local-path-storage
   labels:
     app: local-path-provisioner
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: latest

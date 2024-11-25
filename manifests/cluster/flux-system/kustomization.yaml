@@ -9,9 +9,9 @@ resources:
 - cloudflare-operator-system.yaml # For NS and Secrets.
 - cloudflare-operator-remote.yaml # For applying Remote Kustomization.
 - dashboard.yaml
-- rook-ceph.yaml
+- local-path-provisioner.yaml
 - cloudnative-pg.yaml
 
 # Not used resources
-# - ingress.yaml
-# - local-path-provisioner.yaml
+# rook-ceph.yaml #Issues in Single Node Server
+# - ingress.yaml #Deprecated in favour of Tunnel
