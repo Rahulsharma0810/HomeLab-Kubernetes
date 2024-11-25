@@ -1,0 +1,7 @@
+# HomeLab-Kubernetes/manifests/infrastructure/local-path-provisioner/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: local-path-storage
+  labels:
+    app: local-path-provisioner
