@@ -6,3 +6,5 @@ resources:
 - release.yaml
 - pg-paperless-cluster.yaml
 - pg-immich-cluster.yaml
+- pg-paperless-auto-backup.yaml
+- pg-immich-auto-backup.yaml
