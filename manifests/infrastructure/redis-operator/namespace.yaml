@@ -1,0 +1,5 @@
+# HomeLab-Kubernetes/manifests/infrastructure/redis-operator/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cnrds-system

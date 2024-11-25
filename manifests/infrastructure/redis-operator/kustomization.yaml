@@ -1,0 +1,8 @@
+# HomeLab-Kubernetes/manifests/infrastructure/redis-operator/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- namespace.yaml
+- release.yaml
+- redis-paperless-cluster.yaml
+- redis-immich-cluster.yaml
