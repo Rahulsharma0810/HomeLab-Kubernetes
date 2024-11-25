@@ -10,6 +10,8 @@ resources:
 - cloudflare-operator-remote.yaml # For applying Remote Kustomization.
 - dashboard.yaml
 - rook-ceph.yaml
+- cloudnative-pg.yaml
 
+# Not used resources
+# - ingress.yaml
 # - local-path-provisioner.yaml
-# - cloudnative-pg.yaml
