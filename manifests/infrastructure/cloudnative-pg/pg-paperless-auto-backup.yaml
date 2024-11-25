@@ -5,7 +5,7 @@ metadata:
   name: pg-paperless-cluster-backup
   namespace: cnpg-system
 spec:
-  schedule: "0 0 0 * * *"
+  schedule: "0 30 23 * * *"
   backupOwnerReference: cluster
   cluster:
     name: pg-paperless-cluster
