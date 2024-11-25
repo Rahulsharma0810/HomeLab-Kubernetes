@@ -31,7 +31,7 @@ spec:
       resources:
         requests:
           storage: 20Gi
-      storageClassName: local-path
+      storageClassName: replicated-x1-block-store
   monitoring:
     enablePodMonitor: true
   bootstrap:
