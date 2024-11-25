@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - release.yaml
-
-# - pg-paperless-cluster.yaml
+- pg-paperless-cluster.yaml

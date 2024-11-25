@@ -1,19 +1,19 @@
 # HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-paperless-cluster.yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: cnpg-paperless-pv
-  labels:
-    type: local
-spec:
-  storageClassName: manual-paperless
-  capacity:
-    storage: 20Gi
-  accessModes:
-  - ReadWriteOnce
-  hostPath:
-    path: "/mnt/disks/cnpg-paperless"
----
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: cnpg-paperless-pv
+#   labels:
+#     type: local
+# spec:
+#   storageClassName: local-path
+#   capacity:
+#     storage: 20Gi
+#   accessModes:
+#   - ReadWriteOnce
+#   hostPath:
+#     path: "/mnt/disks/cnpg-paperless"
+# ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -31,7 +31,7 @@ spec:
       resources:
         requests:
           storage: 20Gi
-      storageClassName: manual-paperless
+      storageClassName: local-path
   monitoring:
     enablePodMonitor: true
   bootstrap:
