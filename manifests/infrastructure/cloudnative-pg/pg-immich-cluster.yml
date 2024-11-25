@@ -1,0 +1,84 @@
+# HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-immich-cluster.yml
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-immich-cluster
+  namespace: cnpg-system
+spec:
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs
+  superuserSecret:
+    name: cnpg-immich-superuser
+  enableSuperuserAccess: true
+  startDelay: 30
+  stopDelay: 100
+  primaryUpdateStrategy: unsupervised
+  primaryUpdateMethod: restart ##@@ Cannot use switchover with 1 instance
+  postgresql:
+    shared_preload_libraries:
+    - "vectors.so"
+  affinity:
+    nodeSelector:
+      kubernetes.io/hostname: i1-1806-talos-worker01
+  instances: 1
+  storage:
+    pvcTemplate:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 20Gi
+      storageClassName: local-path
+  monitoring:
+    enablePodMonitor: true
+  bootstrap:
+    initdb:
+      database: postgresql_immich_pgsql
+      owner: postgresql_immich_pgsql
+      secret:
+        name: cnpg-immich-user
+      postInitApplicationSQL:
+      - ALTER SYSTEM SET search_path TO "$user", public, vectors;
+      - SET search_path TO "$user", public, vectors;
+      - CREATE EXTENSION IF NOT EXISTS "vectors";
+      - ALTER SCHEMA vectors OWNER TO "postgresql_immich_pgsql";
+      - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA vectors TO "postgresql_immich_pgsql";
+      - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "postgresql_immich_pgsql";
+      - CREATE EXTENSION IF NOT EXISTS cube WITH SCHEMA pg_catalog;
+      - CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA pg_catalog;
+  #     import:
+  #       type: microservice
+  #       databases:
+  #         - postgresql-immich-pgsql
+  #       source:
+  #         externalCluster: cluster-pg96
+  # externalClusters:
+  #   - name: cluster-pg96
+  #     connectionParameters:
+  #       # Use the correct IP or host name for the source database
+  #       host: immich-postgresql.immich.svc.cluster.local
+  #       user: postgresql-immich-pgsql
+  #       dbname: postgresql-immich-pgsql
+  #     password:
+  #       name: post-init-immich-pgsql-secret
+  #       key: password
+  # recovery:
+  #   database: postgresql-immich-pgsql
+  #   owner: postgresql-immich-pgsql
+  #   secret:
+  #     name: post-init-immich-pgsql-secret
+  #   backup:
+  #     name: postgresql-immich-cluster-backup-20240106000000
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: s3://i1-1806/
+  #     endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: r2-backup-restore-secret
+  #         key: ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: r2-backup-restore-secret
+  #         key: ACCESS_SECRET_KEY
+  #     wal:
+  #       compression: gzip
+  #       encryption: AES256

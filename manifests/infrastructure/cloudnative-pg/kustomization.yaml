@@ -5,3 +5,4 @@ resources:
 - namespace.yaml
 - release.yaml
 - pg-paperless-cluster.yaml
+- pg-immich-cluster.yaml

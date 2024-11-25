@@ -1,19 +1,4 @@
 # HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-paperless-cluster.yaml
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: cnpg-paperless-pv
-#   labels:
-#     type: local
-# spec:
-#   storageClassName: local-path
-#   capacity:
-#     storage: 20Gi
-#   accessModes:
-#   - ReadWriteOnce
-#   hostPath:
-#     path: "/mnt/disks/cnpg-paperless"
----
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -40,6 +25,20 @@ spec:
       owner: Paperless-pgsql
       secret:
         name: cnpg-paperless-user
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: s3://i1-1806/
+  #     endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: r2-backup-restore-secret
+  #         key: ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: r2-backup-restore-secret
+  #         key: ACCESS_SECRET_KEY
+  #     wal:
+  #       compression: gzip
+  #       encryption: AES256
   #   recovery:
   #     database: Paperless-pgsql
   #     owner: Paperless-pgsql
@@ -47,17 +46,3 @@ spec:
   #       name: post-init-paperless-sql-secret
   #     backup:
   #       name: pg-paperless-cluster-backup-20240401000000
-  # backup:
-  #   barmanObjectStore:
-  #     destinationPath: s3://i1-1806/
-  #     endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
-  #     s3Credentials:
-  #       accessKeyId:
-  #         name: r2-creds
-  #         key: ACCESS_KEY_ID
-  #       secretAccessKey:
-  #         name: r2-creds
-  #         key: ACCESS_SECRET_KEY
-  #     wal:
-  #       compression: gzip
-  #       encryption: AES256
