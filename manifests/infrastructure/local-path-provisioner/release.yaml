@@ -1,5 +1,5 @@
 # HomeLab-Kubernetes/manifests/infrastructure/local-path-provisioner/release.yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: c7n
@@ -8,12 +8,13 @@ spec:
   url: https://openchart.choerodon.com.cn/choerodon/c7n
   interval: 1h
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: local-path-provisioner
   namespace: local-path-storage
 spec:
+  interval: 5m # Add this to specify how often Flux checks for changes.
   chart:
     spec:
       chart: local-path-provisioner
