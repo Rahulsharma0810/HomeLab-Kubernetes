@@ -45,6 +45,21 @@ spec:
       - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "postgresql_immich_pgsql";
       - CREATE EXTENSION IF NOT EXISTS cube WITH SCHEMA pg_catalog;
       - CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA pg_catalog;
+  backup:
+    barmanObjectStore:
+      retentionPolicy: "7d"
+      destinationPath: s3://i1-1806/
+      endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
+      s3Credentials:
+        accessKeyId:
+          name: r2-backup-restore-secret
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: r2-backup-restore-secret
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+        encryption: AES256
   #     import:
   #       type: microservice
   #       databases:
@@ -68,17 +83,3 @@ spec:
   #     name: post-init-immich-pgsql-secret
   #   backup:
   #     name: postgresql-immich-cluster-backup-20240106000000
-  # backup:
-  #   barmanObjectStore:
-  #     destinationPath: s3://i1-1806/
-  #     endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
-  #     s3Credentials:
-  #       accessKeyId:
-  #         name: r2-backup-restore-secret
-  #         key: ACCESS_KEY_ID
-  #       secretAccessKey:
-  #         name: r2-backup-restore-secret
-  #         key: ACCESS_SECRET_KEY
-  #     wal:
-  #       compression: gzip
-  #       encryption: AES256

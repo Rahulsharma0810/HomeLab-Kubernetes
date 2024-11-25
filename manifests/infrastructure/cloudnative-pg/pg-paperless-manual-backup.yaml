@@ -1,0 +1,9 @@
+# HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-paperless-manual-backup.yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: pg-paperless-cluster-backup-manual
+spec:
+  method: barmanObjectStore
+  cluster:
+    name: pg-paperless-cluster
