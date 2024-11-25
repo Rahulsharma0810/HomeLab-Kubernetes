@@ -23,11 +23,3 @@ spec:
   storage:
     useAllNodes: true
     useAllDevices: true
-  placement:
-    all:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-          - matchExpressions:
-            - key: node-role.kubernetes.io/worker
-              operator: Exists
