@@ -31,3 +31,5 @@ spec:
     enableDiscoveryDaemon: true
     monitoring:
       enabled: true
+    csi:
+      provisionerReplicas: 1
