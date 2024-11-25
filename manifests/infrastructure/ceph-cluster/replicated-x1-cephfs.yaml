@@ -25,14 +25,14 @@ spec:
     activeStandby: true
     placement:
       podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - rook-ceph-mds
-          topologyKey: kubernetes.io/hostname
+        # requiredDuringSchedulingIgnoredDuringExecution:
+        # - labelSelector:
+        #     matchExpressions:
+        #     - key: app
+        #       operator: In
+        #       values:
+        #       - rook-ceph-mds
+        #   topologyKey: kubernetes.io/hostname
         preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 100
           podAffinityTerm:
