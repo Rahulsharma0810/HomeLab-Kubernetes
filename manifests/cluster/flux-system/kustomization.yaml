@@ -12,6 +12,7 @@ resources:
 - local-path-provisioner.yaml
 - cloudnative-pg.yaml
 - redis-operator.yaml
+- paperless-system.yaml
 
 # Not used resources
 # rook-ceph.yaml #Issues in Single Node Server
