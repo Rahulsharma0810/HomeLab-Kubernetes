@@ -1,4 +1,56 @@
 # HomeLab-Kubernetes/manifests/infrastructure/paperless-system/deployment.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperlessngx-data
+  namespace: paperless-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: local-path
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperlessngx-media
+  namespace: paperless-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: local-path
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperlessngx-export
+  namespace: paperless-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: local-path
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperlessngx-consume
+  namespace: paperless-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: local-path
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -86,7 +138,7 @@ spec:
       - name: script-volume
         configMap:
           name: paperlessngx-scripts
-          defaultMode: 0775 #Yaml Formatter changing it to 755
+          defaultMode: 775 #Yaml Formatter changing it to 755
 ---
 apiVersion: v1
 kind: Service
