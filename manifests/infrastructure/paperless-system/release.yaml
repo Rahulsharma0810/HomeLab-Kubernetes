@@ -25,11 +25,6 @@ spec:
   interval: 10m
   install:
     createNamespace: true
-  valuesFrom:
-  - kind: Secret
-    name: pre-consumption-secrets
-  - kind: Secret
-    name: cnpg-paperless-user-password
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
@@ -102,9 +97,4 @@ spec:
     postgresql:
       enabled: false
     redis:
-      enabled: true
-      auth:
-        enabled: true
-      master:
-        persistence:
-          enabled: false
+      enabled: false
