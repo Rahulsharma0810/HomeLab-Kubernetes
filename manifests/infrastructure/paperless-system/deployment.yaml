@@ -136,7 +136,7 @@ spec:
       - name: script-volume
         configMap:
           name: paperlessngx-scripts
-          defaultMode: 0755 #Yaml Formatter changing it to 755
+          defaultMode: 493
 ---
 apiVersion: v1
 kind: Service
