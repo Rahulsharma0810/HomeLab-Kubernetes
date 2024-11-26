@@ -68,7 +68,7 @@ spec:
     spec:
       containers:
       - name: paperlessngx-container
-        image: ghcr.io/paperless-ngx/paperless-ngx:2.4.3
+        image: ghcr.io/paperless-ngx/paperless-ngx:2.13.5
         ports:
         - containerPort: 8000
         env:
@@ -103,7 +103,7 @@ spec:
         - name: PAPERLESS_APPS
           value: allauth.socialaccount.providers.google
         - name: PAPERLESS_DISABLE_REGULAR_LOGIN
-          value: "TRUE"
+          value: "False"
         - name: PAPERLESS_SOCIALACCOUNT_PROVIDERS
           valueFrom:
             secretKeyRef:
