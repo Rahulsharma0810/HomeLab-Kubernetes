@@ -11,11 +11,17 @@ data:
         import os
 
         def unlock_pdf(file_path):
+            # Check if the file is a PDF
+            if not file_path.endswith(".pdf"):
+                print(f"Skipping non-PDF file: {file_path}")
+                return
+
             passwords = [
                 os.getenv('PASSWORD_1'),
                 os.getenv('PASSWORD_2'),
                 os.getenv('PASSWORD_3')
             ]
+
             for password in passwords:
                 if password is None:
                     continue
