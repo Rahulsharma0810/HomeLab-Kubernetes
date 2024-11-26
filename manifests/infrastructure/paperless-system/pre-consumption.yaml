@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
     name: paperlessngx-scripts
-    namespace: paperlessngx
+    namespace: paperless-system
 data:
     unlock.py: |
         #!/usr/bin/env python

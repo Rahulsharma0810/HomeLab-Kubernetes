@@ -1,5 +1,4 @@
 # HomeLab-Kubernetes/manifests/infrastructure/paperless-system/release.yaml
-
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -27,8 +26,6 @@ spec:
   install:
     createNamespace: true
   valuesFrom:
-  - kind: Secret
-    name: pre-consumption-secrets
   - kind: ConfigMap
     name: paperlessngx-scripts
   - kind: Secret
@@ -39,18 +36,43 @@ spec:
       tag: 2.6.3
       pullPolicy: IfNotPresent
     env:
-      TZ: UTC
+      TZ: Asia/Kolkata
       PAPERLESS_URL: "https://paper.rvsharma.com"
       PAPERLESS_OCR_USER_ARGS: '{"invalidate_digital_signatures": true}'
       PAPERLESS_REDIS: "redis://redis-paperless-cluster.cnrds-system.svc.cluster.local:6379"
       PAPERLESS_DBENGINE: postgresql
       PAPERLESS_DBHOST: pg-paperless-cluster-rw.cnpg-system.svc.cluster.local
       PAPERLESS_DBNAME: Paperless-pgsql
+      PAPERLESS_DBUSER:
+        valueFrom:
+          secretKeyRef:
+            name: cnpg-paperless-user-password
+            key: username
+      PAPERLESS_DBPASS:
+        valueFrom:
+          secretKeyRef:
+            name: cnpg-paperless-user-password
+            key: password
       PAPERLESS_DBPORT: "5432"
       PAPERLESS_OCR_LANGUAGE: eng
       PAPERLESS_PRE_CONSUME_SCRIPT: /usr/src/paperless/scripts/unlock.py
       PAPERLESS_APPS: allauth.socialaccount.providers.google
       PAPERLESS_DISABLE_REGULAR_LOGIN: "TRUE"
+      PASSWORD_1:
+        valueFrom:
+          secretKeyRef:
+            name: pre-consumption-secrets
+            key: PASSWORD_1
+      PASSWORD_2:
+        valueFrom:
+          secretKeyRef:
+            name: pre-consumption-secrets
+            key: PASSWORD_2
+      PASSWORD_3:
+        valueFrom:
+          secretKeyRef:
+            name: pre-consumption-secrets
+            key: PASSWORD_3
     service:
       main:
         ports:
