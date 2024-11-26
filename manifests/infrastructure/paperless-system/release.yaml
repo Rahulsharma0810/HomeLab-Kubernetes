@@ -1,0 +1,88 @@
+# HomeLab-Kubernetes/manifests/infrastructure/paperless-system/release.yaml
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: paperless-ngx-charts
+  namespace: flux-system
+spec:
+  type: oci
+  interval: 1h
+  url: oci://ghcr.io/gabe565/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: paperless-ngx
+  namespace: paperless-system
+spec:
+  chart:
+    spec:
+      chart: paperless-ngx
+      sourceRef:
+        kind: HelmRepository
+        name: paperless-ngx-charts
+        namespace: flux-system
+  interval: 10m
+  install:
+    createNamespace: true
+  valuesFrom:
+  - kind: Secret
+    name: pre-consumption-secrets
+  - kind: ConfigMap
+    name: paperlessngx-scripts
+  - kind: Secret
+    name: cnpg-paperless-user-password
+  values:
+    image:
+      repository: ghcr.io/paperless-ngx/paperless-ngx
+      tag: 2.6.3
+      pullPolicy: IfNotPresent
+    env:
+      TZ: UTC
+      PAPERLESS_URL: "https://paper.rvsharma.com"
+      PAPERLESS_OCR_USER_ARGS: '{"invalidate_digital_signatures": true}'
+      PAPERLESS_REDIS: "redis://redis-paperless-cluster.cnrds-system.svc.cluster.local:6379"
+      PAPERLESS_DBENGINE: postgresql
+      PAPERLESS_DBHOST: pg-paperless-cluster-rw.cnpg-system.svc.cluster.local
+      PAPERLESS_DBNAME: Paperless-pgsql
+      PAPERLESS_DBPORT: "5432"
+      PAPERLESS_OCR_LANGUAGE: eng
+      PAPERLESS_PRE_CONSUME_SCRIPT: /usr/src/paperless/scripts/unlock.py
+      PAPERLESS_APPS: allauth.socialaccount.providers.google
+      PAPERLESS_DISABLE_REGULAR_LOGIN: "TRUE"
+    service:
+      main:
+        ports:
+          http:
+            port: 8000
+    persistence:
+      data:
+        enabled: true
+        size: 10Gi
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+      media:
+        enabled: true
+        size: 20Gi
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+      export:
+        enabled: true
+        size: 5Gi
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+      consume:
+        enabled: true
+        size: 5Gi
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+    postgresql:
+      enabled: false
+    redis:
+      enabled: true
+      auth:
+        enabled: true
+      master:
+        persistence:
+          enabled: false
