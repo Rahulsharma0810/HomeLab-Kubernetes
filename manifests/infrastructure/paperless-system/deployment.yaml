@@ -103,7 +103,7 @@ spec:
         - name: PAPERLESS_APPS
           value: allauth.socialaccount.providers.google
         - name: PAPERLESS_DISABLE_REGULAR_LOGIN
-          value: "False"
+          value: "TRUE"
         - name: PAPERLESS_SOCIALACCOUNT_PROVIDERS
           valueFrom:
             secretKeyRef:
