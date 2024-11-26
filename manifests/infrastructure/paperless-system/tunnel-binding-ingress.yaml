@@ -5,7 +5,7 @@ metadata:
   name: paperless-tunnel-binding
   namespace: paperless-system
 subjects:
-- name: paperless-ngx
+- name: paperlessngx
   spec:
     fqdn: paper.rvsharma.com
     # protocol: http

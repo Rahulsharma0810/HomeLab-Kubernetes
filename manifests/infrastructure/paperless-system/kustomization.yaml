@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - pre-consumption.yaml
-
-# - release.yaml
+- deployment.yaml
+- tunnel-binding-ingress.yaml
