@@ -86,7 +86,7 @@ spec:
       - name: script-volume
         configMap:
           name: paperlessngx-scripts
-          defaultMode: 755
+          defaultMode: 775
 ---
 apiVersion: v1
 kind: Service
