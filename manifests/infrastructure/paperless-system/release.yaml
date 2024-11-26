@@ -51,8 +51,8 @@ spec:
       PAPERLESS_DBPORT: "5432"
       PAPERLESS_OCR_LANGUAGE: eng
       PAPERLESS_PRE_CONSUME_SCRIPT: /usr/src/paperless/scripts/unlock.py
-      PAPERLESS_APPS: allauth.socialaccount.providers.google
-      PAPERLESS_DISABLE_REGULAR_LOGIN: "TRUE"
+      # PAPERLESS_APPS: allauth.socialaccount.providers.google
+      # PAPERLESS_DISABLE_REGULAR_LOGIN: "TRUE"
       PASSWORD_1:
         valueFrom:
           secretKeyRef:
