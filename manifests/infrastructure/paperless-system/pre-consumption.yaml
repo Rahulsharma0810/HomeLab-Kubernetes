@@ -1,0 +1,37 @@
+# HomeLab-Kubernetes/manifests/infrastructure/paperless-system/pre-consumption.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: paperlessngx-scripts
+    namespace: paperlessngx
+data:
+    unlock.py: |
+        #!/usr/bin/env python
+        import pikepdf
+        import os
+
+        def unlock_pdf(file_path):
+            passwords = [
+                os.getenv('PASSWORD_1'),
+                os.getenv('PASSWORD_2'),
+                os.getenv('PASSWORD_3')
+            ]
+            for password in passwords:
+                if password is None:
+                    continue
+                try:
+                    with pikepdf.open(file_path, password=password, allow_overwriting_input=True) as pdf:
+                        print(f"Password is working: {password}")
+                        pdf.save(file_path)
+                        break
+                except pikepdf.PasswordError:
+                    print(f"Password isn't working: {password}")
+                    continue
+            else:
+                print("No valid password found")
+
+        file_path = os.getenv('DOCUMENT_WORKING_PATH')
+        if file_path:
+            unlock_pdf(file_path)
+        else:
+            print("DOCUMENT_WORKING_PATH environment variable is not set.")

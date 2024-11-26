@@ -15,6 +15,6 @@ spec:
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "kubernetes-dashboard,pihole,uptime-kuma,paperlessngx" # Control destination namespaces
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "kubernetes-dashboard,pihole,uptime-kuma,paperless-system" # Control destination namespaces
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true" # Auto create reflection for matching namespaces
-      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "kubernetes-dashboard,pihole,uptime-kuma,paperlessngx" # Control auto-reflection namespaces
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "kubernetes-dashboard,pihole,uptime-kuma,paperless-system" # Control auto-reflection namespaces
