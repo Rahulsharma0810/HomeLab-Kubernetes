@@ -1,5 +1,4 @@
 # HomeLab-Kubernetes/manifests/infrastructure/cilium/release.yaml
-
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
