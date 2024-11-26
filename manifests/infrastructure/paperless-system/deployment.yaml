@@ -111,6 +111,21 @@ spec:
           value: eng
         - name: PAPERLESS_PRE_CONSUME_SCRIPT
           value: /usr/src/paperless/scripts/unlock.py
+        - name: PASSWORD_1
+          valueFrom:
+            secretKeyRef:
+              name: pre-consumption-secrets
+              key: PASSWORD_1
+        - name: PASSWORD_2
+          valueFrom:
+            secretKeyRef:
+              name: pre-consumption-secrets
+              key: PASSWORD_2
+        - name: PASSWORD_3
+          valueFrom:
+            secretKeyRef:
+              name: pre-consumption-secrets
+              key: PASSWORD_3
         - name: PAPERLESS_APPS
           value: allauth.socialaccount.providers.google
         - name: PAPERLESS_DISABLE_REGULAR_LOGIN
