@@ -2,10 +2,10 @@
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
-  name: paperless-tunnel-binding
-  namespace: paperless-system
+  name: immich-tunnel-binding
+  namespace: immich-system
 subjects:
-- name: immich-service
+- name: immich-server
   spec:
     fqdn: photo.rvsharma.com
     # protocol: http
