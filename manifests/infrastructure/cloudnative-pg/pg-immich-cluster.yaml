@@ -5,7 +5,7 @@ metadata:
   name: pg-immich-cluster
   namespace: cnpg-system
 spec:
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:17
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:15.9-v0.3.0 #0.4.0 is not supported yet in immich
   superuserSecret:
     name: cnpg-immich-superuser
   enableSuperuserAccess: true
