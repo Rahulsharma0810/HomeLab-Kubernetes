@@ -125,16 +125,16 @@ spec:
       volumes:
       - name: data-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-data-pvc
+          claimName: paperlessngx-data
       - name: media-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-media-pvc
+          claimName: paperlessngx-media
       - name: export-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-export-pvc
+          claimName: paperlessngx-export
       - name: consume-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-consume-pvc
+          claimName: paperlessngx-consume
       - name: script-volume
         configMap:
           name: paperlessngx-scripts
@@ -147,7 +147,7 @@ metadata:
   namespace: paperless-system
 spec:
   selector:
-    app: paperless-ngx
+    app: paperlessngx
   ports:
   - protocol: TCP
     port: 80
