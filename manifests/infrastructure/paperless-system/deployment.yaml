@@ -71,6 +71,17 @@ spec:
         image: ghcr.io/paperless-ngx/paperless-ngx:2.13.5
         ports:
         - containerPort: 8000
+        volumeMounts:
+        - name: data-volume
+          mountPath: /usr/src/paperless/data
+        - name: media-volume
+          mountPath: /usr/src/paperless/media
+        - name: export-volume
+          mountPath: /usr/src/paperless/export
+        - name: consume-volume
+          mountPath: /usr/src/paperless/consume
+        - name: script-volume
+          mountPath: /usr/src/paperless/scripts
         env:
         - name: PAPERLESS_URL
           value: https://paper.rvsharma.com
@@ -109,19 +120,6 @@ spec:
             secretKeyRef:
               name: paperless-socialaccount-providers
               key: PAPERLESS_SOCIALACCOUNT_PROVIDERS
-        volumeMounts:
-        - name: data-volume
-          mountPath: /usr/src/paperless/data
-        - name: media-volume
-          mountPath: /usr/src/paperless/media
-        - name: export-volume
-          mountPath: /usr/src/paperless/export
-        - name: consume-volume
-          mountPath: /usr/src/paperless/consume
-        - name: script-volume
-          mountPath: /usr/src/paperless/scripts
-          subPath: unlock.py
-          readOnly: true
       volumes:
       - name: data-volume
         persistentVolumeClaim:
