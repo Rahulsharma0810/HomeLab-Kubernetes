@@ -1,0 +1,9 @@
+# HomeLab-Kubernetes/manifests/infrastructure/immich-system/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- namespace.yaml
+- pvc.yaml
+- release.yaml
+
+# - tunnel-binding-ingress.yaml

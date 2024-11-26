@@ -1,0 +1,15 @@
+# HomeLab-Kubernetes/manifests/infrastructure/immich-system/tunnel-binding-ingress.yaml
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: paperless-tunnel-binding
+  namespace: paperless-system
+subjects:
+- name: immich-service
+  spec:
+    fqdn: photo.rvsharma.com
+    # protocol: http
+    # noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: i1-1806-talos-proxmox-cluster-tunnel

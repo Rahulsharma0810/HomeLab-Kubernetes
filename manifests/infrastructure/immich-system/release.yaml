@@ -1,0 +1,73 @@
+# HomeLab-Kubernetes/manifests/infrastructure/immich-system/release.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: immich-charts
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://immich-app.github.io/immich-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich-system
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: immich
+      sourceRef:
+        kind: HelmRepository
+        name: immich-charts
+        namespace: flux-system
+      version: "0.8.4"
+  values:
+    env:
+      REDIS_HOSTNAME: "redis-immich-cluster.cnrds-system.svc.cluster.local"
+      DB_HOSTNAME: "pg-immich-cluster-rw.cnpg-system.svc.cluster.local"
+      DB_DATABASE_NAME: "postgresql_immich_pgsql"
+      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: cnpg-immich-user-password
+            key: username
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: cnpg-immich-user-password
+            key: password
+    image:
+      tag: v1.119.0
+    immich:
+      metrics:
+        enabled: false
+      persistence:
+        library:
+          existingClaim: immich-library
+    postgresql:
+      enabled: false
+    redis:
+      enabled: false
+    server:
+      enabled: true
+      image:
+        repository: ghcr.io/immich-app/immich-server
+        pullPolicy: Always
+
+    machine-learning:
+      enabled: true
+      image:
+        repository: ghcr.io/immich-app/immich-machine-learning
+        pullPolicy: Always
+      env:
+        TRANSFORMERS_CACHE: /cache
+      persistence:
+        cache:
+          enabled: true
+          size: 10Gi
+          type: pvc
+          accessMode: ReadWriteOnce
+          storageClass: local-path
