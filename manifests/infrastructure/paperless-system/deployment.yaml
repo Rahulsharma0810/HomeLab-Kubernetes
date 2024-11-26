@@ -1,0 +1,89 @@
+# HomeLab-Kubernetes/manifests/infrastructure/paperless-system/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperlessngx-deployment
+  namespace: paperless-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperlessngx
+  template:
+    metadata:
+      labels:
+        app: paperlessngx
+    spec:
+      containers:
+      - name: paperlessngx-container
+        image: ghcr.io/paperless-ngx/paperless-ngx:2.4.3
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PAPERLESS_URL
+          value: https://paper.rvsharma.com
+        - name: PAPERLESS_OCR_USER_ARGS
+          value: '{"invalidate_digital_signatures": true}'
+        - name: PAPERLESS_REDIS
+          value: redis://redis-paperless-cluster.cnrds-system.svc.cluster.local:6379
+        - name: PAPERLESS_DBENGINE
+          value: postgresql
+        - name: PAPERLESS_DBHOST
+          value: pg-paperless-cluster-rw.cnpg-system.svc.cluster.local
+        - name: PAPERLESS_DBNAME
+          value: Paperless-pgsql
+        - name: PAPERLESS_DBUSER
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-paperless-user-password
+              key: username
+        - name: PAPERLESS_DBPASS
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-paperless-user-password
+              key: password
+        - name: PAPERLESS_DBPORT
+          value: "5432"
+        - name: PAPERLESS_OCR_LANGUAGE
+          value: eng
+        - name: PAPERLESS_PRE_CONSUME_SCRIPT
+          value: /usr/src/paperless/scripts/unlock.py
+        - name: PAPERLESS_APPS
+          value: allauth.socialaccount.providers.google
+        - name: PAPERLESS_DISABLE_REGULAR_LOGIN
+          value: "TRUE"
+        - name: PAPERLESS_SOCIALACCOUNT_PROVIDERS
+          valueFrom:
+            secretKeyRef:
+              name: paperless-socialaccount-providers
+              key: PAPERLESS_SOCIALACCOUNT_PROVIDERS
+        volumeMounts:
+        - name: data-volume
+          mountPath: /usr/src/paperless/data
+        - name: media-volume
+          mountPath: /usr/src/paperless/media
+        - name: export-volume
+          mountPath: /usr/src/paperless/export
+        - name: consume-volume
+          mountPath: /usr/src/paperless/consume
+        - name: script-volume
+          mountPath: /usr/src/paperless/scripts
+          subPath: unlock.py
+          readOnly: true
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: paperlessngx-data-pvc
+      - name: media-volume
+        persistentVolumeClaim:
+          claimName: paperlessngx-media-pvc
+      - name: export-volume
+        persistentVolumeClaim:
+          claimName: paperlessngx-export-pvc
+      - name: consume-volume
+        persistentVolumeClaim:
+          claimName: paperlessngx-consume-pvc
+      - name: script-volume
+        configMap:
+          name: paperlessngx-scripts
+          defaultMode: 755
