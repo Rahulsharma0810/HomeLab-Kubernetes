@@ -6,7 +6,7 @@ metadata:
   namespace: paperless-system
 spec:
   interval: 10m
-  path: ./manifests/infrastructure/paperlessngx
+  path: ./manifests/infrastructure/paperless-system
   prune: true
   sourceRef:
     kind: GitRepository
