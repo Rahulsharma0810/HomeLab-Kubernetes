@@ -26,8 +26,8 @@ spec:
   install:
     createNamespace: true
   valuesFrom:
-  - kind: ConfigMap
-    name: paperlessngx-scripts
+  - kind: Secret
+    name: pre-consumption-secrets
   - kind: Secret
     name: cnpg-paperless-user-password
   values:
