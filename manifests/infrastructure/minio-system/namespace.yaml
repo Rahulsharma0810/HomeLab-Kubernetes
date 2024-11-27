@@ -1,0 +1,5 @@
+# HomeLab-Kubernetes/manifests/infrastructure/minio-system/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio-system
