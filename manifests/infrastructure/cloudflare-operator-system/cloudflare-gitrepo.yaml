@@ -5,7 +5,7 @@ metadata:
   name: cloudflare-operator
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 5m
   url: https://github.com/adyanth/cloudflare-operator
   ref:
     branch: main

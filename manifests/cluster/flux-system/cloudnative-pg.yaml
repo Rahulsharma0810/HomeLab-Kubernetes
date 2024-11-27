@@ -5,7 +5,7 @@ metadata:
   name: cloudnative-pg
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 5m
   path: ./manifests/infrastructure/cloudnative-pg
   prune: true
   sourceRef:

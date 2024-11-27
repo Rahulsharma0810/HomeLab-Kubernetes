@@ -14,7 +14,7 @@ metadata:
   name: immich
   namespace: immich-system
 spec:
-  interval: 10m
+  interval: 5m
   chart:
     spec:
       chart: immich
