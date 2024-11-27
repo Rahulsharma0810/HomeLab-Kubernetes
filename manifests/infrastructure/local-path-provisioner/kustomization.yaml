@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - release.yaml
-- local-path-config.yaml
+- storageclasses.yaml
