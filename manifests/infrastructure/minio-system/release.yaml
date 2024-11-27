@@ -25,9 +25,29 @@ spec:
       version: 5.3.0
   values:
     replicas: 1
-    rootUser: rootuser
-    rootPassword: rootpass123
+    rootUser:
+      valueFrom:
+        secretKeyRef:
+          name: minio-creds
+          key: rootUser
+    rootPassword:
+      valueFrom:
+        secretKeyRef:
+          name: minio-creds
+          key: rootPassword
     mode: standalone
     persistence:
       enabled: true
       size: 10Gi
+    extraVolumes:
+    - name: samsung_860_evo_1
+      persistentVolumeClaim:
+        claimName: pvc_samsung_860_evo_1
+    - name: samsung_860_evo_2
+      persistentVolumeClaim:
+        claimName: pvc_samsung_860_evo_2
+    extraVolumeMounts:
+    - name: samsung_860_evo_1
+      mountPath: /var/samsung_860_evo_1
+    - name: samsung_860_evo_2
+      mountPath: /var/samsung_860_evo_2

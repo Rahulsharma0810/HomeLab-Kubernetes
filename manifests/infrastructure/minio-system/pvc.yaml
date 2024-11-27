@@ -1,0 +1,51 @@
+# HomeLab-Kubernetes/manifests/infrastructure/minio-system/pvc.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/minio/pv-pvc.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv_samsung_860_evo_1
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /var/samsung_860_evo_1
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv_samsung_860_evo_2
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /var/samsung_860_evo_2
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc_samsung_860_evo_1
+  namespace: minio-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Gi
+  volumeName: pv_samsung_860_evo_1
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc_samsung_860_evo_2
+  namespace: minio-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Gi
+  volumeName: pv_samsung_860_evo_2
