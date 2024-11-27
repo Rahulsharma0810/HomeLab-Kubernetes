@@ -26,3 +26,7 @@ spec:
   values:
     rootUser: rootuser
     rootPassword: rootpass123
+    mode: standalone
+    persistence:
+      enabled: true
+      size: 10Gi
