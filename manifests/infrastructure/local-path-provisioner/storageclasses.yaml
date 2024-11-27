@@ -1,0 +1,8 @@
+# HomeLab-Kubernetes/manifests/infrastructure/local-path-provisioner/storageclasses.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: minio-backup
+provisioner: rancher.io/local-path
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
