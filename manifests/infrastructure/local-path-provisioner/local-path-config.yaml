@@ -1,0 +1,46 @@
+# HomeLab-Kubernetes/manifests/infrastructure/local-path-provisioner/local-path-config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: local-path-config
+  namespace: local-path-storage
+data:
+  config.json: |-
+    {
+      "nodePathMap": [],
+      "storageClassConfigs": {
+        "local-path": {
+          "sharedFileSystemPath": "/opt/local-path-provisioner"
+        },
+        "minio-backup": {
+          "nodePathMap": [
+            {
+              "node": "NODE_NAME_1",
+              "paths": ["/var/samsung_860_evo_1"]
+            },
+            {
+              "node": "NODE_NAME_2",
+              "paths": ["/var/samsung_860_evo_2"]
+            }
+          ]
+        }
+      }
+    }
+  setup: |-
+    #!/bin/sh
+    set -eu
+    mkdir -m 0777 -p "$VOL_DIR"
+  teardown: |-
+    #!/bin/sh
+    set -eu
+    rm -rf "$VOL_DIR"
+  helperPod.yaml: |-
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: helper-pod
+    spec:
+      containers:
+        - name: helper-pod
+          image: busybox
+          imagePullPolicy: IfNotPresent
