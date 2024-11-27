@@ -12,7 +12,7 @@ spec:
   startDelay: 30
   stopDelay: 100
   primaryUpdateStrategy: unsupervised
-  primaryUpdateMethod: restart ##@@ Cannot use switchover with 1 instance
+  primaryUpdateMethod: restart
   postgresql:
     shared_preload_libraries:
     - "vectors.so"
@@ -37,14 +37,13 @@ spec:
       secret:
         name: cnpg-immich-user
       postInitApplicationSQL:
-      - ALTER SYSTEM SET search_path TO "$user", public, vectors;
-      - SET search_path TO "$user", public, vectors;
-      - CREATE EXTENSION IF NOT EXISTS "vectors";
-      - ALTER SCHEMA vectors OWNER TO "postgresql_immich_pgsql";
-      - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA vectors TO "postgresql_immich_pgsql";
-      - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "postgresql_immich_pgsql";
-      - CREATE EXTENSION IF NOT EXISTS cube WITH SCHEMA pg_catalog;
-      - CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA pg_catalog;
+      - CREATE SCHEMA IF NOT EXISTS vectors; # Create the 'vectors' schema if it doesn't exist
+      - CREATE EXTENSION IF NOT EXISTS vectors WITH SCHEMA vectors; # Install 'vectors' extension in the 'vectors' schema
+      - CREATE EXTENSION IF NOT EXISTS cube WITH SCHEMA public; # Install 'cube' extension in the 'public' schema
+      - CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA public; # Install 'earthdistance' extension in the 'public' schema
+      - ALTER SCHEMA vectors OWNER TO postgresql_immich_pgsql; # Change ownership of 'vectors' schema to 'postgresql_immich_pgsql' user
+      - GRANT ALL PRIVILEGES ON SCHEMA vectors TO postgresql_immich_pgsql; # Grant all privileges on 'vectors' schema to 'postgresql_immich_pgsql' user
+      - ALTER SYSTEM SET search_path TO "$user", public, vectors; # Set the default search path to include user schema, 'public', and 'vectors'
   backup:
     retentionPolicy: "7d"
     barmanObjectStore:
