@@ -27,7 +27,7 @@ spec:
       create: true
       name: local-path
       defaultClass: true
-      reclaimPolicy: Delete
+      reclaimPolicy: Retain
     rbac:
       create: true
     nodePathMap:
