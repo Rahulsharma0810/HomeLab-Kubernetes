@@ -1,0 +1,28 @@
+# HomeLab-Kubernetes/manifests/infrastructure/minio-system/release.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: minio-repo
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://charts.min.io/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minio
+  namespace: minio-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: minio
+      sourceRef:
+        kind: HelmRepository
+        name: minio-repo
+        namespace: flux-system
+      version: 5.3.0
+  values:
+    rootUser: rootuser
+    rootPassword: rootpass123
