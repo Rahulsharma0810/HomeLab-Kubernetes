@@ -29,13 +29,13 @@ spec:
       defaultClass: true
     rbac:
       create: true
-    config:
-      name: local-path-config # Reference the ConfigMap with storage class configurations
-      namespace: local-path-storage
-    storageClasses:
-    - name: local-path
-      defaultClass: true
-      reclaimPolicy: Retain
-    - name: minio-backup
-      defaultClass: false
-      reclaimPolicy: Retain
+    nodePathMap:
+    - node: "DEFAULT_PATH_FOR_NON_LISTED_NODES"
+      paths:
+      - "/opt/local-path-provisioner"
+    - node: "samsung_860_evo_1"
+      paths:
+      - "/var/samsung_860_evo_1"
+    - node: "samsung_860_evo_2"
+      paths:
+      - "/var/samsung_860_evo_2"
