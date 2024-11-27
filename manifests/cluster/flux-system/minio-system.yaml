@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: ./manifests/infrastructure/minio
+  path: ./manifests/infrastructure/minio-system
   prune: true
   sourceRef:
     kind: GitRepository
