@@ -42,10 +42,10 @@ spec:
     extraVolumes:
     - name: samsung_860_evo_1
       persistentVolumeClaim:
-        claimName: pvc_samsung_860_evo_1
+        claimName: pvc-samsung-860-evo-1
     - name: samsung_860_evo_2
       persistentVolumeClaim:
-        claimName: pvc_samsung_860_evo_2
+        claimName: pvc-samsung-860-evo-2
     extraVolumeMounts:
     - name: samsung_860_evo_1
       mountPath: /var/samsung_860_evo_1
