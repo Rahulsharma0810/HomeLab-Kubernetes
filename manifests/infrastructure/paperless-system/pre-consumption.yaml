@@ -22,7 +22,8 @@ data:
                 os.getenv('PASSWORD_3'),
                 os.getenv('PASSWORD_4'),
                 os.getenv('PASSWORD_5'),
-                os.getenv('PASSWORD_6')
+                os.getenv('PASSWORD_6'),
+                os.getenv('PASSWORD_7')
             ]
 
             for password in passwords:
