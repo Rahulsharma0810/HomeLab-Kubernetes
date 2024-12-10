@@ -126,6 +126,16 @@ spec:
             secretKeyRef:
               name: pre-consumption-secrets
               key: PASSWORD_3
+        - name: PASSWORD_4
+          valueFrom:
+            secretKeyRef:
+              name: pre-consumption-secrets
+              key: PASSWORD_4
+        - name: PASSWORD_5
+          valueFrom:
+            secretKeyRef:
+              name: pre-consumption-secrets
+              key: PASSWORD_5
         - name: PAPERLESS_APPS
           value: allauth.socialaccount.providers.google
         - name: PAPERLESS_DISABLE_REGULAR_LOGIN
