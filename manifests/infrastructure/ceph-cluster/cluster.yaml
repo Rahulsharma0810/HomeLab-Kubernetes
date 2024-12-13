@@ -7,23 +7,47 @@ metadata:
 spec:
   cephVersion:
     image: quay.io/ceph/ceph:v19.2.0
-  monitoring:
-    enabled: true
+    allowUnsupported: true
   dataDirHostPath: /var/lib/rook
+  skipUpgradeChecks: false
+  continueUpgradeAfterChecksEvenIfNotHealthy: false
   mon:
     count: 1
-    allowMultiplePerNode: false
+    allowMultiplePerNode: true
   mgr:
     count: 1
     modules:
-    - name: rook
+    - name: pg_autoscaler
       enabled: true
   dashboard:
     enabled: true
+    ssl: false
+  monitoring:
+    enabled: true
+    rulesNamespace: rook-ceph
+  network:
+    provider: host
+  rbdMirroring:
+    workers: 0
+  crashCollector:
+    disable: false
+  cleanupPolicy:
+    confirmation: ""
+  annotations:
+  resources:
+  removeOSDsIfOutAndSafeToRemove: false
   storage:
     useAllNodes: false
     useAllDevices: false
-    nodes:
-    - name: i1-1806-talos-worker01
-      devices:
-      - name: sda
+    devices:
+    - name: "sda"
+    # - name: "vda"
+    # - name: "vdb"
+    config:
+      osdsPerDevice: "1"
+      storeType: bluestore
+  disruptionManagement:
+    managePodBudgets: false
+    osdMaintenanceTimeout: 30
+    manageMachineDisruptionBudgets: false
+    machineDisruptionBudgetNamespace: openshift-machine-api
