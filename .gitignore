@@ -1,2 +1,4 @@
 age.agekey
 age.key
+*.dump
+*.zip
