@@ -22,4 +22,8 @@ spec:
     enabled: true
   storage:
     useAllNodes: false
-    useAllDevices: true
+    useAllDevices: false
+    nodes:
+    - name: i1-1806-talos-worker01
+      devices:
+      - name: sda
