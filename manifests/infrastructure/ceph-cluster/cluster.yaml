@@ -23,8 +23,7 @@ spec:
     enabled: true
     ssl: false
   monitoring:
-    enabled: true
-    rulesNamespace: rook-ceph
+    enabled: false
   network:
     provider: host
   crashCollector:
