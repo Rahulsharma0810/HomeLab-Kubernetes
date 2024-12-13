@@ -27,8 +27,6 @@ spec:
     rulesNamespace: rook-ceph
   network:
     provider: host
-  rbdMirroring:
-    workers: 0
   crashCollector:
     disable: false
   cleanupPolicy:
