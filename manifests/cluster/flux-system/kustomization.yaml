@@ -14,8 +14,8 @@ resources:
 - redis-operator.yaml
 - paperless-system.yaml
 - immich-system.yaml
-- rook-ceph.yaml
 
+# - rook-ceph.yaml
 # - minio-system.yaml
 
 # Not used resources
