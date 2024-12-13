@@ -37,8 +37,8 @@ spec:
     useAllNodes: false
     useAllDevices: false
     devices:
-    - name: "sda"
-    # - name: "vda"
+    - name: "vda"
+    # - name: "sda"
     # - name: "vdb"
     config:
       osdsPerDevice: "1"
