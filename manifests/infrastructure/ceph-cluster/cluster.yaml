@@ -11,7 +11,7 @@ spec:
     enabled: true
   dataDirHostPath: /var/lib/rook
   mon:
-    count: 1
+    count: 2
     allowMultiplePerNode: false
   mgr:
     count: 1
