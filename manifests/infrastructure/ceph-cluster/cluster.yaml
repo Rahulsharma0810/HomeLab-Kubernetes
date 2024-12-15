@@ -7,7 +7,6 @@ metadata:
 spec:
   cephVersion:
     image: quay.io/ceph/ceph:v19.2.0
-    allowUnsupported: true
   dataDirHostPath: /var/lib/rook
   mon:
     count: 1
@@ -23,10 +22,12 @@ spec:
   storage:
     useAllNodes: false
     useAllDevices: false
-    devices:
-    - name: "vda" # 1.6TB device
-    - name: "vdb" # 250GB device
-    - name: "vdc" # 250GB device
+    nodes:
+    - name: I1-1806-Talos-Worker01
+      devices:
+      - name: vda
+      - name: vdb
+      - name: vdc
     config:
       osdsPerDevice: "1"
       storeType: bluestore
