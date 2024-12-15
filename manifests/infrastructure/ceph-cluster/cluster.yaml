@@ -38,13 +38,8 @@ spec:
     useAllDevices: false
     devices:
     - name: "vda"
-    # - name: "sda"
     # - name: "vdb"
+    # - name: "vdc"
     config:
       osdsPerDevice: "1"
       storeType: bluestore
-  disruptionManagement:
-    managePodBudgets: false
-    osdMaintenanceTimeout: 30
-    manageMachineDisruptionBudgets: false
-    machineDisruptionBudgetNamespace: openshift-machine-api
