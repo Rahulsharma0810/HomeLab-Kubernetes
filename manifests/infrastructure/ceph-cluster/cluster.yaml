@@ -9,37 +9,24 @@ spec:
     image: quay.io/ceph/ceph:v19.2.0
     allowUnsupported: true
   dataDirHostPath: /var/lib/rook
-  skipUpgradeChecks: false
-  continueUpgradeAfterChecksEvenIfNotHealthy: false
   mon:
     count: 1
     allowMultiplePerNode: true
   mgr:
     count: 1
-    modules:
-    - name: pg_autoscaler
-      enabled: true
   dashboard:
     enabled: true
-    ssl: false
   monitoring:
     enabled: false
   network:
     provider: host
-  crashCollector:
-    disable: false
-  cleanupPolicy:
-    confirmation: ""
-  annotations:
-  resources:
-  removeOSDsIfOutAndSafeToRemove: false
   storage:
     useAllNodes: false
     useAllDevices: false
     devices:
-    - name: "vda"
-    # - name: "vdb"
-    # - name: "vdc"
+    - name: "vda" # 1.6TB device
+    - name: "vdb" # 250GB device
+    - name: "vdc" # 250GB device
     config:
       osdsPerDevice: "1"
       storeType: bluestore
