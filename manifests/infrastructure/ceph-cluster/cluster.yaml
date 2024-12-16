@@ -30,12 +30,12 @@ spec:
       - name: vda
       - name: vdb
       - name: vdc
+      config:
+        osdsPerDevice: "1"
+        storeType: bluestore
   placement:
     all:
       tolerations:
       - effect: NoSchedule
         key: node-role.kubernetes.io/control-plane
         operator: Exists
-    config:
-      osdsPerDevice: "1"
-      storeType: bluestore
