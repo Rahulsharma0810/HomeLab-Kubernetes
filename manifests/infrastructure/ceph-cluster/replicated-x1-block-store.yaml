@@ -8,8 +8,6 @@ spec:
   failureDomain: host
   replicated:
     size: 1
-  targetDevices:
-  - vda
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
