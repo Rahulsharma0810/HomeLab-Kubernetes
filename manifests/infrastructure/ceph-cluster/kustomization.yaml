@@ -5,5 +5,5 @@ resources:
 - cluster.yaml
 # - ceph-tools.yaml
 - replicated-x1-block-store.yaml
-- replicated-x3-block-store.yaml
+# - replicated-x3-block-store.yaml
 - replicated-x1-cephfs.yaml
