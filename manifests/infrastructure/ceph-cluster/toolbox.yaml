@@ -1,0 +1,63 @@
+# HomeLab-Kubernetes/manifests/infrastructure/ceph-cluster/toolbox.yaml
+
+# ConfigMap to hold Ceph configuration and admin keyring
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rook-ceph-config
+  namespace: rook-ceph
+data:
+  ceph.conf: |
+    [global]
+    fsid = 5d23ddef-29fd-451f-b4f8-72c172a6a07d
+    mon_host = 192.168.0.6
+    auth_cluster_required = cephx
+    auth_service_required = cephx
+    auth_client_required = cephx
+  ceph.client.admin.keyring: |
+    [client.admin]
+        key = AQAZDmBn1BQFAxAAj2bb+D05WznwDSPgoM7RpQ==
+        caps mds = "allow *"
+        caps mon = "allow *"
+        caps osd = "allow *"
+        caps mgr = "allow *"
+---
+# Rook Ceph Toolbox Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rook-ceph-tools
+  namespace: rook-ceph
+  labels:
+    app: rook-ceph-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rook-ceph-tools
+  template:
+    metadata:
+      labels:
+        app: rook-ceph-tools
+    spec:
+      containers:
+      - name: rook-ceph-tools
+        image: quay.io/ceph/ceph:v19.2.0
+        command: [ "/bin/bash" ]
+        args: [ "-c", "while true; do sleep 3600; done" ]
+        env:
+        - name: CEPH_CONF
+          value: /etc/ceph/ceph.conf
+        - name: CEPH_KEYRING
+          value: /etc/ceph/ceph.client.admin.keyring
+        volumeMounts:
+        - name: ceph-config
+          mountPath: /etc/ceph/ceph.conf
+          subPath: ceph.conf
+        - name: ceph-config
+          mountPath: /etc/ceph/ceph.client.admin.keyring
+          subPath: ceph.client.admin.keyring
+      volumes:
+      - name: ceph-config
+        configMap:
+          name: rook-ceph-config

@@ -22,14 +22,20 @@ spec:
   network:
     provider: host
   storage:
-    useAllNodes: false
-    useAllDevices: false
+    useAllNodes: true
+    useAllDevices: true
     nodes:
     - name: I1-1806-Talos-Worker01
       devices:
       - name: vda
       - name: vdb
       - name: vdc
+  placement:
+    all:
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+        operator: Exists
     config:
       osdsPerDevice: "1"
       storeType: bluestore
