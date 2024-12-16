@@ -5,7 +5,8 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 - cilium.yaml
-- rook-ceph.yaml
+
+# - rook-ceph.yaml
 
 # - secrets.yaml
 # - cloudflare-operator-system.yaml # For NS and Secrets.
