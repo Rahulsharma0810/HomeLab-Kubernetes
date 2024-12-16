@@ -12,7 +12,9 @@ spec:
     count: 1
     allowMultiplePerNode: true
   mgr:
-    count: 1
+    modules:
+    - name: rook
+      enabled: true
   dashboard:
     enabled: true
   monitoring:
@@ -28,6 +30,5 @@ spec:
       - name: vda
       - name: vdb
       - name: vdc
-    config:
-      osdsPerDevice: "1"
+    storeConfig:
       storeType: bluestore
