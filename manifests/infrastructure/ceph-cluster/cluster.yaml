@@ -22,8 +22,8 @@ spec:
   network:
     provider: host
   storage:
-    useAllNodes: true
-    useAllDevices: true
+    useAllNodes: false
+    useAllDevices: false
     nodes:
     - name: I1-1806-Talos-Worker01
       devices:
