@@ -27,7 +27,7 @@ spec:
     nodes:
     - name: I1-1806-Talos-Worker01
       devices:
-      # - name: vda
+      - name: vda
       - name: vdb
       - name: vdc
     config:
