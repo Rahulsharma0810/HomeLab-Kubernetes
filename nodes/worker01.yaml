@@ -10,36 +10,7 @@ machine:
       routes:
       - network: 0.0.0.0/0
         gateway: 192.168.0.1
-  # kubelet:
-  #   extraMounts:
-  #   - destination: /var/
-  #     type: bind
-  #     source: /var/
-  #     options:
-  #     - bind
-  #     - rshared
-  #     - rw
-  #   - destination: /var/samsung_860_evo_1
-  #     type: bind
-  #     source: /var/samsung_860_evo_1
-  #     options:
-  #     - bind
-  #     - rshared
-  #     - rw
-  #   - destination: /var/samsung_860_evo_2
-  #     type: bind
-  #     source: /var/samsung_860_evo_2
-  #     options:
-  #     - bind
-  #     - rshared
-  #     - rw
-  # disks:
-  # - device: /dev/vda
-  #   partitions:
-  #   - mountpoint: /var/
-  # - device: /dev/vdb
-  #   partitions:
-  #   - mountpoint: /var/samsung_860_evo_1
-  # - device: /dev/vdc
-  #   partitions:
-  #   - mountpoint: /var/samsung_860_evo_2
+  disks:
+  - device: /dev/vda
+  - device: /dev/vdb
+  - device: /dev/vdc
