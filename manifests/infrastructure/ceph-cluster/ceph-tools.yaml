@@ -1,0 +1,92 @@
+# HomeLab-Kubernetes/manifests/infrastructure/ceph-cluster/toolbox.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rook-ceph-config
+  namespace: rook-ceph
+data:
+  ceph.conf: ENC[AES256_GCM,data:9O9+RiHxD7dT/8brxntgpv9CcDE1lSYlN4pMB+YKFDLCj7YZh+z704Y9XGjyxcD/m8CXQ0MA+5eL4f5r22ZfSvSBb9LJ2//ryHS+0Ll+9XSAb0aLNb/7GZACL62d/Qc24+wqHypjfjAwP2dRhuxi+Hzl8ZOhRuoKZy2Tb2oaGc3gvc9rFjFrtkD+AXvmS56My3uLmtbo6XAdHOXtfJLHLaG5Uvi4,iv:LmFHM27269U+DpVBBL3cLDzMgbYB5n4vI605T0L+SD4=,tag:5BHYnCz0VBXhbcFDO7Qh/g==,type:str]
+  ceph.client.admin.keyring: ENC[AES256_GCM,data:GK5zGxv21q/Fgh9Sd9Tpv6qRMMqfr1pknFPWVf77g0rCbodijno1SV8IpH0OPdrwp1SxNpRe/WVa0uTTnab3zlwB0ephLRshqT9SyOwY6r/3t3gWJKJrxqop6aN8JinJOLpvWT7LEo1/7dV1nSZIpxrYLS++FYmIp8KY/ERumJhgUdy1M2dR0FraHUV1SezteOwV6nLNd+mZIS6nqM8f5bn5qXGzXw==,iv:ITi8logmFzktFVbo+dFyyKac3shYleOSBK0cTA7HuBE=,tag:1LNTC03D+nnOMsJ8N6fs4Q==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+  - recipient: age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
+    enc: |
+      -----BEGIN AGE ENCRYPTED FILE-----
+      YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxUVJzYmEwUW5ISnJGN3hP
+      cEYvNFVaektUOHBjVVJWMG5zVUJ3RUpIQ1ZVCjBrVHMzbFpuNHNVd3N4b1ZzWHVh
+      NWo0T0R5aUFPR2RWNlNjbDh0VGZjVUUKLS0tIEhHd1B4NEI5TkVLZjlueVhPNmwy
+      VlBuVWNyODRYNGs3dGNvRkMzTHhYck0K7eMX61qEKJGmrLtNrPzJD5R/+7CHiMWf
+      EiusU5NIvYepnsXFtQScmZ2OxmJVR8cHZFSjPCjjBzAKhaZn5hYolg==
+      -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2024-12-16T19:48:18Z"
+  mac: ENC[AES256_GCM,data:02e/TgdZa3/slOqw3lPlhPK8FtGOH/rAb+cERZPDgOc0q8MhAsRvLDoooXseAp6nFBX0UEHwQoM0Y3t9WoWrUDc18OOm4mPLIgH0evc/ovdkXfKAwXmAO9bwo6iEFMnMkVN1LVxgjVb5X+8xqD0G9F4SIDgjaWxAT+BHao7vdkY=,iv:4a7w9NXlBSyj5slmZXVpBZbnXmxe8mLEN4ow4efDqMw=,tag:XVilPU5iF3wdnzj5O4LcjQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.1
+---
+# Rook Ceph Toolbox Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rook-ceph-tools
+  namespace: rook-ceph
+  labels:
+    app: rook-ceph-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rook-ceph-tools
+  template:
+    metadata:
+      labels:
+        app: rook-ceph-tools
+    spec:
+      containers:
+      - name: rook-ceph-tools
+        image: quay.io/ceph/ceph:v19.2.0
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - while true; do sleep 3600; done
+        env:
+        - name: CEPH_CONF
+          value: /etc/ceph/ceph.conf
+        - name: CEPH_KEYRING
+          value: /etc/ceph/ceph.client.admin.keyring
+        volumeMounts:
+        - name: ceph-config
+          mountPath: /etc/ceph/ceph.conf
+          subPath: ceph.conf
+        - name: ceph-config
+          mountPath: /etc/ceph/ceph.client.admin.keyring
+          subPath: ceph.client.admin.keyring
+      volumes:
+      - name: ceph-config
+        configMap:
+          name: rook-ceph-config
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+  - recipient: age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
+    enc: |
+      -----BEGIN AGE ENCRYPTED FILE-----
+      YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxUVJzYmEwUW5ISnJGN3hP
+      cEYvNFVaektUOHBjVVJWMG5zVUJ3RUpIQ1ZVCjBrVHMzbFpuNHNVd3N4b1ZzWHVh
+      NWo0T0R5aUFPR2RWNlNjbDh0VGZjVUUKLS0tIEhHd1B4NEI5TkVLZjlueVhPNmwy
+      VlBuVWNyODRYNGs3dGNvRkMzTHhYck0K7eMX61qEKJGmrLtNrPzJD5R/+7CHiMWf
+      EiusU5NIvYepnsXFtQScmZ2OxmJVR8cHZFSjPCjjBzAKhaZn5hYolg==
+      -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2024-12-16T19:48:18Z"
+  mac: ENC[AES256_GCM,data:02e/TgdZa3/slOqw3lPlhPK8FtGOH/rAb+cERZPDgOc0q8MhAsRvLDoooXseAp6nFBX0UEHwQoM0Y3t9WoWrUDc18OOm4mPLIgH0evc/ovdkXfKAwXmAO9bwo6iEFMnMkVN1LVxgjVb5X+8xqD0G9F4SIDgjaWxAT+BHao7vdkY=,iv:4a7w9NXlBSyj5slmZXVpBZbnXmxe8mLEN4ow4efDqMw=,tag:XVilPU5iF3wdnzj5O4LcjQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.1
