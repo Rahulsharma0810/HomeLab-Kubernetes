@@ -33,10 +33,10 @@ spec:
     nodePathMap:
     - node: "ssd_nvme_predator_GM7000"
       paths:
-      - "/var/ssd_nvme_predator_GM7000"
+      - "/var/mnt/ssd_nvme_predator_GM7000"
     - node: "samsung_860_evo_1"
       paths:
-      - "/var/samsung_860_evo_1"
+      - "/var/mnt/ssd_sata_samsung_860_evo_1"
     - node: "samsung_860_evo_2"
       paths:
-      - "/var/samsung_860_evo_2"
+      - "/var/mnt/ssd_sata_samsung_860_evo_2"
