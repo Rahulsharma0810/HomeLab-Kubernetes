@@ -1,43 +1,54 @@
 # HomeLab-Kubernetes/manifests/infrastructure/ceph-cluster/ceph-tools.yaml
-apiVersion: v1
-kind: Pod
+
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
   name: rook-ceph-tools
   namespace: rook-ceph
 spec:
-  initContainers:
-  - name: init-ceph-config
-    image: busybox
-    command: [ "/bin/sh", "-c" ]
-    args:
-    - |
-      mkdir -p /etc/ceph
-      echo "[global]" > /etc/ceph/ceph.conf
-      echo "fsid = $(cat /secrets/fsid)" >> /etc/ceph/ceph.conf
-      echo "mon_host = 192.168.0.6" >> /etc/ceph/ceph.conf
-      echo "auth_cluster_required = cephx" >> /etc/ceph/ceph.conf
-      echo "auth_service_required = cephx" >> /etc/ceph/ceph.conf
-      echo "auth_client_required = cephx" >> /etc/ceph/ceph.conf
-      echo "[client.admin]" > /etc/ceph/ceph.client.admin.keyring
-      echo "key = $(cat /secrets/ceph-secret)" >> /etc/ceph/ceph.client.admin.keyring
-    volumeMounts:
-    - name: ceph-secrets
-      mountPath: /secrets
-    - name: ceph-config
-      mountPath: /etc/ceph
+  serviceName: "rook-ceph-tools"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rook-ceph-tools
+  template:
+    metadata:
+      labels:
+        app: rook-ceph-tools
+    spec:
+      initContainers:
+      - name: init-ceph-config
+        image: busybox
+        command: [ "/bin/sh", "-c" ]
+        args:
+        - |
+          mkdir -p /etc/ceph
+          echo "[global]" > /etc/ceph/ceph.conf
+          echo "fsid = $(cat /secrets/fsid)" >> /etc/ceph/ceph.conf
+          echo "mon_host = 192.168.0.6" >> /etc/ceph/ceph.conf
+          echo "auth_cluster_required = cephx" >> /etc/ceph/ceph.conf
+          echo "auth_service_required = cephx" >> /etc/ceph/ceph.conf
+          echo "auth_client_required = cephx" >> /etc/ceph/ceph.conf
+          echo "[client.admin]" > /etc/ceph/ceph.client.admin.keyring
+          echo "key = $(cat /secrets/ceph-secret)" >> /etc/ceph/ceph.client.admin.keyring
+        volumeMounts:
+        - name: ceph-secrets
+          mountPath: /secrets
+        - name: ceph-config
+          mountPath: /etc/ceph
 
-  containers:
-  - name: rook-ceph-tools
-    image: quay.io/ceph/ceph:v19.2.0
-    command: [ "/bin/bash" ]
-    args: [ "-c", "while true; do sleep 3600; done" ]
-    volumeMounts:
-    - name: ceph-config
-      mountPath: /etc/ceph
+      containers:
+      - name: rook-ceph-tools
+        image: quay.io/ceph/ceph:v19.2.0
+        command: [ "/bin/bash" ]
+        args: [ "-c", "while true; do sleep 3600; done" ]
+        volumeMounts:
+        - name: ceph-config
+          mountPath: /etc/ceph
 
-  volumes:
-  - name: ceph-secrets
-    secret:
-      secretName: rook-ceph-mon
-  - name: ceph-config
-    emptyDir: {}
+      volumes:
+      - name: ceph-secrets
+        secret:
+          secretName: rook-ceph-mon
+      - name: ceph-config
+        emptyDir: {}
