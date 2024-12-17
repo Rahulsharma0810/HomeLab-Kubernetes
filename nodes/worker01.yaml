@@ -10,7 +10,36 @@ machine:
       routes:
       - network: 0.0.0.0/0
         gateway: 192.168.0.1
-  # disks:
-  # - device: /dev/vda
-  # - device: /dev/vdb
-  # - device: /dev/vdc
+  kubelet:
+    extraMounts:
+    - destination: /var/mnt/ssd_nvme_predator_GM7000
+      type: bind
+      source: /var/mnt/ssd_nvme_predator_GM7000
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/mnt/ssd_sata_samsung_860_evo_1
+      type: bind
+      source: /var/mnt/ssd_sata_samsung_860_evo_1
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/mnt/ssd_sata_samsung_860_evo_2
+      type: bind
+      source: /var/mnt/ssd_sata_samsung_860_evo_2
+      options:
+      - bind
+      - rshared
+      - rw
+  disks:
+  - device: /dev/vda
+    partitions:
+    - mountpoint: /var/mnt/ssd_nvme_predator_GM7000
+  - device: /dev/vdb
+    partitions:
+    - mountpoint: /var/mnt/ssd_sata_samsung_860_evo_1
+  - device: /dev/vdc
+    partitions:
+    - mountpoint: /var/mnt/ssd_sata_samsung_860_evo_2
