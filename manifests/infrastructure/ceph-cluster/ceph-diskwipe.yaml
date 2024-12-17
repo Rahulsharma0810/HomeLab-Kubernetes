@@ -1,0 +1,59 @@
+# HomeLab-Kubernetes/manifests/infrastructure/ceph-cluster/ceph-diskwipe.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: disk-wiper
+  namespace: rook-ceph
+spec:
+  restartPolicy: Never
+  containers:
+  - name: disk-wiper
+    image: busybox
+    securityContext:
+      privileged: true
+      allowPrivilegeEscalation: true
+    command:
+    - "/bin/sh"
+    - "-c"
+    - |
+      echo "Wiping disks vda, vdb, and vdc..."
+      dd if=/dev/zero of=/dev/vda bs=1M count=100 || true
+      dd if=/dev/zero of=/dev/vdb bs=1M count=100 || true
+      dd if=/dev/zero of=/dev/vdc bs=1M count=100 || true
+      echo "Disk wipe completed."
+---
+
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: disk-cleaner
+#   namespace: rook-ceph
+# spec:
+#   restartPolicy: Never
+#   containers:
+#   - name: disk-cleaner
+#     image: busybox
+#     securityContext:
+#       runAsUser: 1000
+#       runAsNonRoot: true
+#       allowPrivilegeEscalation: true
+#       capabilities:
+#         drop: [ "ALL" ]
+#       seccompProfile:
+#         type: RuntimeDefault
+#     command:
+#     - "/bin/sh"
+#     - "-c"
+#     - |
+#       echo "Cleaning rook data directory..."
+#       rm -rf /node/rook-data/*
+#       echo "Disk cleanup completed."
+#     volumeMounts:
+#     - mountPath: /node/rook-data
+#       name: rook-data-dir
+#   volumes:
+#   - name: rook-data-dir
+#     hostPath:
+#       path: /var/lib/rook
+#       type: Directory

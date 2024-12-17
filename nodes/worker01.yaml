@@ -10,7 +10,7 @@ machine:
       routes:
       - network: 0.0.0.0/0
         gateway: 192.168.0.1
-  disks:
-  - device: /dev/vda
-  - device: /dev/vdb
-  - device: /dev/vdc
+  # disks:
+  # - device: /dev/vda
+  # - device: /dev/vdb
+  # - device: /dev/vdc
