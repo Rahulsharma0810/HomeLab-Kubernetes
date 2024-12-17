@@ -24,15 +24,10 @@ spec:
   storage:
     useAllNodes: true
     useAllDevices: true
-    # nodes:
-    # - name: I1-1806-Talos-Worker01
-    #   devices:
-    #   - name: vda
-    #   - name: vdb
-    #   - name: vdc
-    #   config:
-    #     osdsPerDevice: "1"
-    #     storeType: bluestore
+    nodes:
+    - config:
+        osdsPerDevice: "1"
+        storeType: bluestore
   placement:
     all:
       tolerations:
