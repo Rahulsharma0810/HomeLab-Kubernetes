@@ -6,4 +6,4 @@ resources:
 - replicated-x1-block-store.yaml
 - replicated-x1-cephfs.yaml
 - replicated-x3-block-store.yaml
-- ceph-tools.yaml
+- ceph-tools-statefulset.yaml

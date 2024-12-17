@@ -16,7 +16,7 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
-        storageClassName: local-path
+        storageClassName: replicated-x1-block-store
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
