@@ -6,7 +6,7 @@ resources:
 - gotk-sync.yaml
 - cilium.yaml
 - rook-ceph.yaml
-# - secrets.yaml
+- secrets.yaml
 - cloudflare-operator-system.yaml # For NS and Secrets.
 - cloudflare-operator-remote.yaml # For applying Remote Kustomization.
 - redis-operator.yaml
