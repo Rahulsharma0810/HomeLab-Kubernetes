@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - cluster.yaml
-# - ceph-tools.yaml
 - replicated-x1-block-store.yaml
-# - replicated-x3-block-store.yaml
 - replicated-x1-cephfs.yaml
+- replicated-x3-block-store.yaml
+- ceph-tools.yaml
