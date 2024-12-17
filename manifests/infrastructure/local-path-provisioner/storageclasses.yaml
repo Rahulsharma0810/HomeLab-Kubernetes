@@ -2,19 +2,29 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: minio-samsung-860-evo-1
+  name: ssd_nvme_predator_GM7000
 provisioner: rancher.io/local-path
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Retain
 parameters:
-  nodePath: /var/samsung_860_evo_1
+  nodePath: /var/ssd_nvme_predator_GM7000
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: minio-samsung-860-evo-2
+  name: ssd_sata_samsung_860_evo_1
 provisioner: rancher.io/local-path
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Retain
 parameters:
-  nodePath: /var/samsung_860_evo_2
+  nodePath: /var/ssd_sata_samsung_860_evo_1
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ssd_sata_samsung_860_evo_2
+provisioner: rancher.io/local-path
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+parameters:
+  nodePath: /var/ssd_sata_samsung_860_evo_2
