@@ -16,7 +16,7 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
-        storageClassName: replicated-x1-block-store
+        storageClassName: replicated-x3-block-store
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
