@@ -31,9 +31,9 @@ spec:
     rbac:
       create: true
     nodePathMap:
-    - node: "DEFAULT_PATH_FOR_NON_LISTED_NODES"
+    - node: "ssd_nvme_predator_GM7000"
       paths:
-      - "/opt/local-path-provisioner"
+      - "/var/ssd_nvme_predator_GM7000"
     - node: "samsung_860_evo_1"
       paths:
       - "/var/samsung_860_evo_1"
