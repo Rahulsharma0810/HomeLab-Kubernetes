@@ -40,7 +40,7 @@ spec:
             name: cnpg-immich-user-password
             key: password
     image:
-      tag: v1.121.0
+      tag: v1.123.0
     immich:
       metrics:
         enabled: false
