@@ -52,6 +52,9 @@ spec:
     redis:
       enabled: false
     server:
+      service:
+        main:
+          type: NodePort
       enabled: true
       image:
         repository: ghcr.io/immich-app/immich-server
