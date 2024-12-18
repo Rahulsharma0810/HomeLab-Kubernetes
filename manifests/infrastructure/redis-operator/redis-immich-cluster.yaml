@@ -16,7 +16,7 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
-        storageClassName: replicated-x3-block-store
+        storageClassName: ssd-nvme-predator-gm7000
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
