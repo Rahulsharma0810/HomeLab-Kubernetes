@@ -5,19 +5,17 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 - cilium.yaml
-# - local-path-provisioner.yaml
+- local-path-provisioner.yaml
 - secrets.yaml
 - cloudflare-operator-system.yaml # For NS and Secrets.
 - cloudflare-operator-remote.yaml # For applying Remote Kustomization.
-
-# - redis-operator.yaml
-
-# - cloudnative-pg.yaml
-# - paperless-system.yam
+- redis-operator.yaml
+- cloudnative-pg.yaml
+- paperless-system.yam
+- immich-system.yaml
 
 # - dashboard.yaml
 
-# - immich-system.yaml
 
 # Not used resources, Only For Refrences in case Somone Wants to use it.
 # - rook-ceph.yaml

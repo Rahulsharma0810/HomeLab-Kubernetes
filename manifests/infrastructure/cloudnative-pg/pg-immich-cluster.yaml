@@ -27,7 +27,7 @@ spec:
       resources:
         requests:
           storage: 20Gi
-      storageClassName: local-path
+      storageClassName: ssd-nvme-predator-gm7000
   monitoring:
     enablePodMonitor: true
   bootstrap:
