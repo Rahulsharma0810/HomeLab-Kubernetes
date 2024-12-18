@@ -7,7 +7,7 @@ resources:
 - cilium.yaml
 - local-path-provisioner.yaml
 - secrets.yaml
-- cloudflare-operator-remote.yaml
+- cloudflare-operator-system.yaml
 - redis-operator.yaml
 - cloudnative-pg.yaml
 - paperless-system.yaml
