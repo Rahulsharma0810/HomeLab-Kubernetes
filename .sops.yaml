@@ -17,3 +17,7 @@ creation_rules:
 - path_regex: secrets.yaml
   encrypted_regex: ^(secret|bootstraptoken|secretboxencryptionsecret|token|key)$
   age: age1aswzlt70svxa7psprzuuu4aqghetq6pzp7eyqtah9st28cpp539sp04d3c
+
+- path_regex: rendered/.*.yaml
+  encrypted_regex: ^(secret|bootstraptoken|secretboxEncryptionSecret|token|key|password)$
+  age: age10v5jyc5ylreyltm32kfj57fmqle0aumxqvg9lp67r50cl8ynlsmq9kx7ez
