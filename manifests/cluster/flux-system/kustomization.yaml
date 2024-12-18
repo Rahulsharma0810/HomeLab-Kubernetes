@@ -11,7 +11,7 @@ resources:
 - cloudflare-operator-remote.yaml # For applying Remote Kustomization.
 - redis-operator.yaml
 - cloudnative-pg.yaml
-- paperless-system.yam
+- paperless-system.yaml
 - immich-system.yaml
 
 # - dashboard.yaml
