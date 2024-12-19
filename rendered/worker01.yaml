@@ -8,7 +8,7 @@ machine:
     # Defines the role of the machine within the cluster.
     type: worker
     # The `token` is used by a machine to join the PKI of the cluster.
-    token: ENC[AES256_GCM,data:JytOThVspiDXEf1mGhhecydtaStlVaw=,iv:WDYNc2OhTWH0B0TJ/dIet0d3EEpIxcDSWxZWf0/hZC0=,tag:gQw+5MDkimOnrZVi9t5glg==,type:str]
+    token: ENC[AES256_GCM,data:dRakacw+hcHLoWs+FJl8ohQE73Q5K7Q=,iv:q9nhql8NI3Lz8/FFKFf/Yqxhrp0lttJuyhbC3ViWrhY=,tag:i0qOo7BjiWDztqX6aV1wVA==,type:str]
     # The root certificate authority of the PKI.
     ca:
         crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJQakNCOGFBREFnRUNBaEJuV0tVT2o5VkIweGpreWJrc1RFVU5NQVVHQXl0bGNEQVFNUTR3REFZRFZRUUsKRXdWMFlXeHZjekFlRncweU5ERXlNVGd4TkRFeE1UaGFGdzB6TkRFeU1UWXhOREV4TVRoYU1CQXhEakFNQmdOVgpCQW9UQlhSaGJHOXpNQ293QlFZREsyVndBeUVBWWp3d3B5VWNNckVYVG9OU0VGVGpHWGJoamRuYkV3OUZxLzNCCk51RU5DRm1qWVRCZk1BNEdBMVVkRHdFQi93UUVBd0lDaERBZEJnTlZIU1VFRmpBVUJnZ3JCZ0VGQlFjREFRWUkKS3dZQkJRVUhBd0l3RHdZRFZSMFRBUUgvQkFVd0F3RUIvekFkQmdOVkhRNEVGZ1FVQ0JjdjBtOEF2WlNUQ1l5dgpIa0xxUks1a01Mc3dCUVlESzJWd0EwRUFrckh0RjZxWlcwTWZiMVA1bHg0Vi9XdjZ0RWhBcWFiTDV5TFViaTFOClMweVhOWFlUWStvRWxPd2xuTnk4VXl5QXduWXpoWDQyajVkM2VlY01hZ1RoQ0E9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
@@ -53,6 +53,28 @@ machine:
               type: bind
               # Source specifies the source path of the mount.
               source: /var/mnt/ssd_sata_samsung_860_evo_2
+              # Options are fstab style mount options.
+              options:
+                - bind
+                - rshared
+                - rw
+            # Destination is the absolute path where the mount will be placed in the container.
+            - destination: /var/mnt/ssd_data_Lexar_120GB_1
+              # Type specifies the mount kind.
+              type: bind
+              # Source specifies the source path of the mount.
+              source: /var/mnt/ssd_data_Lexar_120GB_1
+              # Options are fstab style mount options.
+              options:
+                - bind
+                - rshared
+                - rw
+            # Destination is the absolute path where the mount will be placed in the container.
+            - destination: /var/mnt/ssd_data_Lexar_120GB_2
+              # Type specifies the mount kind.
+              type: bind
+              # Source specifies the source path of the mount.
+              source: /var/mnt/ssd_data_Lexar_120GB_2
               # Options are fstab style mount options.
               options:
                 - bind
@@ -221,6 +243,28 @@ machine:
           partitions:
             # Where to mount the partition.
             - mountpoint: /var/mnt/ssd_sata_samsung_860_evo_2
+              # # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
+              # # Human readable representation.
+              # size: 100 MB
+              # # Precise value in bytes.
+              # size: 1073741824
+        # The name of the disk to use.
+        - device: /dev/vdd
+          # A list of partitions to create on the disk.
+          partitions:
+            # Where to mount the partition.
+            - mountpoint: /var/mnt/ssd_data_Lexar_120GB_1
+              # # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
+              # # Human readable representation.
+              # size: 100 MB
+              # # Precise value in bytes.
+              # size: 1073741824
+        # The name of the disk to use.
+        - device: /dev/vde
+          # A list of partitions to create on the disk.
+          partitions:
+            # Where to mount the partition.
+            - mountpoint: /var/mnt/ssd_data_Lexar_120GB_2
               # # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
               # # Human readable representation.
               # size: 100 MB
@@ -420,7 +464,7 @@ cluster:
     # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
     id: TIb-7YwjVdRxtzQil2QtPPj0IvqggU2zQu5xuEfUNkw=
     # Shared secret of cluster (base64 encoded random 32 bytes).
-    secret: ENC[AES256_GCM,data:zBWKRGg7GvHT01Q5MOV34AWYDxVsVh7c5o3lZ2oXjYxTTSrFrpeDotZiBus=,iv:0l4+FfnSr/KK7FYgzTxbfNzb43lM5UNc5eHmIYjXMDA=,tag:cXkaNCb8MkDF7gi2Z9ETwA==,type:str]
+    secret: ENC[AES256_GCM,data:+N0FSuuxnA0mkPxwsugr7L/aHT16rPvowmEkBSgHkwrVpDNKbK5V/syYMYw=,iv:JeK4U+wZjVZG8Z9FuQ7QQao5a9EZVEt99nje6ZfiZyc=,tag:MThcHWQHGVesnijem8/IeQ==,type:str]
     # Provides control plane specific configuration options.
     controlPlane:
         # Endpoint is the canonical controlplane endpoint, which can be an IP address or a DNS hostname.
@@ -442,7 +486,7 @@ cluster:
         serviceSubnets:
             - 10.96.0.0/12
     # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
-    token: ENC[AES256_GCM,data:xoEUdaZKtVgVjvf98dCwFNJt2pn0p3U=,iv:zWOqUk+B7yyf9cYkSEbSIlJvijP7mnt9V8mKfKupido=,tag:c3q6nOnHH2cDw5J4lbFv0g==,type:str]
+    token: ENC[AES256_GCM,data:RUVojduPsqHpzv6Jww9aNXNKf4yhWj4=,iv:4pVdzLy2xhR68pT67nSA+CdZ03gWUUI7AnabOzIQQZo=,tag:5+6D+svJVIdRq12ARnZFYw==,type:str]
     # The base64 encoded root certificate authority used by Kubernetes.
     ca:
         crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJpakNDQVRDZ0F3SUJBZ0lSQVBTN2xQRkcyNGxkRXlvdUNaTFJITkl3Q2dZSUtvWkl6ajBFQXdJd0ZURVQKTUJFR0ExVUVDaE1LYTNWaVpYSnVaWFJsY3pBZUZ3MHlOREV5TVRneE5ERXhNVGhhRncwek5ERXlNVFl4TkRFeApNVGhhTUJVeEV6QVJCZ05WQkFvVENtdDFZbVZ5Ym1WMFpYTXdXVEFUQmdjcWhrak9QUUlCQmdncWhrak9QUU1CCkJ3TkNBQVR3SGZGd292R2c1VldIZE40UDk2LzdnTVhRQnhLNjdvY0d0VENNNTN6T3k3QXgwYzlGdmNrVUdDQVIKdldFWkJ0Zm1iUmg0bkZJeGRTRGUvNmdFUXoxZm8yRXdYekFPQmdOVkhROEJBZjhFQkFNQ0FvUXdIUVlEVlIwbApCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWURWUjBPCkJCWUVGUGllWC9XRUJIRUcxb0t4V29VbGJ3MldoZk44TUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSUN3VjZWalkKZlVGd1BWZ1pQYjBwd3VRWXJtRWUwdUREZkJxb3c1dkRDdEFaQWlFQXVNM0hUbWFNdCswRTg4dW15djVjdlRYSgpldkZKWlIyV20wbC9Ec3RsazlBPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
@@ -583,14 +627,14 @@ sops:
         - recipient: age10v5jyc5ylreyltm32kfj57fmqle0aumxqvg9lp67r50cl8ynlsmq9kx7ez
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5QTAxaVYwN005cEdYTndr
-            V1htdjltTjRRcktoZTVqMEtjTVJPN0hTeEdjCkZEYjJHNHZYa1hjdHg0dUF5c0RI
-            NElZTTVKdExGODR4eW9oaXNkSFNmZGcKLS0tIDBacHU1RGw1d2NORHZOc1huMmd5
-            Y0kvRnRPS2YxV2V3czNOS0d6UFlNU1UKPbCGtBRfpSzyuJD7LgC50/3LGdVurLJK
-            5XyiZoFFRo88n2MDYJT75CcyRMHZVKfLPTqaktwG59df74dGJkLjxw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTRUpneEdzbUJuRVVYWjU1
+            ZVAxdWk3NzBNNFZGb09CWWs5c3VFS2NvampFCkNZdUtCVlVtQks0NHNvNkJZNVMy
+            UExzMndrbC9IQUhKYkVwUkd0OHFxdG8KLS0tIEtrQUZSVmJtU2ZieGZncXdxM0xU
+            VXJybmwxeWVBVDZ1TFhLOVFaNzVZRFUKBmdDOtkv5m119vvAXfki5t7TBD1KpK85
+            Uc1PyVdPTtqTRspQp3HgkMp4dvGtSG8qEjSHojo7QnI+MNO6LG9yyw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-18T19:28:07Z"
-    mac: ENC[AES256_GCM,data:6L5cv+rVHd4ZtgPYq+tCpVnCXa2b+kw8JhnhNpFxXMFvYAuAA7BXhAyawRBpxMjs4wzf2mtxTopvriA7P7S78GTek8U7P9egOVwgIKZYttNB4fHfvcoIW2UFkC+uSWQ0y9FubEOqRHBbEAWnajzKM981Zl6Yo2ZigJUCBpJwPy8=,iv:yOPlhMV8k+2R62d8VA1xInXgcnfo4bNKP/pv9QmRYUY=,tag:OpgPNBhLlY7LhfNsZ4TPPA==,type:str]
+    lastmodified: "2024-12-19T08:44:21Z"
+    mac: ENC[AES256_GCM,data:aEcKWFvPhgIjpTu5deEPE/HURoSY/MGlJpt7KzT7gQk5Zv5LrVypx8tI/bA2rbqyedBvZIVFCBp1lNikcWXBhrXZ1VZrlDfNpq711EfvWNTCDlNv/4NZ6KBqgjO7ye5rJubmWdDjLu+GhnRjYsCyDl7gRhixJ7ZGNRHdCBCxhlk=,iv:x+YlFECBiCTdDc6YrQXXE9TSzBr4r0zuChARvLAL7AI=,tag:7iwvzrUGyIwmTvxQbnVDPw==,type:str]
     pgp: []
     encrypted_regex: ^(secret|bootstraptoken|secretboxEncryptionSecret|token|key|password)$
     version: 3.9.1

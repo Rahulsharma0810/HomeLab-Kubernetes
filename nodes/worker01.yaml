@@ -33,6 +33,20 @@ machine:
       - bind
       - rshared
       - rw
+    - destination: /var/mnt/ssd_data_Lexar_120GB_1
+      type: bind
+      source: /var/mnt/ssd_data_Lexar_120GB_1
+      options:
+      - bind
+      - rshared
+      - rw
+    - destination: /var/mnt/ssd_data_Lexar_120GB_2
+      type: bind
+      source: /var/mnt/ssd_data_Lexar_120GB_2
+      options:
+      - bind
+      - rshared
+      - rw
   disks:
   - device: /dev/vda
     partitions:
@@ -43,3 +57,9 @@ machine:
   - device: /dev/vdc
     partitions:
     - mountpoint: /var/mnt/ssd_sata_samsung_860_evo_2
+  - device: /dev/vdd
+    partitions:
+    - mountpoint: /var/mnt/ssd_data_Lexar_120GB_1
+  - device: /dev/vde
+    partitions:
+    - mountpoint: /var/mnt/ssd_data_Lexar_120GB_2
