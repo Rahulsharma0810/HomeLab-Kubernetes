@@ -31,7 +31,7 @@ spec:
     rbac:
       create: true
     nodePathMap:
-    - node: "DEFAULT_PATH_FOR_NON_LISTED_NODES"
+    - node: "i1-1806-talos-worker01"
       paths:
       - "/var/mnt/ssd_nvme_predator_GM7000"
 ---
@@ -58,7 +58,7 @@ spec:
     rbac:
       create: true
     nodePathMap:
-    - node: "DEFAULT_PATH_FOR_NON_LISTED_NODES"
+    - node: "i1-1806-talos-worker01"
       paths:
       - "/var/mnt/ssd_sata_samsung_860_evo_1"
 ---
@@ -85,7 +85,7 @@ spec:
     rbac:
       create: true
     nodePathMap:
-    - node: "DEFAULT_PATH_FOR_NON_LISTED_NODES"
+    - node: "i1-1806-talos-worker01"
       paths:
       - "/var/mnt/ssd_sata_samsung_860_evo_2"
 ---
@@ -112,7 +112,7 @@ spec:
     rbac:
       create: true
     nodePathMap:
-    - node: "DEFAULT_PATH_FOR_NON_LISTED_NODES"
+    - node: "i1-1806-talos-worker01"
       paths:
       - "/var/mnt/ssd_data_Lexar_120GB_1"
 ---
