@@ -9,7 +9,7 @@ spec:
   - ReadWriteOnce
   capacity:
     storage: 5Gi
-  storageClassName: ""
+  storageClassName: "redis-immich-manual"
   hostPath:
     path: /var/mnt/ssd_nvme_predator_GM7000/redis-operator/immich
     type: DirectoryOrCreate
@@ -31,7 +31,7 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
-        storageClassName: ""
+        storageClassName: "redis-immich-manual"
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
