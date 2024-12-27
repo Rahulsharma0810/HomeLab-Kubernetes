@@ -12,8 +12,9 @@ resources:
 - redis-operator.yaml
 - cloudnative-pg.yaml
 - paperless-system.yaml
+
 # - immich-system.yaml
-- plex-system.yaml
+# - plex-system.yaml
 
 # - dashboard.yaml
 
