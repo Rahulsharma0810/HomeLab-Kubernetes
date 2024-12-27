@@ -61,21 +61,21 @@ spec:
       - ALTER SCHEMA vectors OWNER TO postgresql_immich_pgsql; # Change ownership of 'vectors' schema to 'postgresql_immich_pgsql' user
       - GRANT ALL PRIVILEGES ON SCHEMA vectors TO postgresql_immich_pgsql; # Grant all privileges on 'vectors' schema to 'postgresql_immich_pgsql' user
       - ALTER SYSTEM SET search_path TO "$user", public, vectors; # Set the default search path to include user schema, 'public', and 'vectors'
-  backup:
-    retentionPolicy: "7d"
-    barmanObjectStore:
-      destinationPath: s3://i1-1806
-      endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
-      s3Credentials:
-        accessKeyId:
-          name: r2-backup-restore-secret
-          key: ACCESS_KEY_ID
-        secretAccessKey:
-          name: r2-backup-restore-secret
-          key: ACCESS_SECRET_KEY
-      wal:
-        compression: gzip
-        encryption: AES256
+  # backup:
+  #   retentionPolicy: "7d"
+  #   barmanObjectStore:
+  #     destinationPath: s3://i1-1806
+  #     endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: r2-backup-restore-secret
+  #         key: ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: r2-backup-restore-secret
+  #         key: ACCESS_SECRET_KEY
+  #     wal:
+  #       compression: gzip
+  #       encryption: AES256
   #     import:
   #       type: microservice
   #       databases:
