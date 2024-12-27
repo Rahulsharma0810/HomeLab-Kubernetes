@@ -1,4 +1,33 @@
 # HomeLab-Kubernetes/manifests/infrastructure/immich-system/release.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-library-pv
+  namespace: immich-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Gi
+  storageClassName: "immich-library-manual"
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/immich
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-library-pvc
+  namespace: immich-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Gi
+  storageClassName: "immich-library-manual"
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -46,7 +75,7 @@ spec:
         enabled: false
       persistence:
         library:
-          existingClaim: immich-library
+          existingClaim: immich-library-pvc
     postgresql:
       enabled: false
     redis:
