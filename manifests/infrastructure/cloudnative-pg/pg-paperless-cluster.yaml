@@ -1,4 +1,19 @@
 # HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-paperless-cluster.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperlessngx-postgresql-pv
+  namespace: cnrds-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 20Gi
+  storageClassName: "postgresql-paperlessngx-manual"
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/cloudnative-pg/paperlessngx
+    type: DirectoryOrCreate
+---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -16,7 +31,7 @@ spec:
       resources:
         requests:
           storage: 20Gi
-      storageClassName: ssd-nvme-predator-gm7000
+      storageClassName: "postgresql-paperlessngx-manual"
   monitoring:
     enablePodMonitor: true
   bootstrap:
