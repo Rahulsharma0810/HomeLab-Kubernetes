@@ -31,7 +31,7 @@ spec:
     rbac:
       create: true
     nodePathMap:
-    - node: "i1-1806-talos-worker01"
+    - node: "DEFAULT_PATH_FOR_NON_LISTED_NODES"
       paths:
       - "/var/mnt/ssd_nvme_predator_GM7000"
 
