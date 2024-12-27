@@ -1,8 +1,68 @@
 # HomeLab-Kubernetes/manifests/infrastructure/paperless-system/deployment.yaml
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperlessngx-data-pv
+  namespace: cnrds-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  storageClassName: "paperlessngx-data-manual"
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/paperless-system/data
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperlessngx-media-pv
+  namespace: cnrds-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 20Gi
+  storageClassName: "paperlessngx-media-manual"
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/paperless-system/media
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperlessngx-export-pv
+  namespace: cnrds-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  storageClassName: "paperlessngx-export-manual"
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/paperless-system/export
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperlessngx-consume-pv
+  namespace: cnrds-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  storageClassName: "paperlessngx-consume-manual"
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/paperless-system/consume
+    type: DirectoryOrCreate
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: paperlessngx-data
+  name: paperlessngx-data-pvc
   namespace: paperless-system
 spec:
   accessModes:
@@ -10,12 +70,12 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: ssd-nvme-predator-gm7000
+  storageClassName: "paperlessngx-data-manual"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: paperlessngx-media
+  name: paperlessngx-media-pvc
   namespace: paperless-system
 spec:
   accessModes:
@@ -23,12 +83,12 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: ssd-nvme-predator-gm7000
+  storageClassName: "paperlessngx-media-manual"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: paperlessngx-export
+  name: paperlessngx-export-pvc
   namespace: paperless-system
 spec:
   accessModes:
@@ -36,12 +96,12 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: ssd-nvme-predator-gm7000
+  storageClassName: "paperlessngx-export-manual"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: paperlessngx-consume
+  name: paperlessngx-consume-pvc
   namespace: paperless-system
 spec:
   accessModes:
@@ -49,7 +109,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: ssd-nvme-predator-gm7000
+  storageClassName: "paperlessngx-consume-manual"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -158,16 +218,16 @@ spec:
       volumes:
       - name: data-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-data
+          claimName: paperlessngx-data-pvc
       - name: media-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-media
+          claimName: paperlessngx-media-pvc
       - name: export-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-export
+          claimName: paperlessngx-export-pvc
       - name: consume-volume
         persistentVolumeClaim:
-          claimName: paperlessngx-consume
+          claimName: paperlessngx-consume-pvc
       - name: script-volume
         configMap:
           name: paperlessngx-scripts
