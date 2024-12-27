@@ -7,12 +7,11 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  resources:
-    requests:
-      storage: 200Gi
   storageClassName: "immich-library-manual"
+  capacity:
+    storage: 250Gi
   hostPath:
-    path: /var/mnt/ssd_nvme_predator_GM7000/immich
+    path: /var/mnt/ssd_nvme_predator_GM7000/immich/library
     type: DirectoryOrCreate
 ---
 apiVersion: v1
@@ -25,9 +24,25 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 200Gi
+      storage: 250Gi
   storageClassName: "immich-library-manual"
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-machine-learning-pv
+  namespace: immich-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: "immich-machine-learning-manual"
+  capacity:
+    storage: 20Gi
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/immich/machine-learning-modals
+    type: DirectoryOrCreate
+---
+
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -99,7 +114,7 @@ spec:
       persistence:
         cache:
           enabled: true
-          size: 10Gi
+          size: 20Gi
           type: pvc
           accessMode: ReadWriteOnce
-          storageClass: ssd-nvme-predator-gm7000
+          storageClass: immich-machine-learning-manual
