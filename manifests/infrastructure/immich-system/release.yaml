@@ -11,7 +11,7 @@ spec:
   capacity:
     storage: 250Gi
   hostPath:
-    path: /var/mnt/ssd_nvme_predator_GM7000/immich/library
+    path: /var/mnt/ssd_nvme_predator_GM7000/immich
     type: DirectoryOrCreate
 ---
 apiVersion: v1
