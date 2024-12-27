@@ -27,7 +27,7 @@ spec:
       create: true
       name: ssd-nvme-predator-gm7000
       defaultClass: true
-      reclaimPolicy: Retain
+      reclaimPolicy: Delete
     rbac:
       create: true
     nodePathMap:
@@ -54,7 +54,7 @@ spec:
       create: true
       name: ssd-sata-samsung-860-evo-1
       defaultClass: false
-      reclaimPolicy: Retain
+      reclaimPolicy: Delete
     rbac:
       create: true
     nodePathMap:
@@ -81,7 +81,7 @@ spec:
       create: true
       name: ssd-sata-samsung-860-evo-2
       defaultClass: false
-      reclaimPolicy: Retain
+      reclaimPolicy: Delete
     rbac:
       create: true
     nodePathMap:
@@ -108,7 +108,7 @@ spec:
       create: true
       name: ssd-data-lexar-120gb-1
       defaultClass: false
-      reclaimPolicy: Retain
+      reclaimPolicy: Delete
     rbac:
       create: true
     nodePathMap:
@@ -135,7 +135,7 @@ spec:
       create: true
       name: ssd-data-lexar-120gb-2
       defaultClass: false
-      reclaimPolicy: Retain
+      reclaimPolicy: Delete
     rbac:
       create: true
     nodePathMap:
