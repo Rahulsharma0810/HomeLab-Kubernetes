@@ -1,0 +1,13 @@
+# 271_Labs/HomeLab-Kubernetes/manifests/cluster/flux-system/plex-system.yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: plex
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./manifests/infrastructure/plex-system
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

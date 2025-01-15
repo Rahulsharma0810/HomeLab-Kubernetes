@@ -1,0 +1,15 @@
+# 271_Labs/HomeLab-Kubernetes/manifests/infrastructure/plex-system/tunnel-binding-ingress.yaml
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: plex-tunnel-binding
+  namespace: plex-system
+subjects:
+- name: plex-media-server
+  spec:
+    fqdn: tv.rvsharma.com
+    # protocol: http
+    # noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: i1-1806-talos-proxmox-cluster-tunnel

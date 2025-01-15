@@ -1,0 +1,9 @@
+# 271_Labs/HomeLab-Kubernetes/manifests/infrastructure/plex-system/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: plex-system
+  labels:
+    app: plex
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: latest
