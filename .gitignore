@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 age.agekey
 age.key
 *.dump
 *.zip
 tmp_backups/**
+=======
+.DS_Store
+>>>>>>> f496631 (Changes Afet Pull)
