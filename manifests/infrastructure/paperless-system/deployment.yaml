@@ -128,7 +128,7 @@ spec:
     spec:
       containers:
       - name: paperlessngx-container
-        image: ghcr.io/paperless-ngx/paperless-ngx:2.14.2
+        image: ghcr.io/paperless-ngx/paperless-ngx:2.14.3
         ports:
         - containerPort: 8000
         volumeMounts:
