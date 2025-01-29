@@ -170,7 +170,7 @@ spec:
         - name: PAPERLESS_OCR_LANGUAGE
           value: eng
         - name: PAPERLESS_EMPTY_TRASH_DELAY
-          value: 120
+          value: "120"
         - name: PAPERLESS_PRE_CONSUME_SCRIPT
           value: /usr/src/paperless/scripts/unlock.py
         - name: PASSWORD_1
