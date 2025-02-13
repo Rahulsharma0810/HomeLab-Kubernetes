@@ -5,7 +5,7 @@ metadata:
   name: k8s-api-tunnel-binding
   namespace: kube-system
 subjects:
-- name: kubernetes-api
+- name: kubernetes
   spec:
     fqdn: kubernetes.rvsharma.com
     protocol: https
