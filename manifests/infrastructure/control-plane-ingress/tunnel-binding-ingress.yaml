@@ -2,9 +2,9 @@ apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
   name: k8s-api-tunnel-binding
-  namespace: default
+  namespace: kube-system
 subjects:
-- name: kubernetes
+- name: k8s-api-svc
   spec:
     fqdn: kubernetes.rvsharma.com
     protocol: https
