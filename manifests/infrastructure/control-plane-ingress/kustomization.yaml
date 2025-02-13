@@ -1,0 +1,6 @@
+# manifests/infrastructure/control-plane-ingress/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- service.yaml
+- tunnel-binding-ingress.yaml
