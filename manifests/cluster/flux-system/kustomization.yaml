@@ -9,7 +9,7 @@ resources:
 - secrets.yaml
 - cloudflare-operator-remote.yaml
 - cloudflare-operator-system.yaml
-- ingress.yaml #CloudFlare Is Hell Slow, Enabling Ingress For Local Traffic Smoothness.
+- control-plane-ingress.yaml
 - redis-operator.yaml
 - cloudnative-pg.yaml
 - paperless-system.yaml
@@ -20,5 +20,6 @@ resources:
 # - dashboard.yaml
 
 
+# - ingress.yaml
 # Not used resources, Only For Refrences in case Somone Wants to use it.
 # - rook-ceph.yaml
