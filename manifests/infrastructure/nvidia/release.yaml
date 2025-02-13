@@ -12,7 +12,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: nvidia-device-plugin
-  namespace: kube-system
+  namespace: nvidia
 spec:
   interval: 5m
   timeout: 3m
@@ -30,6 +30,6 @@ spec:
       retries: 3
   upgrade:
     remediation:
-      retries: 3 
+      retries: 3
   values:
     runtimeClassName: nvidia
