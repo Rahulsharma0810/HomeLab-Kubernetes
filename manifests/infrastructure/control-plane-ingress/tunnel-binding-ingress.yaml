@@ -1,4 +1,4 @@
-# manifests/infrastructure/control-plane/tunnel-binding-ingress.yaml
+# manifests/infrastructure/control-plane-ingress/tunnel-binding-ingress.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
