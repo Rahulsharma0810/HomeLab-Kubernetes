@@ -6,3 +6,9 @@ resources:
 - clusterrolebinding.yaml
 - serviceacount.yaml
 - tunnel-binding-ingress.yaml
+
+
+# After This create Token manually
+# kubectl create token k8s-api-tunnel-binding-sa -n kube-system
+# kubectl config set-cluster talos-proxmox-cluster-tunnel --server=https://kubernetes.rvsharma.com --insecure-skip-tls-verify=true
+# kubectl config set-credentials k8s-api-tunnel-binding-sa --token=PASTE_YOUR_TOKEN_HERE
