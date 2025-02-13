@@ -1,0 +1,6 @@
+# serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: k8s-api-tunnel-binding-sa
+  namespace: kube-system
