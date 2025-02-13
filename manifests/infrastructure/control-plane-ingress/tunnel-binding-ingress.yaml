@@ -1,9 +1,8 @@
-# manifests/infrastructure/control-plane-ingress/tunnel-binding-ingress.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
   name: k8s-api-tunnel-binding
-  namespace: kube-system
+  namespace: default
 subjects:
 - name: kubernetes
   spec:
