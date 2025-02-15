@@ -5,7 +5,7 @@ metadata:
   name: openwebui-tunnel-binding
   namespace: openwebui
 subjects:
-- name: openwebui
+- name: open-webui
   spec:
     fqdn: chat.rvsharma.com
     # protocol: http
