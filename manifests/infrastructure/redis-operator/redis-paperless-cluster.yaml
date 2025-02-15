@@ -1,4 +1,4 @@
-# HomeLab-Kubernetes/manifests/infrastructure/redis-operator/redis-paperless-cluster.yaml
+# manifests/infrastructure/redis-operator/redis-paperless-cluster.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
