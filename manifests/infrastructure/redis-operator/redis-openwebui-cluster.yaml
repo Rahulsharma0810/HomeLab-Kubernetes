@@ -25,8 +25,8 @@ spec:
     image: quay.io/opstree/redis:latest
     imagePullPolicy: IfNotPresent
   podSecurityContext:
-    runAsUser: 1000
-    fsGroup: 1000
+    runAsUser: 0
+    fsGroup: 2000
   nodeSelector:
     kubernetes.io/hostname: i1-1806-talos-worker01
   storage:
