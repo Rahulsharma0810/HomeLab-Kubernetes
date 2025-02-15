@@ -1,0 +1,101 @@
+# manifests/infrastructure/ollama/release.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: ollama-helm
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://otwld.github.io/ollama-helm/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ollama
+  namespace: ollama
+spec:
+  interval: 5m
+  timeout: 3m
+  chart:
+    spec:
+      chart: ollama
+      version: "*"
+      sourceRef:
+        kind: HelmRepository
+        name: ollama-helm
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    runtimeClassName: "nvidia"
+    replicaCount: 1
+    knative:
+      enabled: false
+    image:
+      repository: ollama/ollama
+      pullPolicy: IfNotPresent
+    ollama:
+      gpu:
+        enabled: true
+        type: "nvidia"
+        number: 1
+        nvidiaResource: "nvidia.com/gpu"
+        mig:
+          enabled: false
+      models:
+        pull:
+        - deepseek-r1:7b
+        # - mistral
+        run:
+        - deepseek-r1:7b
+        # - mistral
+        #     create: []
+        #   mountPath: "/root/.ollama"
+        # resources:
+        #   requests:
+        #     memory: "16Gi"
+        #     cpu: "4000m"
+        #     nvidia.com/gpu: 1
+        #   limits:
+        #     memory: "32Gi"
+        #     cpu: "8000m"
+        #     nvidia.com/gpu: 1
+        # service:
+        #   type: ClusterIP
+        #   port: 11434
+        # ingress:
+        #   enabled: false
+        # livenessProbe:
+        #   enabled: true
+        #   path: /
+        #   initialDelaySeconds: 60
+        #   periodSeconds: 10
+        #   timeoutSeconds: 5
+        #   failureThreshold: 6
+        #   successThreshold: 1
+        # readinessProbe:
+        #   enabled: true
+        #   path: /
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 5
+        #   timeoutSeconds: 3
+        #   failureThreshold: 6
+        #   successThreshold: 1
+        # persistentVolume:
+        #   enabled: true
+        #   size: 50Gi
+        #   accessModes:
+        #   - ReadWriteOnce
+        #   storageClass: ""
+        # nodeSelector:
+        #   feature.node.kubernetes.io/pci-10de.present: "true"
+        # tolerations:
+        # - key: "nvidia.com/gpu"
+        #   operator: "Exists"
+        #   effect: "NoSchedule"
