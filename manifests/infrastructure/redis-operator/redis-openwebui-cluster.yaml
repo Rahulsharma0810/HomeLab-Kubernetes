@@ -14,7 +14,6 @@ spec:
     path: /var/mnt/ssd_nvme_predator_GM7000/redis-operator/openwebui
     type: DirectoryOrCreate
 ---
-
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: Redis
 metadata:
