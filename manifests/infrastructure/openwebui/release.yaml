@@ -101,6 +101,12 @@ spec:
       annotations: {}
 
     extraEnvVars:
+    - name: ENABLE_LOGIN_FORM
+      value: "false"
+    - name: ENABLE_OAUTH_SIGNUP
+      value: "false"
+    - name: OAUTH_MERGE_ACCOUNTS_BY_EMAIL
+      value: "true"
     - name: GOOGLE_CLIENT_ID
       valueFrom:
         secretKeyRef:
