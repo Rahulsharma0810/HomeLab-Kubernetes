@@ -51,10 +51,10 @@ spec:
       models:
         pull:
         - deepseek-r1:7b
-        - llama3.3
+        # - llama3.3
         run:
         - deepseek-r1:7b
-        - llama3.3
+        # - llama3.3
         #     create: []
         #   mountPath: "/root/.ollama"
         # resources:
