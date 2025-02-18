@@ -76,7 +76,7 @@ spec:
     strategy: {}
     # -- Open WebUI image tags can be found here: https://github.com/open-webui/open-webui
     image:
-      repository: ghcr.io/open-webui/open-webui:0.5.14
+      repository: ghcr.io/open-webui/open-webui:latest
       tag: ""
       pullPolicy: "IfNotPresent"
 
