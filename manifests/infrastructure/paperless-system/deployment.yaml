@@ -1,4 +1,4 @@
-# HomeLab-Kubernetes/manifests/infrastructure/paperless-system/deployment.yaml
+# manifests/infrastructure/paperless-system/deployment.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -217,6 +217,16 @@ spec:
             secretKeyRef:
               name: paperless-socialaccount-providers
               key: PAPERLESS_SOCIALACCOUNT_PROVIDERS
+        - name: PAPERLESS_GMAIL_OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: paperless-gmail-oauth
+              key: PAPERLESS_GMAIL_OAUTH_CLIENT_ID
+        - name: PAPERLESS_GMAIL_OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: paperless-gmail-oauth
+              key: PAPERLESS_GMAIL_OAUTH_CLIENT_SECRET
       volumes:
       - name: data-volume
         persistentVolumeClaim:
