@@ -1,4 +1,4 @@
-# HomeLab-Kubernetes/manifests/infrastructure/paperless-system/kustomization.yaml
+# manifests/infrastructure/paperless-system/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -6,3 +6,4 @@ resources:
 - pre-consumption.yaml
 - deployment.yaml
 - tunnel-binding-ingress.yaml
+- paperless-ai.yaml
