@@ -220,12 +220,12 @@ spec:
         - name: PAPERLESS_GMAIL_OAUTH_CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: paperless-gmail-oauth
+              name: paperless-gmail-auth
               key: PAPERLESS_GMAIL_OAUTH_CLIENT_ID
         - name: PAPERLESS_GMAIL_OAUTH_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
-              name: paperless-gmail-oauth
+              name: paperless-gmail-auth
               key: PAPERLESS_GMAIL_OAUTH_CLIENT_SECRET
       volumes:
       - name: data-volume
