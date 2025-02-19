@@ -1,0 +1,56 @@
+# manifests/infrastructure/paperless-system/paperless-ai.yaml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-ai-data-pvc
+  namespace: paperless-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  # storageClassName: "paperless-ai-data-manual"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ai-deployment
+  namespace: paperless-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ai
+  template:
+    metadata:
+      labels:
+        app: paperless-ai
+    spec:
+      containers:
+      - name: paperless-ai-container
+        image: clusterzx/paperless-ai
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: paperless-ai-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paperless-ai-service
+  namespace: paperless-system
+spec:
+  type: ClusterIP
+  selector:
+    app: paperless-ai
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
