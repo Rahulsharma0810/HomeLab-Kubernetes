@@ -33,4 +33,4 @@ spec:
     remediation:
       retries: 3
   values:
-    secretRef: cloudflare-creds
+    secretRef: cloudflare-zero-trust-secret
