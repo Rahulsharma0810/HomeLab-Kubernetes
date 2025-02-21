@@ -9,6 +9,7 @@ resources:
 - secrets.yaml
 - cloudflare-operator-remote.yaml
 - cloudflare-operator-system.yaml
+- cloudflare-zero-trust-operator.yaml
 - control-plane-ingress.yaml
 - nvidia.yaml
 - redis-operator.yaml
