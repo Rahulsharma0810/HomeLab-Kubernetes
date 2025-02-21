@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - release.yaml
-
-# - tunnel-binding-ingress.yaml # Do not deploy without authentication.
+- tunnel-binding-ingress.yaml # Do not deploy without authentication.

@@ -13,3 +13,7 @@ spec:
   include:
   - emails:
     - SharmaR0810@gmail.com
+  - country:
+    - IN
+  - ipRanges:
+    - 192.168.0.1/24
