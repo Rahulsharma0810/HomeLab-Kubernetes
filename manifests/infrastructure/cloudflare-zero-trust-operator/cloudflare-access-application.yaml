@@ -15,8 +15,8 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow Email
+  - name: Allow Policies
     decision: allow
     include:
     - accessGroups:
-      - value: i1-1806-cloudflare-zerotrust-accessgroup
+      - value: 3b9d740b-db49-42e2-a124-544267d8e744
