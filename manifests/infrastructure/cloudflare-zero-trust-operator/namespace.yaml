@@ -1,0 +1,5 @@
+# manifests/infrastructure/cloudflare-zero-trust-operator/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloudflare-zero-trust-operator
