@@ -1,0 +1,36 @@
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-gitrepo.yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: zelic-io
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://zelic-io.github.io/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cloudflare-zero-trust-operator
+  namespace: cloudflare-zero-trust-operator
+spec:
+  interval: 5m
+  timeout: 3m
+  chart:
+    spec:
+      chart: cloudflare-zero-trust-operator
+      version: "*"
+      sourceRef:
+        kind: HelmRepository
+        name: zelic-io
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    secretRef: cloudflare-creds

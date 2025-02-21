@@ -1,0 +1,12 @@
+# manifests/cluster/flux-system/cloudflare-zero-trust-operator.yaml
+kind: Kustomization
+metadata:
+  name: cloudflare-zero-trust-operator
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./manifests/infrastructure/cloudflare-zero-trust-operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
