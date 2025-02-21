@@ -14,6 +14,6 @@ spec:
   - country:
     - IN
   - ipRanges:
-    - 157.119.91.46/32
+    - 49.36.144.184/32
   # - emails:
   #   - SharmaR0810@gmail.com
