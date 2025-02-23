@@ -1,5 +1,4 @@
-# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-access-application.yaml
-
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-application.yaml
 apiVersion: cloudflare.zelic.io/v1alpha1
 kind: CloudflareAccessApplication
 metadata:
