@@ -11,9 +11,9 @@ metadata:
 spec:
   name: i1-1806-cloudflare-zerotrust-accessgroup
   include:
-  - country:
-    - IN
   - ipRanges:
     - 49.36.144.184/32
+  # - country:
+  #   - IN
   # - emails:
   #   - SharmaR0810@gmail.com
