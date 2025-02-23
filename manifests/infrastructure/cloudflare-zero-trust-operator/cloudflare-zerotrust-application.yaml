@@ -18,4 +18,6 @@ spec:
     decision: allow
     include:
     - accessGroups:
-      - value: 3b9d740b-db49-42e2-a124-544267d8e744
+      - valueFrom:
+          name: i1-1806-cloudflare-zerotrust-accessgroup
+          namespace: cloudflare-zero-trust-operator

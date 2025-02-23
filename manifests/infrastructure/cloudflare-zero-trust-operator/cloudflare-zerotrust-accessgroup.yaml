@@ -11,9 +11,13 @@ metadata:
 spec:
   name: i1-1806-cloudflare-zerotrust-accessgroup
   include:
-  - ipRanges:
-    - 49.36.144.184/32
-  # - country:
-  #   - IN
-  # - emails:
-  #   - SharmaR0810@gmail.com
+  - serviceToken:
+    - valueFrom:
+        name: ollama-access-service-token
+        namespace: cloudflare-zero-trust-operator
+        # - ipRanges:
+        #   - 49.36.144.184/32
+        # - country:
+        #   - IN
+        # - emails:
+        #   - XXXX@gmail.com
