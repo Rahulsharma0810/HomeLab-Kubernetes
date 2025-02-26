@@ -2,8 +2,7 @@
 apiVersion: cloudflare.zelic.io/v1alpha1
 kind: CloudflareServiceToken
 metadata:
-  annotation:
-  name: ollama-access-service-token
-  namespace: cloudflare-zero-trust-operator
+    name: ollama-access-service-token
+    namespace: cloudflare-zero-trust-operator
 spec:
-  name: ollama-access-service-token
+    name: ollama-access-service-token
