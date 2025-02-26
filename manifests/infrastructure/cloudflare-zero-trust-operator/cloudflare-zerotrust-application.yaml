@@ -15,7 +15,7 @@ spec:
   type: self_hosted
   policies:
   - name: Allow Policies
-    decision: allow
+    decision: non_identity
     include:
     - accessGroups:
       - valueFrom:
