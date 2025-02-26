@@ -50,11 +50,17 @@ spec:
           enabled: false
       models:
         pull:
-        - deepseek-r1:7b
         - llama3.2
+        - deepseek-r1:7b
+        - deepseek-coder:6.7b
+        - deepseek-coder:33b
+        - qwen2.5-coder:32b
         run:
-        - deepseek-r1:7b
         - llama3.2
+        - deepseek-r1:7b
+        - deepseek-coder:6.7b
+        - deepseek-coder:33b
+        - qwen2.5-coder:32b
         #     create: []
         #   mountPath: "/root/.ollama"
         # resources:
