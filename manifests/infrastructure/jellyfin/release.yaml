@@ -1,0 +1,53 @@
+# manifests/infrastructure/jellyfin/release.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: jellyfin
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://jellyfin.github.io/jellyfin-helm
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: jellyfin
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: jellyfin
+      sourceRef:
+        kind: HelmRepository
+        name: jellyfin
+        namespace: flux-system
+      version: "*"
+  values:
+    # -- Number of Jellyfin replicas to start. Should be left at 1.
+    replicaCount: 1
+    # -- Deployment strategy configuration. See `kubectl explain deployment.spec.strategy`.
+    deploymentStrategy:
+      type: RollingUpdate
+    jellyfin:
+      # -- Enable DLNA. Requires host network. See: https://jellyfin.org/docs/general/networking/dlna.html
+      enableDLNA: false
+    persistence:
+      config:
+        # -- set to false to use emptyDir
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        # -- Custom annotations to be added to the PVC
+        annotations: {}
+        # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
+        storageClass: 'ssd-nvme-predator-gm7000'
+      media:
+        # -- set to false to use emptyDir
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 100Gi
+        # -- Custom annotations to be added to the PVC
+        annotations: {}
+        # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
+        storageClass: 'ssd-nvme-predator-gm7000'
