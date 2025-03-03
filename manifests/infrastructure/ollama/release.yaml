@@ -61,6 +61,8 @@ spec:
         - deepseek-coder:6.7b
         - deepseek-coder:33b
         - qwen2.5-coder:32b
+      service:
+        type: NodePort
         #     create: []
         #   mountPath: "/root/.ollama"
         # resources:
