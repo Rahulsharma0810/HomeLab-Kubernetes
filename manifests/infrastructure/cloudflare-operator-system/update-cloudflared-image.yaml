@@ -1,0 +1,12 @@
+# manifests/infrastructure/cloudflare-operator-system/update-cloudflared-image.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i1-1806-talos-proxmox-cluster-tunnel
+  namespace: cloudflare-operator-system
+spec:
+  template:
+    spec:
+      containers:
+      - name: cloudflared
+        image: cloudflare/cloudflared:2025.2.1
