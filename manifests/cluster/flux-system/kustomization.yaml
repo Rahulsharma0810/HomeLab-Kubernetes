@@ -8,7 +8,7 @@ resources:
   - local-path-provisioner.yaml
   - secrets.yaml
   - cloudflare-operator-remote.yaml
-  # - cloudflare-operator-system.yaml
+  - cloudflare-operator-system.yaml
   - cloudflare-zero-trust-operator.yaml
   - control-plane-ingress.yaml
   - nvidia.yaml

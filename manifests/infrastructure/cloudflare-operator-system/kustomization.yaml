@@ -1,10 +1,10 @@
-# manifests/infrastructure/cloudflare-operator-system/kustomization.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/cloudflare-operator-system/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespace.yaml
-  - cloudflare-gitrepo.yaml
-  - ClusterTunnel.yaml
+- namespace.yaml
+- cloudflare-gitrepo.yaml
+- ClusterTunnel.yaml
 
-patchesStrategicMerge:
-  - update-cloudflared-image.yaml
+# patchesStrategicMerge:
+#   - update-cloudflared-image.yaml
