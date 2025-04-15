@@ -1,4 +1,4 @@
-# manifests/infrastructure/cloudflare-operator-system/update-cloudflared-image.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/cloudflare-operator-system/update-cloudflared-image.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
