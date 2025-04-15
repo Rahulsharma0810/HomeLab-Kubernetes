@@ -1,0 +1,28 @@
+# manifests/infrastructure/uptime-kuma/PersistentVolume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: uptime-kuma-pv
+    namespace: uptime-kuma
+spec:
+    accessModes:
+      - ReadWriteOnce
+    capacity:
+        storage: 5Gi
+    storageClassName: "uptime-kuma-pv-manual"
+    hostPath:
+        path: /var/mnt/ssd_nvme_predator_GM7000/uptime-kuma
+        type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: uptime-kuma-pv
+    namespace: uptime-kuma
+spec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+        requests:
+            storage: 5Gi
+    storageClassName: "uptime-kuma-pv-manual"
