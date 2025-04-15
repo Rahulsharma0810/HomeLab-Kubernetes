@@ -6,5 +6,5 @@ resources:
 - cloudflare-gitrepo.yaml
 - ClusterTunnel.yaml
 
-# patchesStrategicMerge:
-#   - update-cloudflared-image.yaml
+patchesStrategicMerge:
+  - update-cloudflared-image.yaml
