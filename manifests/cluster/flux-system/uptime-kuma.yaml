@@ -1,0 +1,13 @@
+# manifests/cluster/flux-system/uptime-kuma.yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: uptime-kuma
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./manifests/infrastructure/uptime-kuma
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

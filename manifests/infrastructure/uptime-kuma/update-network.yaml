@@ -1,0 +1,13 @@
+# manifests/infrastructure/uptime-kuma/update-network.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+spec:
+  template:
+    spec:
+      hostNetwork: true
+      dnsConfig:
+        nameservers:
+        - 10.96.0.10
