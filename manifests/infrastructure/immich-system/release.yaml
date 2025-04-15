@@ -42,7 +42,6 @@ spec:
     path: /var/mnt/ssd_nvme_predator_GM7000/immich/machine-learning-modals
     type: DirectoryOrCreate
 ---
-
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -66,7 +65,7 @@ spec:
         kind: HelmRepository
         name: immich-charts
         namespace: flux-system
-      version: "0.8.4"
+      version: "1.131.3"
   values:
     env:
       REDIS_HOSTNAME: "redis-immich-cluster.cnrds-system.svc.cluster.local"
