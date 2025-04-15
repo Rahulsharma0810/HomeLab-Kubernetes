@@ -6,5 +6,9 @@ resources:
 - cloudflare-gitrepo.yaml
 - ClusterTunnel.yaml
 
-patchesStrategicMerge:
-  - update-cloudflared-image.yaml
+# images:
+# - name: cloudflare/cloudflared
+#   newTag: 2025.2.1
+
+# patchesStrategicMerge:
+#   - update-cloudflared-image.yaml
