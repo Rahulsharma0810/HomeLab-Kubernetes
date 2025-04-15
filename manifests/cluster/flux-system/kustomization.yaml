@@ -1,25 +1,25 @@
-# manifests/cluster/flux-system/kustomization.yaml
+# HomeLab-Kubernetes/manifests/cluster/flux-system/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- gotk-components.yaml
-- gotk-sync.yaml
-- cilium.yaml
-- local-path-provisioner.yaml
-- secrets.yaml
-- cloudflare-operator-remote.yaml
-- cloudflare-operator-system.yaml
-- cloudflare-zero-trust-operator.yaml
-- control-plane-ingress.yaml
-- nvidia.yaml
-- redis-operator.yaml
-- cloudnative-pg.yaml
-- paperless-system.yaml
-- immich-system.yaml
-- ollama.yaml
-- openwebui.yaml
-- jellyfin.yaml
-- uptime-kuma.yaml
+  - gotk-components.yaml
+  - gotk-sync.yaml
+  - cilium.yaml
+  - local-path-provisioner.yaml
+  - secrets.yaml
+  - cloudflare-operator-remote.yaml
+  # - cloudflare-operator-system.yaml
+  - cloudflare-zero-trust-operator.yaml
+  - control-plane-ingress.yaml
+  - nvidia.yaml
+  - redis-operator.yaml
+  - cloudnative-pg.yaml
+  - paperless-system.yaml
+  - immich-system.yaml
+  - ollama.yaml
+  - openwebui.yaml
+  - jellyfin.yaml
+  - uptime-kuma.yaml
 
 # - plex-system.yaml
 
