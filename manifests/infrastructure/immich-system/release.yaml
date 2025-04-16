@@ -65,7 +65,7 @@ spec:
         kind: HelmRepository
         name: immich-charts
         namespace: flux-system
-      version: "1.131.3"
+      version: "0.9.2"
   values:
     env:
       REDIS_HOSTNAME: "redis-immich-cluster.cnrds-system.svc.cluster.local"
@@ -83,7 +83,7 @@ spec:
             name: cnpg-immich-user-password
             key: password
     image:
-      tag: v1.129.0
+      tag: v1.131.3
     immich:
       metrics:
         enabled: false
