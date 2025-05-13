@@ -63,47 +63,5 @@ spec:
         - qwen2.5-coder:32b
       service:
         type: NodePort
-        #     create: []
-        #   mountPath: "/root/.ollama"
-        # resources:
-        #   requests:
-        #     memory: "16Gi"
-        #     cpu: "4000m"
-        #     nvidia.com/gpu: 1
-        #   limits:
-        #     memory: "32Gi"
-        #     cpu: "8000m"
-        #     nvidia.com/gpu: 1
-        # service:
-        #   type: ClusterIP
-        #   port: 11434
-        # ingress:
-        #   enabled: false
-        # livenessProbe:
-        #   enabled: true
-        #   path: /
-        #   initialDelaySeconds: 60
-        #   periodSeconds: 10
-        #   timeoutSeconds: 5
-        #   failureThreshold: 6
-        #   successThreshold: 1
-        # readinessProbe:
-        #   enabled: true
-        #   path: /
-        #   initialDelaySeconds: 30
-        #   periodSeconds: 5
-        #   timeoutSeconds: 3
-        #   failureThreshold: 6
-        #   successThreshold: 1
-        # persistentVolume:
-        #   enabled: true
-        #   size: 50Gi
-        #   accessModes:
-        #   - ReadWriteOnce
-        #   storageClass: ""
-        # nodeSelector:
-        #   feature.node.kubernetes.io/pci-10de.present: "true"
-        # tolerations:
-        # - key: "nvidia.com/gpu"
-        #   operator: "Exists"
-        #   effect: "NoSchedule"
+        port: 11434
+        nodePort: 31434
