@@ -5,5 +5,5 @@ resources:
 - namespace.yaml
 - pre-consumption.yaml
 - deployment.yaml
-- tunnel-binding-ingress.yaml
+# - tunnel-binding-ingress.yaml
 - paperless-ai.yaml
