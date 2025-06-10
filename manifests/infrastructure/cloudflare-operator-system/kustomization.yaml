@@ -1,7 +1,9 @@
 # manifests/infrastructure/cloudflare-operator-system/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: cloudflare-operator-system
 resources:
   - namespace.yaml
-  - cloudflare-gitrepo.yaml
-  - ClusterTunnel.yaml
+  - https://github.com/adyanth/cloudflare-operator.git/config/default?ref=v0.13.1
+
+#   - ClusterTunnel.yaml
