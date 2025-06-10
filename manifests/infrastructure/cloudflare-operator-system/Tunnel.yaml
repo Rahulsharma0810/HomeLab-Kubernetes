@@ -1,6 +1,6 @@
 # manifests/infrastructure/cloudflare-operator-system/Tunnel.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha2
-kind: Tunnel
+kind: ClusterTunnel
 metadata:
   name: i1-1806-talos-proxmox-cluster-tunnel
   namespace: cloudflare-operator-system
