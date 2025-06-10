@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - release.yaml
-- tunnel-binding-ingress.yaml
+# - tunnel-binding-ingress.yaml
