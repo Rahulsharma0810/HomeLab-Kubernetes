@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   # NameSpace is not needed as it is already created, But needed for secret
   #   - namespace.yaml
-  - https://github.com/adyanth/cloudflare-operator.git/config/default
+  - https://github.com/adyanth/cloudflare-operator.git//config/default?ref=v0.13.1
   - ClusterTunnel.yaml
