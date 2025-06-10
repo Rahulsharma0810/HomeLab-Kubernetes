@@ -11,5 +11,5 @@ spec:
   cloudflare:
     email: sharmaR0810@gmail.com
     domain: rvsharma.com
-    secret: cloudflare-secrets
+    secret: secrets/cloudflare-secrets
     accountId: dd8f22ea55fe9ce597a761450466a67f
