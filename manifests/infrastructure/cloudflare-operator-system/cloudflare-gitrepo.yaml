@@ -6,6 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  url: https://github.com/adyanth/cloudflare-operator.git//config/default?ref=v0.12.0
+  url: https://github.com/adyanth/cloudflare-operator.git//config/default?ref=v0.13.1
   ref:
-    branch: v0.12.0
+    branch: v0.13.1
