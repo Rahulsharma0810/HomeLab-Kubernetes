@@ -1,4 +1,4 @@
-# manifests/infrastructure/cloudflare-operator-system/Tunnel.yaml
+# manifests/infrastructure/cloudflare-operator-system/ClusterTunnel.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha2
 kind: ClusterTunnel
 metadata:
