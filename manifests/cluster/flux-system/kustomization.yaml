@@ -22,10 +22,7 @@ resources:
 - uptime-kuma.yaml
 
 # - plex-system.yaml
-
 # - dashboard.yaml
-
-
 # - ingress.yaml
 # Not used resources, Only For Refrences in case Somone Wants to use it.
 # - rook-ceph.yaml
