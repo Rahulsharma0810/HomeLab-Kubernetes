@@ -5,6 +5,8 @@ metadata:
   name: cloudflare-operator-remote
   namespace: flux-system
 spec:
+  dependsOn:
+  - name: cloudflare-operator
   interval: 5m
   prune: true
   sourceRef:
