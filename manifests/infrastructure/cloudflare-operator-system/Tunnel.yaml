@@ -1,13 +1,12 @@
-# manifests/infrastructure/cloudflare-operator-system/ClusterTunnel.yaml
-apiVersion: networking.cfargotunnel.com/v1alpha1
-kind: ClusterTunnel
+# manifests/infrastructure/cloudflare-operator-system/Tunnel.yaml
+apiVersion: networking.cfargotunnel.com/v1alpha2
+kind: Tunnel
 metadata:
   name: i1-1806-talos-proxmox-cluster-tunnel
   namespace: cloudflare-operator-system
 spec:
   newTunnel:
     name: i1-1806-talos-proxmox-cluster-tunnel
-  size: 1
   cloudflare:
     email: sharmaR0810@gmail.com
     domain: rvsharma.com
