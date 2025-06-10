@@ -2,6 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespace.yaml
+  # NameSpace is not needed as it is already created, But needed for secret
+  #   - namespace.yaml
   - https://github.com/adyanth/cloudflare-operator.git/config/default
   - ClusterTunnel.yaml
