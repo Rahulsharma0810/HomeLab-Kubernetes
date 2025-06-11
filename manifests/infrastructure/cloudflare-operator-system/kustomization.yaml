@@ -2,8 +2,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- cloudflare-gitrepo.yaml
-# - ClusterTunnel.yaml
+  - cloudflare-gitrepo.yaml
+  - cloudflare-gitpath.yaml
+  - ClusterTunnel.yaml
 
 # - Tunnel.yaml
 # - https://github.com/adyanth/cloudflare-operator.git/config/default?ref=main
