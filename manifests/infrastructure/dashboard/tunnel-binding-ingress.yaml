@@ -1,11 +1,11 @@
-# HomeLab-Kubernetes/manifests/infrastructure/dashboard/tunnel-binding-ingress.yaml
+# manifests/infrastructure/dashboard/tunnel-binding-ingress.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
   name: kubedash-tunnel-binding
   namespace: kubernetes-dashboard
 subjects:
-- name: kubernetes-dashboard-kubernetes-dashboard-kong-proxy
+- name: kubernetes-dashboard-web
   spec:
     fqdn: kubedash.rvsharma.com
     protocol: http
