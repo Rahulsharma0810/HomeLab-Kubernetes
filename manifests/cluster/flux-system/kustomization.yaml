@@ -9,7 +9,6 @@ resources:
   - secrets.yaml
   - cert-manager.yaml
   - cloudflare-operator-system.yaml
-  #   - cloudflare-operator-remote.yaml # Clean the File if you not using it.
   - cloudflare-zero-trust-operator.yaml
   - control-plane-ingress.yaml
   - nvidia.yaml
