@@ -5,4 +5,4 @@ resources:
   - namespace.yaml
   - release.yaml
   - service-account.yaml
-  - tunnel-binding-ingress.yaml
+  - tunnel-binding-ingress.yaml # Do not Expose This to Public Without Zero Trust.
