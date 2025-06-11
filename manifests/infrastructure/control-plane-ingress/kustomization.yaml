@@ -5,9 +5,7 @@ resources:
   - service.yaml
   - clusterrolebinding.yaml
   - serviceacount.yaml
-
-# - tunnel-binding-ingress.yaml
-
+  - tunnel-binding-ingress.yaml
 
 # After This create Token manually
 # kubectl create token k8s-api-tunnel-binding-sa -n kube-system
