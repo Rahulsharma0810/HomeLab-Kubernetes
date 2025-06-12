@@ -39,7 +39,10 @@ spec:
       create: true
       name: kubernetes-dashboard
     kong:
-      enabled: false
+      enabled: true
+      proxy:
+        http:
+          enabled: true
     metricsScraper:
       enabled: false
     metrics-server:
