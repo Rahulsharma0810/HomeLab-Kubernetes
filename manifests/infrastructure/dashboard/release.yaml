@@ -1,4 +1,4 @@
-# HomeLab-Kubernetes/manifests/infrastructure/dashboard/release.yaml
+# manifests/infrastructure/dashboard/release.yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -39,11 +39,7 @@ spec:
       create: true
       name: kubernetes-dashboard
     kong:
-      enabled: true
-      proxy:
-        http:
-          type: ClusterIP
-          enabled: true
+      enabled: false
     metricsScraper:
       enabled: false
     metrics-server:
