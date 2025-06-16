@@ -1,0 +1,93 @@
+# manifests/infrastructure/n8n/release.yaml
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: n8n
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: oci://8gears.container-registry.com/library/n8n
+  ref:
+    tag: "1.0.7"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: n8n
+  namespace: n8n-system
+spec:
+  interval: 5m
+  releaseName: n8n
+  chartRef:
+    kind: OCIRepository
+    name: n8n
+    namespace: flux-system
+  values:
+    image:
+      repository: n8nio/n8n
+      pullPolicy: IfNotPresent
+      tag: "1.97.1"
+    main:
+      extraEnv: &extraEnv
+        N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:
+          value: "true"
+        N8N_RUNNERS_ENABLED:
+          value: "true"
+        N8N_PORT:
+          value: "5678"
+        N8N_PROTOCOL:
+          value: "http"
+        N8N_LOG_LEVEL:
+          value: "info"
+        OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS:
+          value: "true"
+        DB_POSTGRESDB_USER:
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-n8n-user
+              key: username
+              namespace: cnpg-system
+        DB_POSTGRESDB_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-n8n-user
+              key: password
+              namespace: cnpg-system
+        N8N_ENCRYPTION_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: n8n-encryption-key
+              key: encryption_key
+              namespace: n8n-system
+      persistence:
+        enabled: true
+        size: 20Gi
+        storageClass: ssd-nvme-predator-gm7000
+      config:
+        executions_mode: queue
+        n8n:
+          port: 5678
+        db:
+          type: postgresdb
+          postgresdb:
+            host: pg-n8n-cluster-rw.cnpg-system.svc.cluster.local
+            port: 5432
+            database: postgresql_n8n_pgsql
+        queue:
+          health:
+            check:
+              active: true
+          bull:
+            redis:
+              host: redis-n8n-cluster.cnrds-system.svc.cluster.local
+              port: 6379
+      replicaCount: 1
+    worker:
+      enabled: true
+      replicaCount: 1
+      extraEnv: *extraEnv
+      persistence:
+        enabled: true
+        size: 20Gi
+        storageClass: ssd-nvme-predator-gm7000

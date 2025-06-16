@@ -1,0 +1,39 @@
+# manifests/infrastructure/redis-operator/redis-n8n-cluster.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: n8n-redis-pv
+  namespace: cnrds-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  storageClassName: ssd-nvme-predator-gm7000
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/redis-operator/n8n
+    type: DirectoryOrCreate
+---
+apiVersion: redis.redis.opstreelabs.in/v1beta2
+kind: Redis
+metadata:
+  name: redis-n8n-cluster
+  namespace: cnrds-system
+spec:
+  kubernetesConfig:
+    image: quay.io/opstree/redis:latest
+    imagePullPolicy: IfNotPresent
+  podSecurityContext:
+    runAsUser: 1000
+    fsGroup: 1000
+  nodeSelector:
+    kubernetes.io/hostname: i1-1806-talos-worker01
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: ssd-nvme-predator-gm7000
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 5Gi
+        volumeName: n8n-redis-pv

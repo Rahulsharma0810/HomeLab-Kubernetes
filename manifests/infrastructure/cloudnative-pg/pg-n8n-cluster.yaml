@@ -1,0 +1,67 @@
+# manifests/infrastructure/cloudnative-pg/pg-n8n-cluster.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: n8n-postgresql-pv
+  namespace: cnpg-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 20Gi
+  storageClassName: ssd-nvme-predator-gm7000
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/cloudnative-pg/n8n
+    type: DirectoryOrCreate
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-n8n-cluster
+  namespace: cnpg-system
+spec:
+  affinity:
+    nodeSelector:
+      kubernetes.io/hostname: i1-1806-talos-worker01
+  instances: 1
+  storage:
+    pvcTemplate:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 20Gi
+      storageClassName: "ssd-nvme-predator-gm7000"
+      volumeMode: Filesystem
+      volumeName: n8n-postgresql-pv
+  monitoring:
+    enablePodMonitor: true
+  bootstrap:
+    initdb:
+      database: postgresql_n8n_pgsql
+      owner: postgresql_n8n_pgsql
+      secret:
+        name: cnpg-n8n-user
+
+# backup:
+#   retentionPolicy: "7d"
+#   barmanObjectStore:
+#     destinationPath: s3://i1-1806
+#     endpointURL: https://dd8f22ea55fe9ce597a761450466a67f.r2.cloudflarestorage.com
+#     s3Credentials:
+#       accessKeyId:
+#         name: r2-backup-restore-secret
+#         key: ACCESS_KEY_ID
+#       secretAccessKey:
+#         name: r2-backup-restore-secret
+#         key: ACCESS_SECRET_KEY
+#     wal:
+#       compression: gzip
+#       encryption: AES256
+#   recovery:
+#     database: n8n-pgsql
+#     owner: n8n-pgsql
+#     secret:
+#       name: post-init-n8n-sql-secret
+#     backup:
+#       name: pg-n8n-cluster-backup-20240401000000
