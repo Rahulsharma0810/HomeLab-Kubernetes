@@ -1,0 +1,11 @@
+# manifests/infrastructure/cloudnative-pg/pg-n8n-auto-backup.yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: pg-n8n-cluster-backup
+  namespace: cnpg-system
+spec:
+  schedule: "0 30 23 * * *"
+  backupOwnerReference: cluster
+  cluster:
+    name: pg-n8n-cluster

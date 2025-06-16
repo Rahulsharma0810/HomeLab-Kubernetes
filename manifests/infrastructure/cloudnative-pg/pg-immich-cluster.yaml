@@ -1,9 +1,9 @@
-# HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-immich-cluster.yaml
+# manifests/infrastructure/cloudnative-pg/pg-immich-cluster.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: immich-postgresql-pv
-  namespace: cnrds-system
+  namespace: cnp-system
 spec:
   accessModes:
   - ReadWriteOnce

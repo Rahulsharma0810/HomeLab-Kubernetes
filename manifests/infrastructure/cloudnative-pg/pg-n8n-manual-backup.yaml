@@ -1,0 +1,9 @@
+# manifests/infrastructure/cloudnative-pg/pg-n8n-manual-backup.yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: pg-n8n-cluster-backup-manual
+spec:
+  method: barmanObjectStore
+  cluster:
+    name: pg-n8n-cluster
