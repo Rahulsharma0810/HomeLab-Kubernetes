@@ -1,4 +1,4 @@
-# release.yaml
+# manifests/infrastructure/n8n/release.yaml
 
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
@@ -27,7 +27,7 @@ spec:
     image:
       repository: n8nio/n8n
       pullPolicy: IfNotPresent
-      tag: "1.97.1"
+      tag: "1.99.1"
     main:
       extraEnv: &extraEnv
         N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:
