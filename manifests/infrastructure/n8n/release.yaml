@@ -98,3 +98,4 @@ spec:
         storageClass: ssd-nvme-predator-gm7000
     webhook:
       enabled: true
+      extraEnv: *extraEnv
