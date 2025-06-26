@@ -24,6 +24,9 @@ spec:
     name: n8n
     namespace: flux-system
   values:
+    _shared_config:
+      hostname: &hostname n8n.rvsharma.com
+      url: &url https://n8n.rvsharma.com
     image:
       repository: n8nio/n8n
       pullPolicy: IfNotPresent
@@ -69,6 +72,7 @@ spec:
         executions_mode: queue
         n8n:
           port: 5678
+          editor_base_url: *url
         db:
           type: postgresdb
           postgresdb:
@@ -94,6 +98,3 @@ spec:
         storageClass: ssd-nvme-predator-gm7000
     webhook:
       enabled: true
-      extraEnv:
-        WEBHOOK_URL:
-        value: "https://n8n.rvsharma.com"
