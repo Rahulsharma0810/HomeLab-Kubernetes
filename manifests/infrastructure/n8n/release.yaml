@@ -65,6 +65,7 @@ spec:
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
       config:
+        webhook_url: "https://n8n.rvsharma.com"
         executions_mode: queue
         n8n:
           port: 5678
