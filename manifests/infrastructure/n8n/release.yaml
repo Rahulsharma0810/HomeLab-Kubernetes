@@ -83,6 +83,13 @@ spec:
               host: redis-n8n-cluster.cnrds-system.svc.cluster.local
               port: 6379
       replicaCount: 1
+  webhook:
+    enabled: true
+    extraEnv: 
+      WEBHOOK_URL:
+      value: "https://n8n.rvsharma.com"
+
+
     worker:
       enabled: true
       replicaCount: 1
