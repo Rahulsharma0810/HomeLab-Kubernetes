@@ -88,14 +88,14 @@ spec:
               host: redis-n8n-cluster.cnrds-system.svc.cluster.local
               port: 6379
       replicaCount: 1
-    worker:
-      enabled: true
-      replicaCount: 1
-      extraEnv: *extraEnv
-      persistence:
-        enabled: true
-        size: 20Gi
-        storageClass: ssd-nvme-predator-gm7000
+    # worker:
+    #   enabled: false
+    #   replicaCount: 1
+    #   extraEnv: *extraEnv
+    #   persistence:
+    #     enabled: true
+    #     size: 20Gi
+    #     storageClass: ssd-nvme-predator-gm7000
     webhook:
       enabled: true
       extraEnv: *extraEnv
