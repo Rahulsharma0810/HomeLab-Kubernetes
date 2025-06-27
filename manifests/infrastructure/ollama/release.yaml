@@ -52,11 +52,7 @@ spec:
         pull:
         - llama4
         run:
-        - llama3.2
-        - deepseek-r1:7b
-        - deepseek-coder:6.7b
-        - deepseek-coder:33b
-        - qwen2.5-coder:32b
+        - llama4
       service:
         type: NodePort
         port: 11434
