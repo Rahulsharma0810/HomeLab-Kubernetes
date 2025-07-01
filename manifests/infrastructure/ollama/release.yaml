@@ -51,8 +51,10 @@ spec:
       models:
         pull:
         - llama4
+        - llava:13b
         run:
         - llama4
+        - llava:13b
       service:
         type: NodePort
         port: 11434
