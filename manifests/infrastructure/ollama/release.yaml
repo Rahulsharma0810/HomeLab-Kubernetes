@@ -56,7 +56,7 @@ spec:
         - llama3.3
         run:
         - llama3.3
-      service:
-        type: NodePort
-        port: 11434
-        nodePort: 31434
+    service:
+      type: NodePort
+      port: 11434
+      nodePort: 30434
