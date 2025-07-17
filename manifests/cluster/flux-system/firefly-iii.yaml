@@ -1,0 +1,12 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+    name: firefly-iii
+    namespace: flux-system
+spec:
+    interval: 5m
+    path: ./manifests/infrastructure/firefly-iii
+    prune: true
+    sourceRef:
+        kind: GitRepository
+        name: flux-system
