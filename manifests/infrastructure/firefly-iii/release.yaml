@@ -1,0 +1,68 @@
+# manifests/infrastructure/firefly-iii/release.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: firefly-iii
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://firefly-iii.github.io/kubernetes/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: firefly-iii
+  namespace: firefly-iii-system
+spec:
+  interval: 5m
+  releaseName: firefly-iii
+  chart:
+    spec:
+      chart: firefly-iii-stack
+      sourceRef:
+        kind: HelmRepository
+        name: firefly-iii
+        namespace: flux-system
+      version: "*"
+  values:
+    firefly-db:
+      # if you set this to false it will not be installed
+      enabled: false
+
+      storage:
+        class: ssd-nvme-predator-gm7000
+        accessModes:
+          # dataSize: 1Gi
+
+          # environment variables
+      configs:
+        RESTORE_URL: ""
+        BACKUP_URL: ""
+        PGPASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-firefly-user
+              key: password
+              namespace: cnpg-system
+        DBHOST: pg-firefly-cluster-rw.cnpg-system.svc.cluster.local
+        DBPORT: "5432"
+        DBNAME:
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-firefly-user
+              key: database
+              namespace: cnpg-system
+        DBUSER:
+          valueFrom:
+            secretKeyRef:
+              name: cnpg-firefly-user
+              key: username
+              namespace: cnpg-system
+        TZ: Asia/kolkata
+      # backupSchedule: "0 3 * * *"
+
+    firefly-iii:
+      enabled: true
+
+    importer:
+      enabled: true
