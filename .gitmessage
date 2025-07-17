@@ -1,0 +1,25 @@
+# .gitmessage
+# This file defines the default commit message template for this repository.
+# Usage: The LLM should use the following format for commit messages:
+#
+# <component>: <short description>
+#
+# Examples:
+# n8n: Fix namespaces
+# ollama: Added Only deepseek-r1:1.5b
+# jellyfin: Update deployment image
+# rook-ceph: Enable new storage class
+#
+# For model additions, specify the model name and version clearly:
+# ollama: Added Only <model-name>:<version>
+#
+# Please provide a concise, clear summary of the change after the colon.
+#
+# Optionally, add more details below the summary if needed.
+
+<component>: <short description>
+
+# Details (optional):
+# - Motivation
+# - Impact
+# - Related issues or PRs
