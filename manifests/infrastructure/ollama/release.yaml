@@ -53,9 +53,9 @@ spec:
           enabled: false
       models:
         pull:
-        - deepseek-r1:8b
+        - deepseek-r1:1.5b
         run:
-        - deepseek-r1:8b
+        - deepseek-r1:1.5b
     service:
       type: NodePort
       port: 11434
