@@ -1,0 +1,9 @@
+# HomeLab-Kubernetes/manifests/infrastructure/cloudnative-pg/pg-firefly-manual-backup.yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+    name: firefly-pg-cluster-backup-manual
+spec:
+    method: barmanObjectStore
+    cluster:
+        name: firefly-pg-cluster
