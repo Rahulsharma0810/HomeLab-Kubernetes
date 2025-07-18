@@ -8,11 +8,11 @@ metadata:
 subjects:
   - name: firefly-iii
     spec:
-        fqdn: firefly.rvsharma.com
+        fqdn: money.rvsharma.com
         protocol: http
   - name: firefly-iii-importer
     spec:
-        fqdn: firefly.rvsharma.com
+        fqdn: moneyimporter.rvsharma.com
         protocol: http
 # Update tunnelRef below to match your cluster tunnel name
 # Example:
