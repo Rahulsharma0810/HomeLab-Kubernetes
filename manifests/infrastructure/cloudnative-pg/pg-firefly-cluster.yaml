@@ -30,7 +30,7 @@ spec:
   bootstrap:
     initdb:
       database: firefly
-      owner: firefly
+      owner: postgresql_firefly_pgsql
       secret:
         name: cnpg-firefly-user
   monitoring:
