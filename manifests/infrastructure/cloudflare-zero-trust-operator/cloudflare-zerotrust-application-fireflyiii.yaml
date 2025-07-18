@@ -1,0 +1,44 @@
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-application-fireflyiii.yaml
+apiVersion: cloudflare.zelic.io/v1alpha1
+kind: CloudflareAccessApplication
+metadata:
+  name: i1-1806-cloudflare-zerotrust-access-fireflyiii-application
+  namespace: cloudflare-zero-trust-operator
+  annotations:
+    # (optional) default: "false"
+    #   ensures that the resource isn't removed from cloudflare if the CR is deleted
+    cloudflare.zelic.io/prevent-destroy: "true"
+spec:
+  name: fireflyiii
+  domain: money.rvsharma.com
+  autoRedirectToIdentity: true
+  type: self_hosted
+  policies:
+  - name: Allow Policies
+    decision: allow
+    include:
+    - accessGroups:
+      - valueFrom:
+          name: i1-1806-cloudflare-zerotrust-email-accessgroup
+          namespace: cloudflare-zero-trust-operator
+---
+apiVersion: cloudflare.zelic.io/v1alpha1
+kind: CloudflareAccessApplication
+metadata:
+  name: i1-1806-cloudflare-zerotrust-access-fireflyiii-importer-application
+  namespace: cloudflare-zero-trust-operator
+  annotations:
+    cloudflare.zelic.io/prevent-destroy: "true"
+spec:
+  name: fireflyiii-importer
+  domain: moneyimporter.rvsharma.com
+  autoRedirectToIdentity: true
+  type: self_hosted
+  policies:
+  - name: Allow Policies
+    decision: allow
+    include:
+    - accessGroups:
+      - valueFrom:
+          name: i1-1806-cloudflare-zerotrust-email-accessgroup
+          namespace: cloudflare-zero-trust-operator
