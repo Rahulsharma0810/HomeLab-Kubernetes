@@ -35,7 +35,7 @@ spec:
       enabled: true
       config:
         env:
-          DB_HOST: 10.107.7.12
+          DB_HOST: pg-firefly-cluster-rw.cnpg-system.svc.cluster.local
           DB_PORT: "5432"
           DB_DATABASE: firefly
           TZ: Asia/kolkata
