@@ -25,39 +25,28 @@ spec:
         namespace: flux-system
       version: "*"
   values:
-    firefly-db:
-      # if you set this to false it will not be installed
-      enabled: false
 
+    firefly-db:
+      enabled: false
       storage:
         class: ssd-nvme-predator-gm7000
-        accessModes:
-          # dataSize: 1Gi
-
-          # environment variables
-      configs:
-        RESTORE_URL: ""
-        BACKUP_URL: ""
-        PGPASSWORD:
-          valueFrom:
-            secretKeyRef:
-              name: cnpg-firefly-user
-              key: password
-              namespace: cnpg-system
-        DBHOST: pg-firefly-cluster-rw.cnpg-system.svc.cluster.local
-        DBPORT: "5432"
-        DBNAME: firefly
-        DBUSER:
-          valueFrom:
-            secretKeyRef:
-              name: cnpg-firefly-user
-              key: username
-              namespace: cnpg-system
-        TZ: Asia/kolkata
-      # backupSchedule: "0 3 * * *"
 
     firefly-iii:
       enabled: true
-
+      config:
+        env:
+          DB_HOST: 10.107.7.12
+          DB_PORT: "5432"
+          DB_DATABASE: firefly
+          TZ: Asia/kolkata
+        envValueFrom:
+          DB_USERNAME:
+            secretKeyRef:
+              name: cnpg-firefly-user
+              key: username
+          DB_PASSWORD:
+            secretKeyRef:
+              name: cnpg-firefly-user
+              key: password
     importer:
       enabled: true
