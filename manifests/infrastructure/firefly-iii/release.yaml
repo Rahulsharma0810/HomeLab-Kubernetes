@@ -35,6 +35,7 @@ spec:
       enabled: true
       config:
         env:
+          DB_CONNECTION: pgsql
           DB_HOST: pg-firefly-cluster-rw.cnpg-system.svc.cluster.local
           DB_PORT: "5432"
           DB_DATABASE: firefly
