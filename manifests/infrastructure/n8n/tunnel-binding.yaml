@@ -1,0 +1,10 @@
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: n8n-tunnel-binding
+  namespace: n8n-system
+subjects:
+- name: n8n
+  spec:
+    fqdn: n8n.rvsharma.com
+    protocol: http

@@ -9,6 +9,3 @@ subjects:
     fqdn: kubernetes.rvsharma.com
     protocol: https
     noTlsVerify: true
-tunnelRef:
-  kind: ClusterTunnel
-  name: i1-1806-talos-proxmox-cluster-tunnel

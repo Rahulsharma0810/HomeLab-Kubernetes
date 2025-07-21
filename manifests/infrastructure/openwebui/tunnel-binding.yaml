@@ -1,4 +1,3 @@
-# manifests/infrastructure/openwebui/tunnel-binding-ingress.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
@@ -8,8 +7,3 @@ subjects:
 - name: open-webui
   spec:
     fqdn: chat.rvsharma.com
-    # protocol: http
-    # noTlsVerify: true
-tunnelRef:
-  kind: ClusterTunnel
-  name: i1-1806-talos-proxmox-cluster-tunnel

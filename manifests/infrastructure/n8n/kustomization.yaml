@@ -4,4 +4,8 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - release.yaml
-- tunnel-binding-ingress.yaml
+- ../tunnel-binding-base
+patches:
+  - target:
+      kind: TunnelBinding
+    path: tunnel-binding.yaml
