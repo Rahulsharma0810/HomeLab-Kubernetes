@@ -1,4 +1,3 @@
-# manifests/infrastructure/paperless-system/tunnel-binding-ingress.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
@@ -8,11 +7,6 @@ subjects:
 - name: paperlessngx-service
   spec:
     fqdn: paper.rvsharma.com
-    # protocol: http
-    # noTlsVerify: true
-tunnelRef:
-  kind: ClusterTunnel
-  name: i1-1806-talos-proxmox-cluster-tunnel
 ---
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
@@ -23,8 +17,3 @@ subjects:
 - name: paperless-ai-service
   spec:
     fqdn: paperai.rvsharma.com
-    # protocol: http
-    # noTlsVerify: true
-tunnelRef:
-  kind: ClusterTunnel
-  name: i1-1806-talos-proxmox-cluster-tunnel

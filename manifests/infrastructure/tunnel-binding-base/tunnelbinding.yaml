@@ -1,15 +1,15 @@
-# manifests/infrastructure/n8n/tunnel-binding-ingress.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
-  name: n8n-tunnel-binding
-  namespace: n8n-system
+  name: base-tunnel-binding
+  namespace: default
 subjects:
-- name: n8n
+- name: service
   spec:
-    fqdn: n8n.rvsharma.com
-    protocol: http
+    fqdn: example.com
+    # protocol: http
     # noTlsVerify: true
+    # target: https://service.svc.cluster.local:443
 tunnelRef:
   kind: ClusterTunnel
   name: i1-1806-talos-proxmox-cluster-tunnel
