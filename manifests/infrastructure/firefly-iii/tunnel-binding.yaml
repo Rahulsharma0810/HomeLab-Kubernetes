@@ -1,0 +1,21 @@
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: firefly-tunnel-binding
+  namespace: firefly-iii-system
+subjects:
+  - name: firefly-iii
+    spec:
+      fqdn: money.rvsharma.com
+      protocol: http
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: firefly-importer-tunnel-binding
+  namespace: firefly-iii-system
+subjects:
+  - name: firefly-iii-importer
+    spec:
+      fqdn: moneyimporter.rvsharma.com
+      protocol: http

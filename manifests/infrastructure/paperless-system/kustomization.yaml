@@ -6,4 +6,8 @@ resources:
 - pre-consumption.yaml
 - paperlessngx-deployment.yaml
 - paperless-ai.yaml
-- tunnel-binding-ingress.yaml
+- ../tunnel-binding-base
+patches:
+  - target:
+      kind: TunnelBinding
+    path: tunnel-binding.yaml
