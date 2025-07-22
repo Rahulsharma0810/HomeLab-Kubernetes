@@ -11,4 +11,5 @@ resources:
   - cloudflare-zerotrust-application-kubedash.yaml
   - cloudflare-zerotrust-application-paperlessngx-ai.yaml
   - cloudflare-zerotrust-application-fireflyiii.yaml
+  - cloudflare-zerotrust-service-token-n8n.yaml
   - cloudflare-zerotrust-application-n8n.yaml
