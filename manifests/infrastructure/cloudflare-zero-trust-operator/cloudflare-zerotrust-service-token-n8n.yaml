@@ -1,0 +1,8 @@
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-service-token-n8n.yaml
+apiVersion: cloudflare.zelic.io/v1alpha1
+kind: CloudflareServiceToken
+metadata:
+    name: n8n-access-service-token
+    namespace: cloudflare-zero-trust-operator
+spec:
+    name: n8n-access-service-token
