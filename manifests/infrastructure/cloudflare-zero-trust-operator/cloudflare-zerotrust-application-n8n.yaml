@@ -21,9 +21,6 @@ spec:
       - valueFrom:
           name: i1-1806-cloudflare-zerotrust-email-accessgroup
           namespace: cloudflare-zero-trust-operator
-  - name: Allow Token
-    decision: allow
-    include:
     - serviceTokens:
       - valueFrom:
           name: n8n-access-service-token
