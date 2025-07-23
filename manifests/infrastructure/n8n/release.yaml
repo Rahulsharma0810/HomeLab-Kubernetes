@@ -28,9 +28,9 @@ spec:
       hostname: &hostname n8n.rvsharma.com
       url: &url https://n8n.rvsharma.com
     image:
-      repository: n8nio/n8n
+      repository: naskio/n8n-python
       pullPolicy: IfNotPresent
-      tag: "1.103.2"
+      tag: "latest"
     main:
       extraEnv: &extraEnv
         N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:
