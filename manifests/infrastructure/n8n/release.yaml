@@ -97,7 +97,7 @@ spec:
               port: 6379
       replicaCount: 1
     worker:
-      enabled: false
+      enabled: true
       replicaCount: 1
       concurrency: 10
       extraEnv: *extraEnv
