@@ -105,6 +105,15 @@ spec:
         enabled: true
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
+      command:
+      - tini
+      - --
+      - /bin/sh
+      - -c
+      - |
+        apk add --no-cache python3 py3-pip && \
+        pip3 install pandas && \
+        chmod o+rx /root; chown -R node /root/.n8n || true; chown -R node /root/.n8n; ln -s /root/.n8n /home/node; chown -R node /home/node || true; node /usr/local/bin/n8n
     webhook:
       enabled: true
       extraEnv: *extraEnv
