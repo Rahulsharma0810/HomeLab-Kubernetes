@@ -71,6 +71,14 @@ spec:
         webhook_url: *url
         executions_mode: queue
         n8n:
+          license:
+            activation:
+              key:
+                valueFrom:
+                  secretKeyRef:
+                    name: n8n-license
+                    key: license_key
+                    namespace: n8n-system
           port: 5678
           editor_base_url: *url
         db:
