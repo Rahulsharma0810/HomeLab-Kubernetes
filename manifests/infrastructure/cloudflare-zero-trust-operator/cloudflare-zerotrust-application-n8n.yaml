@@ -21,7 +21,8 @@ spec:
       - valueFrom:
           name: i1-1806-cloudflare-zerotrust-email-accessgroup
           namespace: cloudflare-zero-trust-operator
-    - serviceToken:
-      - valueFrom:
-          name: n8n-access-service-token
-          namespace: cloudflare-zero-trust-operator
+    # Email & Service Token Policies Doesn't work together, ST always Retuns 403
+    # - serviceToken:
+    #   - valueFrom:
+    #       name: n8n-access-service-token
+    #       namespace: cloudflare-zero-trust-operator
