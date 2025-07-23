@@ -21,7 +21,7 @@ spec:
       - valueFrom:
           name: i1-1806-cloudflare-zerotrust-email-accessgroup
           namespace: cloudflare-zero-trust-operator
-    # - serviceTokens:
-    #   - valueFrom:
-    #       name: n8n-access-service-token
-    #       namespace: cloudflare-zero-trust-operator
+    - serviceToken:
+      - valueFrom:
+          name: n8n-access-service-token
+          namespace: cloudflare-zero-trust-operator

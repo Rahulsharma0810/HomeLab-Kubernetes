@@ -2,15 +2,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- namespace.yaml
-- release.yaml
-- cloudflare-zerotrust-accessgroup-st.yaml # Global access group for service token policies
-- cloudflare-zerotrust-service-token-ollama.yaml # Service token for St Policy
-- cloudflare-zerotrust-accessgroup.yaml # Global access group for email policies
-- cloudflare-zerotrust-application-ollama.yaml
-- cloudflare-zerotrust-application-kubedash.yaml
-- cloudflare-zerotrust-application-paperlessngx-ai.yaml
-- cloudflare-zerotrust-application-fireflyiii.yaml
-
-# - cloudflare-zerotrust-service-token-n8n.yaml # Service token and access group will not work together.
-# - cloudflare-zerotrust-application-n8n.yaml # Service token and access group will not work together.
+  - namespace.yaml
+  - release.yaml
+  - cloudflare-zerotrust-accessgroup-st.yaml # Global access group for service token policies
+  - cloudflare-zerotrust-service-token-ollama.yaml # Service token for St Policy
+  - cloudflare-zerotrust-accessgroup.yaml # Global access group for email policies
+  - cloudflare-zerotrust-application-ollama.yaml
+  - cloudflare-zerotrust-application-kubedash.yaml
+  - cloudflare-zerotrust-application-paperlessngx-ai.yaml
+  - cloudflare-zerotrust-application-fireflyiii.yaml
+  - cloudflare-zerotrust-service-token-n8n.yaml
+  - cloudflare-zerotrust-application-n8n.yaml
