@@ -30,7 +30,7 @@ spec:
     image:
       repository: n8nio/n8n
       pullPolicy: IfNotPresent
-      tag: "1.99.1"
+      tag: "1.103.2"
     main:
       extraEnv: &extraEnv
         N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:
