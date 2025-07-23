@@ -1,0 +1,136 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Workouts-To-Notion",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -240
+      ],
+      "id": "3bc91848-62cd-4d1a-b3de-bcd407a867dd",
+      "webhookId": "b8d9124a-1bec-4c71-8001-e5ff009c8aa9"
+    },
+    {
+      "parameters": {
+        "command": "python /data/health_summary_generator.py /tmp/input.json /tmp/output.csv"
+      },
+      "name": "Run Python Script",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -240
+      ],
+      "id": "70289fce-ce0d-4d3e-aed9-d3a3fd88d518"
+    },
+    {
+      "parameters": {
+        "functionCode": "const fs = require('fs');\nconst csv = fs.readFileSync('/tmp/output.csv', 'utf8');\nreturn [{ json: { csv } }];"
+      },
+      "name": "Read CSV",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -240
+      ],
+      "id": "d48a6aa2-d629-4940-aef9-80c187fbfd36"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "https://www.notion.so/rvsharma/91a55d5a0336497db0744a8be2465476?v=abcfe727bc184844bb87c037928eed21",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "name": "Send to Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -240
+      ],
+      "id": "bb53f11e-b5a8-4b0a-9333-948140115cd5",
+      "credentials": {
+        "notionApi": {
+          "id": "wZBVPeaXsdqpdwke",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst path = '/tmp/input.json';\nfs.writeFileSync(path, JSON.stringify($input.first().json));\nreturn [{ json: { path } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        -240
+      ],
+      "id": "c2fddda7-f2b8-45a5-9b47-4c63cfb97bc7",
+      "name": "Code"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Python Script": {
+      "main": [
+        [
+          {
+            "node": "Read CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read CSV": {
+      "main": [
+        [
+          {
+            "node": "Send to Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Run Python Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ee1f1c27d6f1b8fe64d9cab30d0be6061718166326a3a4288418a896ae61b4e4"
+  }
+}
