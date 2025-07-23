@@ -105,6 +105,8 @@ spec:
         enabled: true
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
+      securityContext:
+        runAsUser: 0
       lifecycle:
         postStart:
           exec:
