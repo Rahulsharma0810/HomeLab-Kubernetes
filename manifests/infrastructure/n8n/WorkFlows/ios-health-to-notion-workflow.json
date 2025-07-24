@@ -1,0 +1,469 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "23aed9f0-c4ee-8060-8c2a-e08eb4d1792f",
+          "mode": "list",
+          "cachedResultName": "Apple Watch Workouts",
+          "cachedResultUrl": "https://www.notion.so/23aed9f0c4ee80608c2ae08eb4d1792f"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Name|title",
+              "title": "={{ $json[\"Name\"] }}"
+            },
+            {
+              "key": "Date|date",
+              "date": "={{ $json.Start }}",
+              "timezone": "=UTC"
+            },
+            {
+              "key": "Avg HR (bpm)|number",
+              "numberValue": "={{ $json[\"Avg HR (bpm)\"] | 0 }}"
+            },
+            {
+              "key": "Min HR|number",
+              "numberValue": "={{ $json[\"Min HR\"] | 0 }}"
+            },
+            {
+              "key": "Max HR|number",
+              "numberValue": "={{ $json[\"Max HR\"] | 0 }}"
+            },
+            {
+              "key": "Duration (min)|number",
+              "numberValue": "={{ $json[\"Duration (min)\"] | 0 }}"
+            },
+            {
+              "key": "Energy (kJ)|number",
+              "numberValue": "={{ $json[\"Energy (kJ)\"] | 0 }}"
+            },
+            {
+              "key": "Temp (°C)|number",
+              "numberValue": "={{ $json[\"Temp (°C)\"] | 0 }}"
+            },
+            {
+              "key": "Humidity (%)|number",
+              "numberValue": "={{ $json[\"Humidity (%)\"] | 0 }}"
+            },
+            {
+              "key": "Intensity|number",
+              "numberValue": "={{ $json[\"Intensity\"] | 0 }}"
+            },
+            {
+              "key": "Total Steps|number",
+              "numberValue": "={{ $json[\"Total Steps\"] | 0 }}"
+            },
+            {
+              "key": "Step Point|number",
+              "numberValue": "={{ $json[\"Step Point\"] | 0 }}"
+            },
+            {
+              "key": "Avg Step Cadence|number",
+              "numberValue": "={{ $json[\"Avg Step Cadence\"] | 0 }}"
+            },
+            {
+              "key": "HR Data Points|number",
+              "numberValue": "={{ $json[\"HR Data Points\"] | 0 }}"
+            },
+            {
+              "key": "Recovery Start HR|number",
+              "numberValue": "={{ $json['Recovery Start HR'] | 0 }}"
+            },
+            {
+              "key": "Recovery End HR|number",
+              "numberValue": "={{ $json['Recovery End HR'] | 0 }}"
+            },
+            {
+              "key": "Recovery Drop|number",
+              "numberValue": "={{ $json[\"Recovery Drop\"] | 0 }}"
+            },
+            {
+              "key": "Recovery Duration|number",
+              "numberValue": "={{ $json[\"Recovery Duration\"] | 0 }}"
+            },
+            {
+              "key": "Recovery Data Points|number",
+              "numberValue": "={{ $json[\"Recovery Data Points\"] | 0 }}"
+            }
+          ]
+        },
+        "options": {
+          "iconType": "emoji",
+          "icon": ""
+        }
+      },
+      "name": "Send to Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 1,
+      "position": [
+        592,
+        784
+      ],
+      "id": "ce2b455b-82f5-4cfe-806e-755ec7fb300c",
+      "alwaysOutputData": true,
+      "credentials": {
+        "notionApi": {
+          "id": "wZBVPeaXsdqpdwke",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import json\nimport pandas as pd\nimport math\nfrom datetime import datetime\nfrom zoneinfo import ZoneInfo  # Only works in Python 3.9+\nimport pytz\n\ndef WorkOut_Stairs(w):\n    steps = w.get(\"stepCount\", [])\n    total_steps = sum(s.get(\"qty\", 0) for s in steps)\n    step_count_points = len(steps)\n    duration_min = w.get(\"duration\", 0) / 60\n    avg_step_cadence = round(total_steps / duration_min, 2) if duration_min > 0 else 0\n\n    hr_data = w.get(\"heartRateData\", [])\n    hr_points = len(hr_data)\n    avg_hr = round(sum(d.get(\"Avg\", 0) for d in hr_data) / hr_points, 2) if hr_points > 0 else None\n    min_hr = min((d.get(\"Min\", float('inf')) for d in hr_data), default=None)\n    max_hr = max((d.get(\"Max\", float('-inf')) for d in hr_data), default=None)\n\n    # Convert start time to UTC\n    local_tz = pytz.timezone(\"Asia/Kolkata\")\n    start_local = datetime.strptime(w.get(\"start\"), \"%Y-%m-%d %H:%M:%S %z\")\n    start_utc = start_local.astimezone(pytz.utc).strftime(\"%Y-%m-%d %H:%M:%S %z\")\n\n    hr_recovery = w.get(\"heartRateRecovery\") or []\n    hr_recovery_points = len(hr_recovery)\n    if hr_recovery_points > 1:\n        start_hr = hr_recovery[0].get(\"Avg\", 0)\n        end_hr = hr_recovery[-1].get(\"Avg\", 0)\n        drop_hr = start_hr - end_hr\n        start_time = datetime.strptime(hr_recovery[0][\"date\"], \"%Y-%m-%d %H:%M:%S %z\").astimezone(pytz.utc)\n        end_time = datetime.strptime(hr_recovery[-1][\"date\"], \"%Y-%m-%d %H:%M:%S %z\").astimezone(pytz.utc)\n        recovery_duration = (end_time - start_time).total_seconds() / 60\n    else:\n        start_hr = end_hr = drop_hr = recovery_duration = None\n\n    return {\n        \"Name\": w.get(\"name\"),\n        \"Start\": start_utc,\n        \"Avg HR (bpm)\": avg_hr,\n        \"Min HR\": min_hr,\n        \"Max HR\": max_hr,\n        \"Duration (min)\": round(duration_min, 2),\n        \"Energy (kJ)\": round(w.get(\"activeEnergyBurned\", {}).get(\"qty\", 0), 2),\n        \"Temp (°C)\": round(w.get(\"temperature\", {}).get(\"qty\", 0), 2),\n        \"Humidity (%)\": round(w.get(\"humidity\", {}).get(\"qty\", 0), 2),\n        \"Intensity\": round(w.get(\"intensity\", {}).get(\"qty\", 0), 2),\n        \"Total Steps\": round(total_steps, 2),\n        \"Step Point\": step_count_points,\n        \"Avg Step Cadence\": avg_step_cadence,\n        \"HR Data Points\": hr_points,\n        \"Recovery Start HR\": start_hr,\n        \"Recovery End HR\": end_hr,\n        \"Recovery Drop\": round(drop_hr, 2) if drop_hr is not None else None,\n        \"Recovery Duration\": round(recovery_duration, 2) if recovery_duration is not None else None,\n        \"Recovery Data Points\": hr_recovery_points\n    }\n\ndef replace_nan(obj):\n    return {k: (None if isinstance(v, float) and math.isnan(v) else v) for k, v in obj.items()}\n\ndef summarize_json(items):\n    json_data = items[0]['json']['body']\n    workouts = json_data.get('data', {}).get('workouts', [])\n    summary = [WorkOut_Stairs(w) for w in workouts]\n    df = pd.DataFrame(summary)\n    cleaned_records = [replace_nan(row) for row in df.to_dict(orient=\"records\")]\n    return [{\"json\": row} for row in cleaned_records]\n\nreturn summarize_json(items)"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        784
+      ],
+      "id": "eb478ab2-0792-4343-aa99-18c21e466aca",
+      "name": "Python Processing"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Workouts-To-Notion",
+        "options": {}
+      },
+      "name": "Send WorkOut to Notion",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        96,
+        784
+      ],
+      "id": "bc711a3e-0764-421c-ac3f-acf2e9bd73b9",
+      "webhookId": "b8d9124a-1bec-4c71-8001-e5ff009c8aa9"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "23aed9f0-c4ee-8060-8c2a-e08eb4d1792f",
+          "mode": "list",
+          "cachedResultName": "Apple Watch Workouts",
+          "cachedResultUrl": "https://www.notion.so/23aed9f0c4ee80608c2ae08eb4d1792f"
+        },
+        "options": {}
+      },
+      "id": "1ef95b6c-e078-4cca-9ae3-0ea2cdb525da",
+      "name": "Get pages from database",
+      "type": "n8n-nodes-base.notion",
+      "position": [
+        992,
+        784
+      ],
+      "typeVersion": 2.2,
+      "retryOnFail": true,
+      "notesInFlow": false,
+      "credentials": {
+        "notionApi": {
+          "id": "wZBVPeaXsdqpdwke",
+          "name": "Notion account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "pages",
+        "options": {}
+      },
+      "id": "6fa587fc-63e2-4ad6-b057-a2ce7bcdb6e6",
+      "name": "Aggregate all items",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        1408,
+        784
+      ],
+      "typeVersion": 1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "309a1e9b-f3e9-41a0-aadb-aa74bc993fe9",
+              "name": "id",
+              "type": "string",
+              "value": "={{ $json.id }}"
+            },
+            {
+              "id": "ad6e8fa9-9872-456d-971f-3cef940b7d8a",
+              "name": "property_to_check",
+              "type": "string",
+              "value": "={{ $json.property_date.start }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "beb18837-cd3e-44ef-8d59-c6a6a5616cc3",
+      "name": "Format items properly",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1184,
+        784
+      ],
+      "typeVersion": 3.4,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.first().json.pages;\n\nconst seen = new Set();\nconst duplicates = new Map();\n\ninputData.forEach(item => {\n  const propertyValue = item.property_to_check;\n  if (seen.has(propertyValue)) {\n    duplicates.set(propertyValue, item);\n  } else {\n    seen.add(propertyValue);\n  }\n});\n\nconst output = Array.from(duplicates.values()).map(item => ({ json: item }));\n\nreturn output;"
+      },
+      "id": "1e1551cb-4be2-47fa-961f-1778088a1e64",
+      "name": "Filter duplicates",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1632,
+        784
+      ],
+      "typeVersion": 2,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "archive",
+        "pageId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        }
+      },
+      "id": "e9dabf66-3e1b-4954-baeb-c73d8efbc636",
+      "name": "Archive pages",
+      "type": "n8n-nodes-base.notion",
+      "position": [
+        1824,
+        784
+      ],
+      "typeVersion": 2.2,
+      "credentials": {
+        "notionApi": {
+          "id": "wZBVPeaXsdqpdwke",
+          "name": "Notion account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## 🧹 Feed Data in Notion & Archive (delete) extra duplicate items from Notion database\n### ABOUT THIS WORKFLOW\n#### This n8n workflow automatically gets duplicate database pages based on a property and \"archives\" them (equivalent to deleting them), leaving just one copy.\n\n### SETUP\n#### 1. Create a Notion credential.\n#### 2. Add it to the Notion nodes, selecting the appropriate database.\n#### 3. In the \"Set\" node (\"Format items properly\"), specify a reference to the property you want to check for duplicates and assign it to the field \"property_to_check\". I recommend using the n8n property drag-and-drop feature.\n#### 4. Enjoy!\n",
+        "height": 300,
+        "width": 1932
+      },
+      "id": "06cbe5d2-bae8-4fb2-a959-94d90c4a9ff2",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        192
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## TRIGGERS",
+        "height": 420,
+        "width": 220,
+        "color": 5
+      },
+      "id": "12fc0698-8263-4c72-8b1c-2f22626a947a",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        528
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## GET DUPLICATE PAGES",
+        "height": 420,
+        "width": 860,
+        "color": 6
+      },
+      "id": "ec7465e0-0ad6-4e04-b3d1-fdd45c0594e0",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        928,
+        528
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## ARCHIVE (DELETE)",
+        "height": 420,
+        "width": 180,
+        "color": 3
+      },
+      "id": "13949cb4-e558-4260-aca9-efa89ec48f0d",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1776,
+        528
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Process Data From \n## IOS Auto Export App",
+        "height": 420,
+        "width": 236,
+        "color": 5
+      },
+      "id": "5cfec159-96ef-4eeb-bed1-19afdd20ee1b",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        256,
+        528
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Feed Data In Notion",
+        "height": 420,
+        "width": 252,
+        "color": 5
+      },
+      "id": "94e9ca24-f89b-416b-9a2b-6d40c4c50495",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        512,
+        528
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        784,
+        592
+      ],
+      "id": "ee74bc11-083c-4480-871e-94f37a604fcc",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "connections": {
+    "Send to Notion": {
+      "main": [
+        [
+          {
+            "node": "Get pages from database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Python Processing": {
+      "main": [
+        [
+          {
+            "node": "Send to Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send WorkOut to Notion": {
+      "main": [
+        [
+          {
+            "node": "Python Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get pages from database": {
+      "main": [
+        [
+          {
+            "node": "Format items properly",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate all items": {
+      "main": [
+        [
+          {
+            "node": "Filter duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format items properly": {
+      "main": [
+        [
+          {
+            "node": "Aggregate all items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter duplicates": {
+      "main": [
+        [
+          {
+            "node": "Archive pages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get pages from database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ee1f1c27d6f1b8fe64d9cab30d0be6061718166326a3a4288418a896ae61b4e4"
+  }
+}
