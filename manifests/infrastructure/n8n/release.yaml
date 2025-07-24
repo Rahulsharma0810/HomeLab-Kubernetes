@@ -98,10 +98,7 @@ spec:
       replicaCount: 1
     worker:
       enabled: true
-      image:
-        repository: naskio/n8n-python
-        pullPolicy: IfNotPresent
-        tag: "latest"
+      image: naskio/n8n-python
       replicaCount: 1
       concurrency: 10
       extraEnv: *extraEnv
