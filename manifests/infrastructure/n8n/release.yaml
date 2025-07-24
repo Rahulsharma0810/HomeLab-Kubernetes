@@ -64,10 +64,10 @@ spec:
               key: encryption_key
               namespace: n8n-system
       podSecurityContext:
-        runAsNonRoot: false
-        runAsUser: 0
-        runAsGroup: 0
-        fsGroup: 0
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       persistence:
         enabled: true
         size: 20Gi
@@ -110,6 +110,7 @@ spec:
         enabled: true
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
+      # LifeCycle Does't work
       # podSecurityContext:
       #   runAsNonRoot: false
       #   runAsUser: 0
