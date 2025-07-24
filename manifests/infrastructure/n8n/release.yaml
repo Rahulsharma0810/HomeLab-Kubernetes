@@ -98,7 +98,6 @@ spec:
       replicaCount: 1
     worker:
       enabled: true
-      image: naskio/n8n-python
       replicaCount: 1
       concurrency: 10
       extraEnv: *extraEnv
@@ -106,10 +105,11 @@ spec:
         enabled: true
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
-      # securityContext:
-      #   runAsUser: 1000
-      #   runAsGroup: 1000
-      #   fsGroup: 1000
+      podSecurityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       lifecycle:
         postStart:
           exec:
