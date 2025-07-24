@@ -24,6 +24,19 @@ spec:
     nodeSelector:
       kubernetes.io/hostname: i1-1806-talos-worker01
   instances: 1
+  # managed:
+  #   services:
+  #     additional:
+  #     - selectorType: rw
+  #       serviceTemplate:
+  #         metadata:
+  #           name: "pg-n8n-exposed-cluster-rw"
+  #           labels:
+  #             test-label: "true"
+  #           annotations:
+  #             test-annotation: "true"
+  #         spec:
+  #           type: NodePort
   storage:
     pvcTemplate:
       accessModes:
