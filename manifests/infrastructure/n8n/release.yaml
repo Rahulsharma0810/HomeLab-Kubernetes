@@ -28,9 +28,9 @@ spec:
       hostname: &hostname n8n.rvsharma.com
       url: &url https://n8n.rvsharma.com
     image:
-      repository: n8nio/n8n
+      repository: naskio/n8n-python
       pullPolicy: IfNotPresent
-      tag: "1.103.2"
+      tag: "1.104.0"
     main:
       extraEnv: &extraEnv
         N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:
@@ -105,15 +105,15 @@ spec:
         enabled: true
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
-      podSecurityContext:
-        runAsNonRoot: false
-        runAsUser: 0
-        runAsGroup: 0
-        fsGroup: 0
-      lifecycle:
-        postStart:
-          exec:
-            command: [ "/bin/sh", "-c", "apk add --no-cache python3 py3-pip && pip3 install pandas" ]
+      # podSecurityContext:
+      #   runAsNonRoot: false
+      #   runAsUser: 0
+      #   runAsGroup: 0
+      #   fsGroup: 0
+      # lifecycle:
+      #   postStart:
+      #     exec:
+      #       command: [ "/bin/sh", "-c", "apk add --no-cache python3 py3-pip && pip3 install pandas" ]
     webhook:
       enabled: true
       extraEnv: *extraEnv
