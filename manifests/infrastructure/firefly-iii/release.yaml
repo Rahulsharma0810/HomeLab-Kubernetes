@@ -40,6 +40,7 @@ spec:
           DB_PORT: "5432"
           DB_DATABASE: firefly
           TZ: Asia/kolkata
+          APP_URL: https://money.rvsharma.com
         envValueFrom:
           DB_USERNAME:
             secretKeyRef:
