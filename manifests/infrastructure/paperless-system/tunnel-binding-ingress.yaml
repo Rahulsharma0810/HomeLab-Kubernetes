@@ -14,17 +14,19 @@ tunnelRef:
   kind: ClusterTunnel
   name: i1-1806-talos-proxmox-cluster-tunnel
 ---
-apiVersion: networking.cfargotunnel.com/v1alpha1
-kind: TunnelBinding
-metadata:
-  name: paperlessai-tunnel-binding
-  namespace: paperless-system
-subjects:
-- name: paperless-ai-service
-  spec:
-    fqdn: paperai.rvsharma.com
-    # protocol: http
-    # noTlsVerify: true
-tunnelRef:
-  kind: ClusterTunnel
-  name: i1-1806-talos-proxmox-cluster-tunnel
+
+
+# apiVersion: networking.cfargotunnel.com/v1alpha1
+# kind: TunnelBinding
+# metadata:
+#   name: paperlessai-tunnel-binding
+#   namespace: paperless-system
+# subjects:
+# - name: paperless-ai-service
+#   spec:
+#     fqdn: paperai.rvsharma.com
+#     # protocol: http
+#     # noTlsVerify: true
+# tunnelRef:
+#   kind: ClusterTunnel
+#   name: i1-1806-talos-proxmox-cluster-tunnel
