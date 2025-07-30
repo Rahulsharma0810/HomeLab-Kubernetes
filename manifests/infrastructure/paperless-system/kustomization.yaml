@@ -5,5 +5,7 @@ resources:
   - namespace.yaml
   - pre-consumption.yaml
   - paperlessngx-deployment.yaml
-  - paperless-ai.yaml
   - tunnel-binding-ingress.yaml
+
+# Disabling for now, as local modals are not helpful.
+# - paperless-ai.yaml
