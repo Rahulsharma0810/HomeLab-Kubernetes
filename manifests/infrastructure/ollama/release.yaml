@@ -54,10 +54,10 @@ spec:
       models:
         pull:
         - deepseek-r1:1.5b
-        - qwen2.5vl:7b
+        - qwen3:8b
         run:
         - deepseek-r1:1.5b
-        - qwen2.5vl:7b
+        - qwen3:8b
     service:
       type: NodePort
       port: 11434
