@@ -10,10 +10,10 @@ subjects:
     spec:
         fqdn: money.rvsharma.com
         protocol: http
-  - name: firefly-iii-importer
-    spec:
-        fqdn: moneyimporter.rvsharma.com
-        protocol: http
+# - name: firefly-iii-importer
+#   spec:
+#       fqdn: moneyimporter.rvsharma.com
+#       protocol: http
 # Update tunnelRef below to match your cluster tunnel name
 # Example:
 tunnelRef:
