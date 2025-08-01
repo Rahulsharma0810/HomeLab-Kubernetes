@@ -43,6 +43,7 @@ spec:
     image:
       repository: ollama/ollama
       pullPolicy: IfNotPresent
+      tag: latest
     ollama:
       gpu:
         enabled: true
@@ -55,9 +56,12 @@ spec:
         pull:
         - qwen3:8b
         - gemma3:4b
+        - qwen2.5vl
         run:
         - qwen3:8b
         - gemma3:4b
+        - qwen2.5vl
+        clean: true
     service:
       type: NodePort
       port: 11434
