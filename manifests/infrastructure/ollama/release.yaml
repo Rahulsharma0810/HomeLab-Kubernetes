@@ -53,11 +53,9 @@ spec:
           enabled: false
       models:
         pull:
-        - deepseek-r1:1.5b
         - qwen3:8b
         - gemma3:4b
         run:
-        - deepseek-r1:1.5b
         - qwen3:8b
         - gemma3:4b
     service:
