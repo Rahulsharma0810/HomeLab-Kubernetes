@@ -51,4 +51,4 @@ spec:
               name: cnpg-firefly-user
               key: password
     importer:
-      enabled: true
+      enabled: false
