@@ -52,16 +52,25 @@ spec:
         cpu: 200m
         memory: 512Mi
 
-    # PostgreSQL configuration
+    # External PostgreSQL configuration (CloudNative-PG)
     postgresql:
-      enabled: true
-      auth:
-        postgresPassword: "openlit"
-        database: "openlit"
-      primary:
-        persistence:
-          enabled: true
-          size: 8Gi
+      enabled: false
+
+    # Database connection configuration
+    config:
+      env:
+        POSTGRES_HOST: pg-openlit-cluster-rw.cnpg-system.svc.cluster.local
+        POSTGRES_PORT: "5432"
+        POSTGRES_DB: openlit
+      envValueFrom:
+        POSTGRES_USER:
+          secretKeyRef:
+            name: cnpg-openlit-user
+            key: username
+        POSTGRES_PASSWORD:
+          secretKeyRef:
+            name: cnpg-openlit-user
+            key: password
 
     # ClickHouse configuration
     clickhouse:

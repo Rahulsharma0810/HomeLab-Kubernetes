@@ -8,6 +8,7 @@ resources:
 - pg-immich-cluster.yaml
 - pg-n8n-cluster.yaml
 - pg-firefly-cluster.yaml
+- pg-openlit-cluster.yaml
 
 # - pg-paperless-auto-backup.yaml
 # - pg-immich-auto-backup.yaml
