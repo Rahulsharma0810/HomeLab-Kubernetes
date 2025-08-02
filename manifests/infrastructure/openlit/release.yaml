@@ -1,0 +1,74 @@
+# manifests/infrastructure/openlit/release.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: openlit-helm
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://openlit.github.io/helm/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openlit
+  namespace: openlit
+spec:
+  interval: 5m
+  timeout: 10m
+  chart:
+    spec:
+      chart: openlit
+      version: "*"
+      sourceRef:
+        kind: HelmRepository
+        name: openlit-helm
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    # OpenLIT configuration values
+    image:
+      repository: ghcr.io/openlit/openlit
+      pullPolicy: IfNotPresent
+      tag: ""
+
+    service:
+      type: ClusterIP
+      port: 3000
+      targetPort: 3000
+
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+    # PostgreSQL configuration
+    postgresql:
+      enabled: true
+      auth:
+        postgresPassword: "openlit"
+        database: "openlit"
+      primary:
+        persistence:
+          enabled: true
+          size: 8Gi
+
+    # ClickHouse configuration
+    clickhouse:
+      enabled: true
+      auth:
+        username: "default"
+        password: "openlit"
+      persistence:
+        enabled: true
+        size: 8Gi

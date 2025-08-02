@@ -1,0 +1,8 @@
+# manifests/infrastructure/openlit/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openlit
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest

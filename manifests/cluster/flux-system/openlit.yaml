@@ -1,0 +1,17 @@
+# manifests/cluster/flux-system/openlit.yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: openlit
+  namespace: flux-system
+spec:
+  interval: 10m
+  timeout: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./manifests/infrastructure/openlit
+  prune: true
+  wait: true
+  dependsOn:
+    - name: secrets
