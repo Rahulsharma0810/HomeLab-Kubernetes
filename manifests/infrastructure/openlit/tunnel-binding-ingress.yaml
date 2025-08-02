@@ -1,0 +1,13 @@
+# manifests/infrastructure/openlit/tunnel-binding-ingress.yaml
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: openlit-tunnel-binding
+  namespace: openlit
+subjects:
+- name: openlit
+  spec:
+    fqdn: openlit.rvsharma.com
+tunnelRef:
+  kind: ClusterTunnel
+  name: i1-1806-talos-proxmox-cluster-tunnel
