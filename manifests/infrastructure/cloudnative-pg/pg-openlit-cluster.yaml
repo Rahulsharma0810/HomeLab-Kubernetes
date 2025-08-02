@@ -1,0 +1,37 @@
+# manifests/infrastructure/cloudnative-pg/pg-openlit-cluster.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgresql-openlit-pv
+  namespace: cnpg-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  storageClassName: ssd-nvme-predator-gm7000
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/cloudnative-pg/openlit
+    type: DirectoryOrCreate
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-openlit-cluster
+  namespace: cnpg-system
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
+  storage:
+    size: 10Gi
+    storageClass: ssd-nvme-predator-gm7000
+  superuserSecret:
+    name: cnpg-openlit-superuser
+  bootstrap:
+    initdb:
+      database: openlit
+      owner: postgresql_openlit_pgsql
+      secret:
+        name: cnpg-openlit-user
+  monitoring:
+    enablePodMonitor: true
