@@ -44,14 +44,6 @@ spec:
       port: 3000
       targetPort: 3000
 
-    resources:
-      limits:
-        cpu: 1000m
-        memory: 2Gi
-      requests:
-        cpu: 200m
-        memory: 512Mi
-
     # External PostgreSQL configuration (CloudNative-PG)
     postgresql:
       enabled: false
