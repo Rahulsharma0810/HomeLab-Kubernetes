@@ -34,4 +34,4 @@ spec:
       secret:
         name: cnpg-openlit-user
   monitoring:
-    enablePodMonitor: true
+    enablePodMonitor: false
