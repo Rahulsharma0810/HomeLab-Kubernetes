@@ -17,7 +17,7 @@ spec:
   - name: Allow Ollama access
     decision: non_identity
     include:
-    - accessGroups:
+    - serviceToken:
       - valueFrom:
-          name: i1-1806-cloudflare-zerotrust-st-accessgroup
+          name: ollama-access-service-token
           namespace: cloudflare-zero-trust-operator
