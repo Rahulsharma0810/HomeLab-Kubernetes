@@ -1,4 +1,4 @@
-# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-application-paperlessngx-ai.yaml
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-application-paperlessngx.yaml
 apiVersion: cloudflare.zelic.io/v1alpha1
 kind: CloudflareAccessApplication
 metadata:
@@ -9,15 +9,18 @@ metadata:
     # ensures that the resource isn't removed from cloudflare if the CR is deleted
     cloudflare.zelic.io/prevent-destroy: "true"
 spec:
-  name: paper
+  name: PaperLessNGX
   domain: paper.rvsharma.com
   autoRedirectToIdentity: true
   type: self_hosted
-  policies:
-  - name: Allow PaperlessNGX Email Access
-    decision: allow
-    include:
-    - accessGroups:
-      - valueFrom:
-          name: i1-1806-cloudflare-zerotrust-email-accessgroup
-          namespace: cloudflare-zero-trust-operator
+  # The Chart Create Lefacy Policies, For Some reason Only Service Token Policies are not getting attached to application.
+  # So we are creating a standard policy from GUI and then manually attaching the service token policy to the application From UI.
+
+  # policies:
+  # - name: Allow PaperlessNGX Email Access
+  #   decision: allow
+  #   include:
+  #   - accessGroups:
+  #     - valueFrom:
+  #         name: i1-1806-cloudflare-zerotrust-email-accessgroup
+  #         namespace: cloudflare-zero-trust-operator

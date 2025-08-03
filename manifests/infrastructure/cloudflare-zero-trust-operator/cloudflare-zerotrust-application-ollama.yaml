@@ -13,11 +13,13 @@ spec:
   domain: ollama.rvsharma.com
   autoRedirectToIdentity: false
   type: self_hosted
-  policies:
-  - name: Allow Ollama ST Access
-    decision: non_identity
-    include:
-    - serviceToken:
-      - valueFrom:
-          name: cloudflare-zerotrust-service-token-ollama
-          namespace: cloudflare-zero-trust-operator
+  # The Chart Create Lefacy Policies, For Some reason Only Service Token Policies are not getting attached to application.
+  # So we are creating a standard policy from GUI and then manually attaching the service token policy to the application From UI.
+  # policies:
+  # - name: Allow Ollama ST Access
+  #   decision: non_identity
+  #   include:
+  #   - serviceToken:
+  #     - valueFrom:
+  #         name: cloudflare-zerotrust-service-token-ollama
+  #         namespace: cloudflare-zero-trust-operator
