@@ -14,7 +14,7 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow Ollama ST Access
+  - name: Allow Fireflyiii ST Group Access
     decision: non_identity
     include:
     - accessGroups:
