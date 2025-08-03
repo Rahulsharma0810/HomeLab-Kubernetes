@@ -14,15 +14,17 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow N8N access
+  - name: Allow N8N Email Access
     decision: allow
     include:
     - accessGroups:
       - valueFrom:
           name: i1-1806-cloudflare-zerotrust-email-accessgroup
           namespace: cloudflare-zero-trust-operator
-    # Email & Service Token Policies Doesn't work together, ST always Retuns 403
-    # - serviceToken:
-    #   - valueFrom:
-    #       name: n8n-access-service-token
-    #       namespace: cloudflare-zero-trust-operator
+  - name: Allow fireflyiii ST Access
+    decision: non_identity
+    include:
+    - serviceToken:
+      - valueFrom:
+          name: n8n-access-service-token
+          namespace: cloudflare-zero-trust-operator

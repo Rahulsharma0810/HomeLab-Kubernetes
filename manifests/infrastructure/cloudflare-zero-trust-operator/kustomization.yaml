@@ -12,6 +12,5 @@ resources:
   - cloudflare-zerotrust-application-kubedash.yaml
   - cloudflare-zerotrust-application-paperlessngx-ai.yaml
   - cloudflare-zerotrust-application-fireflyiii.yaml
-
-# - cloudflare-zerotrust-service-token-n8n.yaml # ST Doesn't work with Email Group
-# - cloudflare-zerotrust-application-n8n.yaml # ST Doesn't work with Email Grou
+  - cloudflare-zerotrust-service-token-n8n.yaml
+  - cloudflare-zerotrust-application-n8n.yaml
