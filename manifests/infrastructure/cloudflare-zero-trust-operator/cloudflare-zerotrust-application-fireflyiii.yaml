@@ -21,14 +21,13 @@ spec:
       - valueFrom:
           name: fireflyiii-access-service-token
           namespace: cloudflare-zero-trust-operator
-  # - name: Allow fireflyiii Email Access
-  #   decision: allow
-  #   include:
-  #   - accessGroups:
-  #     - valueFrom:
-  #         name: i1-1806-cloudflare-zerotrust-email-accessgroup
-  #         namespace: cloudflare-zero-trust-operator
-
+  - name: Allow fireflyiii Email Access
+    decision: allow
+    include:
+    - accessGroups:
+      - valueFrom:
+          name: i1-1806-cloudflare-zerotrust-email-accessgroup
+          namespace: cloudflare-zero-trust-operator
   # ---
   # apiVersion: cloudflare.zelic.io/v1alpha1
   # kind: CloudflareAccessApplication
