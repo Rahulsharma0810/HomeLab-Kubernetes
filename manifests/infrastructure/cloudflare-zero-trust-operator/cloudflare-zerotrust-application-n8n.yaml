@@ -21,7 +21,7 @@ spec:
       - valueFrom:
           name: i1-1806-cloudflare-zerotrust-email-accessgroup
           namespace: cloudflare-zero-trust-operator
-  - name: Allow fireflyiii ST Access
+  - name: Allow N8N ST Access
     decision: non_identity
     include:
     - serviceToken:
