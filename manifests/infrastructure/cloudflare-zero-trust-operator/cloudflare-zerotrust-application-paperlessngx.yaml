@@ -2,15 +2,15 @@
 apiVersion: cloudflare.zelic.io/v1alpha1
 kind: CloudflareAccessApplication
 metadata:
-  name: i1-1806-cloudflare-zerotrust-access-paperai-application
+  name: i1-1806-cloudflare-zerotrust-access-paper-application
   namespace: cloudflare-zero-trust-operator
   annotations:
     # (optional) default: "false"
     # ensures that the resource isn't removed from cloudflare if the CR is deleted
     cloudflare.zelic.io/prevent-destroy: "true"
 spec:
-  name: paperai
-  domain: paperai.rvsharma.com
+  name: paper
+  domain: paper.rvsharma.com
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
