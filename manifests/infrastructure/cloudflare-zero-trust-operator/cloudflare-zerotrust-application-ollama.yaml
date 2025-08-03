@@ -14,10 +14,10 @@ spec:
   autoRedirectToIdentity: false
   type: self_hosted
   policies:
-  - name: Allow Ollama ST Group Access
+  - name: Allow Ollama ST Access
     decision: non_identity
     include:
-    - accessGroups:
+    - serviceToken:
       - valueFrom:
-          name: i1-1806-cloudflare-zerotrust-st-accessgroup
+          name: cloudflare-zerotrust-service-token-ollama
           namespace: cloudflare-zero-trust-operator

@@ -14,20 +14,13 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow Fireflyiii ST Group Access
+  - name: Allow fireflyiii ST Access
     decision: non_identity
     include:
-    - accessGroups:
+    - serviceToken:
       - valueFrom:
-          name: i1-1806-cloudflare-zerotrust-st-accessgroup
+          name: fireflyiii-access-service-token
           namespace: cloudflare-zero-trust-operator
-  # - name: Allow fireflyiii ST Access
-  #   decision: non_identity
-  #   include:
-  #   - serviceToken:
-  #     - valueFrom:
-  #         name: fireflyiii-access-service-token
-  #         namespace: cloudflare-zero-trust-operator
   # - name: Allow fireflyiii Email Access
   #   decision: allow
   #   include:

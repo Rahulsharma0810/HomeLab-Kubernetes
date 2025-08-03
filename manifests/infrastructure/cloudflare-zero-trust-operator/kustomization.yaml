@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - release.yaml
-  - cloudflare-zerotrust-accessgroup-st.yaml # Global access group for service token policies
+  # - cloudflare-zerotrust-accessgroup-st.yaml # Global access group for service token policies
   - cloudflare-zerotrust-service-token-ollama.yaml # Service token for St Policy
   - cloudflare-zerotrust-service-token-fireflyiii.yaml # Service token for Firefly
   - cloudflare-zerotrust-accessgroup-email.yaml # Global access group for email policies
