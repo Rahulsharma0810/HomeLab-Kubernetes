@@ -14,7 +14,7 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow PaperlessNGX AI access
+  - name: Allow PaperlessNGX Email Access
     decision: allow
     include:
     - accessGroups:
