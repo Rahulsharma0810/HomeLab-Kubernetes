@@ -1,4 +1,5 @@
-# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-accessgroup-kubedash.yaml
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-accessgroup-email.yaml
+# Not Applied
 apiVersion: cloudflare.zelic.io/v1alpha1
 kind: CloudflareAccessGroup
 metadata:
