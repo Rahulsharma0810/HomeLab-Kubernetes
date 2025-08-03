@@ -1,0 +1,8 @@
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-service-token-fireflyiii.yaml
+apiVersion: cloudflare.zelic.io/v1alpha1
+kind: CloudflareServiceToken
+metadata:
+    name: fireflyiii-access-service-token
+    namespace: cloudflare-zero-trust-operator
+spec:
+    name: fireflyiii-access-service-token
