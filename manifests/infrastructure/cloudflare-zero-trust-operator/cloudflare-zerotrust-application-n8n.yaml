@@ -9,22 +9,24 @@ metadata:
     #   ensures that the resource isn't removed from cloudflare if the CR is deleted
     cloudflare.zelic.io/prevent-destroy: "true"
 spec:
-  name: n8n
+  name: N8N
   domain: n8n.rvsharma.com
   autoRedirectToIdentity: true
   type: self_hosted
-  policies:
-  - name: Allow N8N ST Access
-    decision: non_identity
-    include:
-    - serviceToken:
-      - valueFrom:
-          name: n8n-access-service-token
-          namespace: cloudflare-zero-trust-operato
-  - name: Allow N8N Email Access
-    decision: allow
-    include:
-    - accessGroups:
-      - valueFrom:
-          name: i1-1806-cloudflare-zerotrust-email-accessgroup
-          namespace: cloudflare-zero-trust-operator
+  # The Chart Create Lefacy Policies, For Some reason Only Service Token Policies are not getting attached to application.
+  # So we are creating a standard policy from GUI and then manually attaching the service token policy to the application From UI.
+  # policies:
+  # - name: Allow N8N ST Access
+  #   decision: non_identity
+  #   include:
+  #   - serviceToken:
+  #     - valueFrom:
+  #         name: n8n-access-service-token
+  #         namespace: cloudflare-zero-trust-operato
+  # - name: Allow N8N Email Access
+  #   decision: allow
+  #   include:
+  #   - accessGroups:
+  #     - valueFrom:
+  #         name: i1-1806-cloudflare-zerotrust-email-accessgroup
+  #         namespace: cloudflare-zero-trust-operator
