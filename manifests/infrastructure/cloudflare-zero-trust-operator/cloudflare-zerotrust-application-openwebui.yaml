@@ -1,0 +1,32 @@
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-application-chat.yaml
+apiVersion: cloudflare.zelic.io/v1alpha1
+kind: CloudflareAccessApplication
+metadata:
+  name: i1-1806-cloudflare-zerotrust-access-chat-application
+  namespace: cloudflare-zero-trust-operator
+  annotations:
+    # (optional) default: "false"
+    #   ensures that the resource isn't removed from cloudflare if the CR is deleted
+    cloudflare.zelic.io/prevent-destroy: "false"
+spec:
+  name: OpenWebUI
+  domain: chat.rvsharma.com
+  autoRedirectToIdentity: true
+  type: self_hosted
+  # The Chart Create Lefacy Policies, For Some reason Only Service Token Policies are not getting attached to application.
+  # So we are creating a standard policy from GUI and then manually attaching the service token policy to the application From UI.
+  # policies:
+  # - name: Allow chat ST Access
+  #   decision: non_identity
+  #   include:
+  #   - serviceToken:
+  #     - valueFrom:
+  #         name: chat-access-service-token
+  #         namespace: cloudflare-zero-trust-operator
+  # - name: Allow chat Email Access
+  #   decision: allow
+  #   include:
+  #   - accessGroups:
+  #     - valueFrom:
+  #         name: i1-1806-cloudflare-zerotrust-email-accessgroup
+  #         namespace: cloudflare-zero-trust-operator
