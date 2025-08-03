@@ -14,12 +14,12 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow N8N ST Access
+  - name: Allow Ollama ST Access
     decision: non_identity
     include:
-    - serviceToken:
+    - accessGroups:
       - valueFrom:
-          name: n8n-access-service-token
+          name: i1-1806-cloudflare-zerotrust-st-accessgroup
           namespace: cloudflare-zero-trust-operator
   - name: Allow N8N Email Access
     decision: allow
@@ -28,3 +28,10 @@ spec:
       - valueFrom:
           name: i1-1806-cloudflare-zerotrust-email-accessgroup
           namespace: cloudflare-zero-trust-operator
+  # - name: Allow N8N ST Access
+  #   decision: non_identity
+  #   include:
+  #   - serviceToken:
+  #     - valueFrom:
+  #         name: n8n-access-service-token
+  #         namespace: cloudflare-zero-trust-operator
