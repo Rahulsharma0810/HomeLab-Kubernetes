@@ -2,26 +2,27 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- gotk-components.yaml
-- gotk-sync.yaml
-- cilium.yaml
-- local-path-provisioner.yaml
-- secrets.yaml
-- cert-manager.yaml
-- cloudflare-operator-system.yaml
-- cloudflare-zero-trust-operator.yaml
-- control-plane-ingress.yaml
-- nvidia.yaml
-- redis-operator.yaml
-- cloudnative-pg.yaml
-- paperless-system.yaml
-- immich-system.yaml
-- ollama.yaml
-- openwebui.yaml
-- uptime-kuma.yaml
-- n8n.yaml
-- firefly-iii.yaml
-- openlit.yaml
+  - gotk-components.yaml
+  - gotk-sync.yaml
+  - cilium.yaml
+  - local-path-provisioner.yaml
+  - secrets.yaml
+  - cert-manager.yaml
+  - cloudflare-operator-system.yaml
+  - cloudflare-zero-trust-operator.yaml
+  - control-plane-ingress.yaml
+  - nvidia.yaml
+  - redis-operator.yaml
+  - cloudnative-pg.yaml
+  - paperless-system.yaml
+  - immich-system.yaml
+  - ollama.yaml
+  - openwebui.yaml
+  - uptime-kuma.yaml
+  - n8n.yaml
+  - firefly-iii.yaml
+
+# - openlit.yaml
 
 # - jellyfin.yaml
 # - dashboard.yaml # Issue with Cloudflare Tunnel, See https://github.com/adyanth/cloudflare-operator/issues/114
