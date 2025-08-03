@@ -14,7 +14,7 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow Policies
+  - name: Allow fireflyiii access
     decision: allow
     include:
     - accessGroups:
