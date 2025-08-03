@@ -1,4 +1,4 @@
-# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-accessgroup-ollama.yaml
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-accessgroup-st.yaml
 apiVersion: cloudflare.zelic.io/v1alpha1
 kind: CloudflareAccessGroup
 metadata:
@@ -14,4 +14,7 @@ spec:
   - serviceToken:
     - valueFrom:
         name: ollama-access-service-token
+        namespace: cloudflare-zero-trust-operator
+    - valueFrom:
+        name: fireflyiii-access-service-token
         namespace: cloudflare-zero-trust-operator

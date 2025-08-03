@@ -6,11 +6,12 @@ resources:
   - release.yaml
   - cloudflare-zerotrust-accessgroup-st.yaml # Global access group for service token policies
   - cloudflare-zerotrust-service-token-ollama.yaml # Service token for St Policy
+  - cloudflare-zerotrust-service-token-fireflyiii.yaml # Service token for Firefly
   - cloudflare-zerotrust-accessgroup.yaml # Global access group for email policies
   - cloudflare-zerotrust-application-ollama.yaml
   - cloudflare-zerotrust-application-kubedash.yaml
   - cloudflare-zerotrust-application-paperlessngx-ai.yaml
+  - cloudflare-zerotrust-application-fireflyiii.yaml
 
-# - cloudflare-zerotrust-application-fireflyiii.yaml
 # - cloudflare-zerotrust-service-token-n8n.yaml # ST Doesn't work with Email Group
 # - cloudflare-zerotrust-application-n8n.yaml # ST Doesn't work with Email Grou
