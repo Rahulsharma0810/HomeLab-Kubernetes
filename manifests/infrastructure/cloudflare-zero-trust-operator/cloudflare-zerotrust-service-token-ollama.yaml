@@ -1,4 +1,4 @@
-# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-service-token.yaml
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-service-token-ollama.yaml
 apiVersion: cloudflare.zelic.io/v1alpha1
 kind: CloudflareServiceToken
 metadata:

@@ -11,13 +11,13 @@ metadata:
 spec:
   name: Ollama
   domain: ollama.rvsharma.com
-  autoRedirectToIdentity: true
+  autoRedirectToIdentity: false
   type: self_hosted
   policies:
-  - name: Allow Ollama access
+  - name: Allow Ollama ST Group Access
     decision: non_identity
     include:
-    - serviceToken:
+    - accessGroups:
       - valueFrom:
-          name: ollama-access-service-token
+          name: i1-1806-cloudflare-zerotrust-st-accessgroup
           namespace: cloudflare-zero-trust-operator

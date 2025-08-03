@@ -62,7 +62,7 @@ spec:
         - gemma3:4b
         - qwen2.5vl
         clean: true
-    service:
-      type: NodePort
-      port: 11434
-      nodePort: 30434
+    # service:
+    #   type: NodePort
+    #   port: 11434
+    #   nodePort: 30434

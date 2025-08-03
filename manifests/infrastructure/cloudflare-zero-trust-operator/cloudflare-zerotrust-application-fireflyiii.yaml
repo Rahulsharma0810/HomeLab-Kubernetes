@@ -14,43 +14,50 @@ spec:
   autoRedirectToIdentity: true
   type: self_hosted
   policies:
-  - name: Allow fireflyiii ST Access
+  - name: Allow Ollama ST Access
     decision: non_identity
-    include:
-    - serviceToken:
-      - valueFrom:
-          name: fireflyiii-access-service-token
-          namespace: cloudflare-zero-trust-operator
-  - name: Allow fireflyiii Email Access
-    decision: allow
     include:
     - accessGroups:
       - valueFrom:
-          name: i1-1806-cloudflare-zerotrust-email-accessgroup
+          name: i1-1806-cloudflare-zerotrust-st-accessgroup
           namespace: cloudflare-zero-trust-operator
+  # - name: Allow fireflyiii ST Access
+  #   decision: non_identity
+  #   include:
+  #   - serviceToken:
+  #     - valueFrom:
+  #         name: fireflyiii-access-service-token
+  #         namespace: cloudflare-zero-trust-operator
+  # - name: Allow fireflyiii Email Access
+  #   decision: allow
+  #   include:
+  #   - accessGroups:
+  #     - valueFrom:
+  #         name: i1-1806-cloudflare-zerotrust-email-accessgroup
+  #         namespace: cloudflare-zero-trust-operator
 
-# ---
-# apiVersion: cloudflare.zelic.io/v1alpha1
-# kind: CloudflareAccessApplication
-# metadata:
-#   name: i1-1806-cloudflare-zerotrust-access-fireflyiii-importer-application
-#   namespace: cloudflare-zero-trust-operator
-#   annotations:
-#     cloudflare.zelic.io/prevent-destroy: "true"
-# spec:
-#   name: fireflyiii-importer
-#   domain: moneyimporter.rvsharma.com
-#   autoRedirectToIdentity: true
-#   type: self_hosted
-#   policies:
-#   - name: Allow Policies
-#     decision: allow
-#     include:
-#     - accessGroups:
-#       - valueFrom:
-#           name: i1-1806-cloudflare-zerotrust-email-accessgroup
-#           namespace: cloudflare-zero-trust-operator
-#     - accessGroups:
-#       - valueFrom:
-#           name: i1-1806-cloudflare-zerotrust-st-accessgroup
-#           namespace: cloudflare-zero-trust-operator
+  # ---
+  # apiVersion: cloudflare.zelic.io/v1alpha1
+  # kind: CloudflareAccessApplication
+  # metadata:
+  #   name: i1-1806-cloudflare-zerotrust-access-fireflyiii-importer-application
+  #   namespace: cloudflare-zero-trust-operator
+  #   annotations:
+  #     cloudflare.zelic.io/prevent-destroy: "true"
+  # spec:
+  #   name: fireflyiii-importer
+  #   domain: moneyimporter.rvsharma.com
+  #   autoRedirectToIdentity: true
+  #   type: self_hosted
+  #   policies:
+  #   - name: Allow Policies
+  #     decision: allow
+  #     include:
+  #     - accessGroups:
+  #       - valueFrom:
+  #           name: i1-1806-cloudflare-zerotrust-email-accessgroup
+  #           namespace: cloudflare-zero-trust-operator
+  #     - accessGroups:
+  #       - valueFrom:
+  #           name: i1-1806-cloudflare-zerotrust-st-accessgroup
+  #           namespace: cloudflare-zero-trust-operator
