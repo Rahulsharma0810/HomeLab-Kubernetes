@@ -14,6 +14,7 @@ resources:
   - cloudflare-zerotrust-application-paperlessngx.yaml
   - cloudflare-zerotrust-application-fireflyiii.yaml
   - cloudflare-zerotrust-application-n8n.yaml
+  - cloudflare-zerotrust-application-openwebui.yaml
 
 # For some reason, the accessgroup are not visible for attachement in the application.
 #   - cloudflare-zerotrust-accessgroup-email.yaml # Global access group for email policies
