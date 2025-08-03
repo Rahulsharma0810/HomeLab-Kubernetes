@@ -21,9 +21,9 @@ spec:
       - valueFrom:
           name: i1-1806-cloudflare-zerotrust-email-accessgroup
           namespace: cloudflare-zero-trust-operator
-    - accessGroups:
+    - serviceToken:
       - valueFrom:
-          name: i1-1806-cloudflare-zerotrust-st-accessgroup
+          name: fireflyiii-access-service-token
           namespace: cloudflare-zero-trust-operator
 
 # ---
