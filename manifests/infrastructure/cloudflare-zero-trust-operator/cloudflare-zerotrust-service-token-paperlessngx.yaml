@@ -1,0 +1,8 @@
+# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-service-token-paperlessngx.yaml
+apiVersion: cloudflare.zelic.io/v1alpha1
+kind: CloudflareServiceToken
+metadata:
+    name: paperlessngx-access-service-token
+    namespace: cloudflare-zero-trust-operator
+spec:
+    name: paperlessngx-access-service-token
