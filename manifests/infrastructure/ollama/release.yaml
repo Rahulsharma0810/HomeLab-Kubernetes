@@ -57,10 +57,12 @@ spec:
         - qwen3:8b
         - gemma3:4b
         - qwen2.5vl
+        - gpt-oss:20b
         run:
         - qwen3:8b
         - gemma3:4b
         - qwen2.5vl
+        - gpt-oss:20b
         clean: true
     service:
       type: ClusterIP
