@@ -21,6 +21,7 @@ resources:
   - uptime-kuma.yaml
   - n8n.yaml
   - firefly-iii.yaml
+  - freshrss.yaml
 
 # - openlit.yaml
 

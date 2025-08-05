@@ -1,0 +1,15 @@
+# manifests/infrastructure/FreshRss/tunnel-binding-ingress.yaml
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: freshrss-tunnel-binding
+  namespace: freshrss-system
+subjects:
+- name: freshrss
+  spec:
+    fqdn: freshrss.rvsharma.com
+    target: http://freshrss.freshrss-system.svc
+    noTlsVerify: true
+tunnelRef:
+  kind: ClusterTunnel
+  name: i1-1806-talos-proxmox-cluster-tunnel

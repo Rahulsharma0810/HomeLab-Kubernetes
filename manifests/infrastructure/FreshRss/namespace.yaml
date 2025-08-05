@@ -1,0 +1,8 @@
+# manifests/infrastructure/FreshRss/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: freshrss-system
+  labels:
+    app.kubernetes.io/name: freshrss
+    app.kubernetes.io/instance: freshrss
