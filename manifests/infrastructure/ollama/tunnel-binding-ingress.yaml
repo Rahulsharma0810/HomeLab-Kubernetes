@@ -8,6 +8,8 @@ subjects:
 - name: ollama
   spec:
     fqdn: ollama.rvsharma.com
+    target: http://ollama.ollama.svc
+    noTlsVerify: true
 tunnelRef:
   kind: ClusterTunnel
   name: i1-1806-talos-proxmox-cluster-tunnel

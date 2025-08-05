@@ -1,0 +1,37 @@
+# manifests/infrastructure/cloudnative-pg/pg-freshrss-cluster.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgresql-freshrss-pv
+  namespace: cnpg-system
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  storageClassName: ssd-nvme-predator-gm7000
+  hostPath:
+    path: /var/mnt/ssd_nvme_predator_GM7000/cloudnative-pg/freshrss
+    type: DirectoryOrCreate
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-freshrss-cluster
+  namespace: cnpg-system
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
+  storage:
+    size: 10Gi
+    storageClass: ssd-nvme-predator-gm7000
+  superuserSecret:
+    name: cnpg-freshrss-superuser
+  bootstrap:
+    initdb:
+      database: freshrss
+      owner: postgresql_freshrss_pgsql
+      secret:
+        name: cnpg-freshrss-user
+  monitoring:
+    enablePodMonitor: true
