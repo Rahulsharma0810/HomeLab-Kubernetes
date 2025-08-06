@@ -5,3 +5,5 @@ resources:
   - namespace.yaml
   - release.yaml
   - tunnel-binding-ingress.yaml # Do not deploy without authentication.
+  - ollama-pv.yaml
+  - ollama-pvc.yaml
