@@ -1,0 +1,16 @@
+# manifests/infrastructure/ollama/ollama-pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: ollama-pv
+    namespace: ollama
+spec:
+    accessModes:
+      - ReadWriteOnce
+    capacity:
+        storage: 100Gi
+    storageClassName: ssd-nvme-predator-gm7000
+    persistentVolumeReclaimPolicy: Retain
+    hostPath:
+        path: /var/mnt/ssd_nvme_predator_GM7000/ollama
+        type: DirectoryOrCreate

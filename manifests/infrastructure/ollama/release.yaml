@@ -33,6 +33,10 @@ spec:
     remediation:
       retries: 3
   values:
+    persistentVolume:
+      enabled: true
+      existingClaim: "ollama-pvc"
+      mountPath: "/root/.ollama"
     extraEnv:
     - name: OLLAMA_DEBUG
       value: "1"
