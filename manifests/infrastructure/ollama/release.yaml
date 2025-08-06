@@ -69,5 +69,6 @@ spec:
         - gpt-oss:20b
         clean: true
     service:
-      type: ClusterIP
-      port: 8080
+      type: NodePort
+      port: 11434
+      nodePort: 30434
