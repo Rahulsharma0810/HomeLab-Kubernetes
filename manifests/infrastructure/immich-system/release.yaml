@@ -108,9 +108,18 @@ spec:
       enabled: true
       image:
         repository: ghcr.io/immich-app/immich-machine-learning
+        tag: v1.137.3-cuda
         pullPolicy: Always
+      runtimeClassName: nvidia
+      resources:
+        limits:
+          nvidia.com/gpu: 1
+        requests:
+          nvidia.com/gpu: 1
       env:
         TRANSFORMERS_CACHE: /cache
+        CUDA_VISIBLE_DEVICES: "0"
+        NVIDIA_VISIBLE_DEVICES: "0"
       persistence:
         cache:
           enabled: true

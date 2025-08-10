@@ -33,3 +33,15 @@ spec:
       retries: 3
   values:
     runtimeClassName: nvidia
+    config:
+      name: mps-config
+      data:
+        any: |-
+          version: v1
+          flags:
+            migStrategy: none
+          sharing:
+            mps:
+              resources:
+              - name: nvidia.com/gpu
+                replicas: 10
