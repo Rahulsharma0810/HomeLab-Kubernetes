@@ -8,13 +8,14 @@ resources:
   - cloudflare-zerotrust-service-token-ollama.yaml # Service token for St Policy
   - cloudflare-zerotrust-service-token-fireflyiii.yaml # Service token for Firefly
   - cloudflare-zerotrust-service-token-paperlessngx.yaml # Service token for N8N
-  - cloudflare-zerotrust-service-token-n8n.yaml # Service token for N8N
   - cloudflare-zerotrust-application-ollama.yaml
   - cloudflare-zerotrust-application-kubedash.yaml
   - cloudflare-zerotrust-application-paperlessngx.yaml
   - cloudflare-zerotrust-application-fireflyiii.yaml
-  - cloudflare-zerotrust-application-n8n.yaml
   - cloudflare-zerotrust-application-openwebui.yaml
+  # Telegram Ingress, Somehow doesn't work with the zero trust policy.
+  #   - cloudflare-zerotrust-application-n8n.yaml
+  #   - cloudflare-zerotrust-service-token-n8n.yaml # Service token for N8N
 
-# For some reason, the accessgroup are not visible for attachement in the application.
-#   - cloudflare-zerotrust-accessgroup-email.yaml # Global access group for email policies
+  # For some reason, the accessgroup are not visible for attachement in the application.
+  #   - cloudflare-zerotrust-accessgroup-email.yaml # Global access group for email policies
