@@ -24,7 +24,6 @@ resources:
   - freshrss.yaml
 
 # - openlit.yaml
-
 # - jellyfin.yaml
 # - dashboard.yaml # Issue with Cloudflare Tunnel, See https://github.com/adyanth/cloudflare-operator/issues/114
 # - plex-system.yaml
