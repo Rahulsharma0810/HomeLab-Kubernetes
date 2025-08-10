@@ -1,4 +1,4 @@
-# manifests/infrastructure/FreshRss/tunnel-binding-ingress.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/FreshRss/tunnel-binding-ingress.yaml
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: TunnelBinding
 metadata:
@@ -8,8 +8,8 @@ subjects:
 - name: freshrss
   spec:
     fqdn: freshrss.rvsharma.com
-    target: http://freshrss.freshrss-system.svc
-    noTlsVerify: true
+    protocol: http
+    # noTlsVerify: true
 tunnelRef:
   kind: ClusterTunnel
   name: i1-1806-talos-proxmox-cluster-tunnel
