@@ -82,8 +82,9 @@ spec:
           secretKeyRef:
             name: cnpg-immich-user-password
             key: password
-    # image:
-    #   tag: v1.131.3
+    image:
+      # Helm Char Generally has a older version of immich, so we are using the latest image from ghcr.io
+      tag: v1.137.3
     immich:
       metrics:
         enabled: false
