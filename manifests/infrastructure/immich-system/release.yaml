@@ -83,8 +83,8 @@ spec:
             name: cnpg-immich-user-password
             key: password
     image:
-      # Helm Char Generally has a older version of immich, so we are using the latest image from ghcr.io
-      tag: v1.137.3
+      # Helm Char Generally has a older version of immich, so we are using the on demand image
+      tag: v1.136.0
     immich:
       metrics:
         enabled: false
