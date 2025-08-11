@@ -27,42 +27,57 @@ spec:
   values:
     image:
       repository: freshrss/freshrss
-    tag: "1.26.3"
+      tag: "1.26.3"
       pullPolicy: Always
       type: alpine
     service:
       type: ClusterIP
       port: 80
-
     ingress:
       enabled: false
-
-    persistence:
-      enabled: true
-      storageClass: "ssd-nvme-predator-gm7000"
-      accessMode: ReadWriteOnce
-      size: 1Gi
-
-    env:
-    - name: TZ
-      value: "Asia/Calcutta"
-    - name: CRON_MIN
-      value: "*/20"
-    - name: DB_HOST
-      value: "pg-freshrss-cluster-rw.cnpg-system.svc"
-    - name: DB_PORT
-      value: "5432"
-    - name: DB_NAME
-      value: "freshrss"
-    - name: DB_USER
-      valueFrom:
-        secretKeyRef:
-          name: cnpg-freshrss-user
-          key: username
-    - name: DB_PASS
-      valueFrom:
-        secretKeyRef:
-          name: cnpg-freshrss-user
-          key: password
-    - name: DB_TYPE
-      value: "pgsql"
+    freshrss:
+      baseUrl: "http://freshrss.rvsharma.com"
+      cronjob:
+        type: internal
+        minutes: "1,31"
+      database:
+        type: postgresql
+      environment: production
+      initialization:
+        # -- Use Auto-install for initialization. Make sure to set this to false once the initialization is done.
+        enabled: false
+        # admin:
+        #   apiPassword: ""
+        #   email: ""
+        #   password: ""
+        #   username: ""
+        apiEnabled: true
+        language: en
+      persistence:
+        enabled: true
+        data:
+          enabled: true
+          storageClass: "ssd-nvme-predator-gm7000"
+          size: 5Gi
+          accessModes:
+          - ReadWriteOnce
+        extensions:
+          enabled: true
+          accessModes:
+          - ReadWriteOnce
+          size: 5Gi
+          storageClass: "ssd-nvme-predator-gm7000"
+    timezone: "Asia/Calcutta"
+    externalPostgresql:
+      auth:
+        # -- Name of the database to use
+        database: "freshrss"
+        # -- Name of existing secret to use for PostgreSQL credentials
+        existingSecret: "cnpg-freshrss-user"
+        # -- Name of the user to use (key in the secret)
+        username: "postgresql_freshrss_pgsql"
+        # -- Key in the secret containing the password
+        userPasswordKey: password
+      hostname: "pg-freshrss-cluster-rw.cnpg-system.svc"
+      # -- Port used to connect to PostgreSQL database
+      port: 5432
