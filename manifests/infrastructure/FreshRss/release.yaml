@@ -36,7 +36,7 @@ spec:
     ingress:
       enabled: false
     freshrss:
-      baseUrl: "http://freshrss.rvsharma.com"
+      baseUrl: "https://freshrss.rvsharma.com"
       cronjob:
         type: internal
         minutes: "1,31"
