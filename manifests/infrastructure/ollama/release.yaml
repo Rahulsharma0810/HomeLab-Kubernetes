@@ -1,4 +1,4 @@
-# manifests/infrastructure/ollama/release.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/ollama/release.yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -40,6 +40,12 @@ spec:
     extraEnv:
     - name: OLLAMA_DEBUG
       value: "1"
+    - name: OLLAMA_MAX_LOADED_MODELS
+      value: "1"
+    - name: OLLAMA_KEEP_ALIVE
+      value: "3m"
+    - name: OLLAMA_MAX_VRAM
+      value: "20Gi"
     runtimeClassName: "nvidia"
     replicaCount: 1
     knative:
@@ -59,12 +65,10 @@ spec:
       models:
         pull:
         - qwen3:8b
-        - gemma3:4b
         - qwen2.5vl
         - gpt-oss:20b
         run:
         - qwen3:8b
-        - gemma3:4b
         - qwen2.5vl
         - gpt-oss:20b
         clean: true
