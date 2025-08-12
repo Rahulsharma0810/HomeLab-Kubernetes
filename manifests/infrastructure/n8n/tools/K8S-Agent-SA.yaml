@@ -33,14 +33,3 @@ subjects:
 - kind: ServiceAccount
   name: k8s-agent-sa
   namespace: n8n-system
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: n8n
-  namespace: n8n-system
-spec:
-  interval: 5m
-  values:
-    serviceAccount:
-      name: k8s-agent-sa
