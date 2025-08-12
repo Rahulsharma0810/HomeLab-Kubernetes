@@ -63,9 +63,6 @@ spec:
               name: n8n-encryption-key
               key: encryption_key
               namespace: n8n-system
-      serviceAccount:
-        create: false
-        name: k8s-agent-sa
       podSecurityContext:
         runAsNonRoot: false
         runAsUser: 0
