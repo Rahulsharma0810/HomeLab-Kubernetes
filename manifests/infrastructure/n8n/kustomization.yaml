@@ -1,7 +1,8 @@
-# manifests/infrastructure/n8n/kustomization.yaml
+# HomeLab-Kubernetes/manifests/infrastructure/n8n/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- namespace.yaml
-- release.yaml
-- tunnel-binding-ingress.yaml
+  - namespace.yaml
+  - release.yaml
+  - tunnel-binding-ingress.yaml
+  - tools/k8s-Agent-SA.yaml
