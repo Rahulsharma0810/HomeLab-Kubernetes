@@ -6,3 +6,12 @@ resources:
 - release.yaml
 - tunnel-binding-ingress.yaml
 - tools/k8s-Agent-SA.yaml
+
+patches:
+- target:
+    kind: Deployment
+    name: n8n
+  patch: |-
+    - op: add
+      path: /spec/template/spec/serviceAccountName
+      value: k8s-agent-sa
