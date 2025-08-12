@@ -33,18 +33,18 @@ spec:
       retries: 3
   values:
     runtimeClassName: nvidia
-    config:
-      name: mps-config
-      data:
-        any: |-
-          version: v1
-          flags:
-            migStrategy: none
-          sharing:
-            mps:
-              resources:
-              - name: nvidia.com/gpu
-                replicas: 10
+    # config:
+    #   name: mps-config
+    #   data:
+    #     any: |-
+    #       version: v1
+    #       flags:
+    #         migStrategy: none
+    #       sharing:
+    #         mps:
+    #           resources:
+    #           - name: nvidia.com/gpu
+    #             replicas: 10
     # the mps-config ConfigMap is missing
     # kubectl create configmap mps-config -n nvidia --from-literal=any="version: v1
     # flags:
