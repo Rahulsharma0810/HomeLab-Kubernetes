@@ -69,7 +69,7 @@ spec:
         runAsGroup: 0
         fsGroup: 0
       persistence:
-        enabled: false
+        enabled: true
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
       config:
@@ -107,7 +107,7 @@ spec:
       concurrency: 10
       extraEnv: *extraEnv
       persistence:
-        enabled: false
+        enabled: true
         size: 20Gi
         storageClass: ssd-nvme-predator-gm7000
       # LifeCycle Does't work
