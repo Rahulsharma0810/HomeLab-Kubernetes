@@ -5,4 +5,3 @@ resources:
 - namespace.yaml
 - release.yaml
 - tunnel-binding-ingress.yaml
-- shared-binary-data-pvc.yaml
