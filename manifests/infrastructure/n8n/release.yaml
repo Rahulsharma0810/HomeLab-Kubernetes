@@ -43,8 +43,8 @@ spec:
           value: "http"
         N8N_LOG_LEVEL:
           value: "info"
-        N8N_DEFAULT_BINARY_DATA_MODE:
-          value: "filesystem"
+        # N8N_DEFAULT_BINARY_DATA_MODE:
+        #   value: "filesystem"
         OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS:
           value: "true"
         DB_POSTGRESDB_USER:
