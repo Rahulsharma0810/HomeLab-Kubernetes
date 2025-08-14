@@ -1,0 +1,13 @@
+# manifests/infrastructure/n8n/shared-binary-data-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: n8n-shared-binary-data
+  namespace: n8n-system
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ssd-nvme-predator-gm7000
