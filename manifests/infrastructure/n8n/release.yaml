@@ -45,6 +45,8 @@ spec:
           value: "info"
         N8N_DEFAULT_BINARY_DATA_MODE:
           value: "filesystem"
+        N8N_BINARY_DATA_STORAGE_PATH:
+          value: "/shared-data/binary-data"
         OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS:
           value: "true"
         DB_POSTGRESDB_USER:
@@ -71,9 +73,14 @@ spec:
         runAsGroup: 0
         fsGroup: 0
       persistence:
-        enabled: true
-        size: 20Gi
-        storageClass: ssd-nvme-predator-gm7000
+        enabled: false
+      extraVolumes:
+        - name: shared-binary-data
+          persistentVolumeClaim:
+            claimName: n8n-shared-binary-data
+      extraVolumeMounts:
+        - name: shared-binary-data
+          mountPath: /shared-data
       config:
         webhook_url: *url
         executions_mode: queue
@@ -109,9 +116,14 @@ spec:
       concurrency: 10
       extraEnv: *extraEnv
       persistence:
-        enabled: true
-        size: 20Gi
-        storageClass: ssd-nvme-predator-gm7000
+        enabled: false
+      extraVolumes:
+        - name: shared-binary-data
+          persistentVolumeClaim:
+            claimName: n8n-shared-binary-data
+      extraVolumeMounts:
+        - name: shared-binary-data
+          mountPath: /shared-data
       # LifeCycle Does't work
       # podSecurityContext:
       #   runAsNonRoot: false
@@ -125,3 +137,10 @@ spec:
     webhook:
       enabled: true
       extraEnv: *extraEnv
+      extraVolumes:
+        - name: shared-binary-data
+          persistentVolumeClaim:
+            claimName: n8n-shared-binary-data
+      extraVolumeMounts:
+        - name: shared-binary-data
+          mountPath: /shared-data
