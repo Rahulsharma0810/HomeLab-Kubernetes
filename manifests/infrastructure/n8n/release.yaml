@@ -75,12 +75,13 @@ spec:
       persistence:
         enabled: false
       extraVolumes:
-        - name: shared-binary-data
-          persistentVolumeClaim:
-            claimName: n8n-shared-binary-data
+      - name: shared-binary-data
+        hostPath:
+          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/
+          type: DirectoryOrCreate
       extraVolumeMounts:
-        - name: shared-binary-data
-          mountPath: /shared-data
+      - name: shared-binary-data
+        mountPath: /shared-data
       config:
         webhook_url: *url
         executions_mode: queue
@@ -118,12 +119,13 @@ spec:
       persistence:
         enabled: false
       extraVolumes:
-        - name: shared-binary-data
-          persistentVolumeClaim:
-            claimName: n8n-shared-binary-data
+      - name: shared-binary-data
+        hostPath:
+          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/
+          type: DirectoryOrCreate
       extraVolumeMounts:
-        - name: shared-binary-data
-          mountPath: /shared-data
+      - name: shared-binary-data
+        mountPath: /shared-data
       # LifeCycle Does't work
       # podSecurityContext:
       #   runAsNonRoot: false
@@ -138,9 +140,12 @@ spec:
       enabled: true
       extraEnv: *extraEnv
       extraVolumes:
-        - name: shared-binary-data
-          persistentVolumeClaim:
-            claimName: n8n-shared-binary-data
+      - name: shared-binary-data
+        hostPath:
+          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/
+          type: DirectoryOrCreate
       extraVolumeMounts:
-        - name: shared-binary-data
-          mountPath: /shared-data
+      - name: shared-binary-data
+        mountPath: /shared-data
+      nodeSelector:
+        kubernetes.io/arch: amd64
