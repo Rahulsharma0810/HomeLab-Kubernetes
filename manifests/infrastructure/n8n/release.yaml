@@ -77,7 +77,7 @@ spec:
       extraVolumes:
       - name: shared-binary-data
         hostPath:
-          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/
+          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/shared-data
           type: DirectoryOrCreate
       extraVolumeMounts:
       - name: shared-binary-data
@@ -121,7 +121,7 @@ spec:
       extraVolumes:
       - name: shared-binary-data
         hostPath:
-          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/
+          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/shared-data
           type: DirectoryOrCreate
       extraVolumeMounts:
       - name: shared-binary-data
@@ -142,10 +142,8 @@ spec:
       extraVolumes:
       - name: shared-binary-data
         hostPath:
-          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/
+          path: /var/mnt/ssd_nvme_predator_GM7000/n8n/shared-data
           type: DirectoryOrCreate
       extraVolumeMounts:
       - name: shared-binary-data
         mountPath: /shared-data
-      nodeSelector:
-        kubernetes.io/arch: amd64
