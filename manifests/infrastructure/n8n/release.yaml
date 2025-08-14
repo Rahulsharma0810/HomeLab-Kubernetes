@@ -147,3 +147,10 @@ spec:
       extraVolumeMounts:
       - name: shared-binary-data
         mountPath: /shared-data
+
+# # Fix ownership and permissions for the entire n8n directory
+# chown -R root:root /var/mnt/ssd_nvme_predator_GM7000/n8n/
+# chmod -R 755 /var/mnt/ssd_nvme_predator_GM7000/n8n/
+
+# # Also make sure the shared-data directory is writable
+# chmod -R 777 /var/mnt/ssd_nvme_predator_GM7000/n8n/shared-data/
