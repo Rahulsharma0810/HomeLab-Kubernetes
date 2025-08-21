@@ -9,7 +9,7 @@ spec:
   interval: 1h
   url: oci://8gears.container-registry.com/library/n8n
   ref:
-    tag: "1.0.10"
+    tag: "1.0.10" 
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -30,7 +30,7 @@ spec:
     image:
       repository: naskio/n8n-python
       pullPolicy: IfNotPresent
-      tag: "1.104.0"
+      tag: "1.107.3"
     main:
       extraEnv: &extraEnv
         N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:
