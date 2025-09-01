@@ -55,6 +55,5 @@ spec:
         ports:
         - port: 80
           targetPort: http
-          nodePort: 30033
     importer:
       enabled: false
