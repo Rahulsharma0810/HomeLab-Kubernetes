@@ -11,10 +11,12 @@ spec:
   selector:
     matchLabels:
       app: firefly-mcp-server
+      app.kubernetes.io/part-of: mcp-servers
   template:
     metadata:
       labels:
         app: firefly-mcp-server
+        app.kubernetes.io/part-of: mcp-servers
     spec:
       securityContext:
         runAsNonRoot: true
