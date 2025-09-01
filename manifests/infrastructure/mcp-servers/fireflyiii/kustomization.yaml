@@ -11,7 +11,3 @@ resources:
   - deployment.yaml
 
 namespace: mcp-servers
-
-commonLabels:
-  app.kubernetes.io/name: firefly-mcp-server
-  app.kubernetes.io/component: mcp-server
