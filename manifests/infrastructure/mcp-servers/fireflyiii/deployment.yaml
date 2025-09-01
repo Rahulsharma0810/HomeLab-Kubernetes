@@ -23,8 +23,8 @@ spec:
         fsGroup: 1001
       containers:
       - name: firefly-mcp
-        image: rahulsharma0810/firefly-iii-mcp-server:latest
-        imagePullPolicy: IfNotPresent
+        image: sharmarahul0810/firefly-iii-mcp-server:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 3000
           name: http
