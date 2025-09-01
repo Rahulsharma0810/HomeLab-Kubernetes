@@ -1,0 +1,17 @@
+# manifests/infrastructure/mcp-servers/fireflyiii/kustomization.yaml
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: firefly-mcp-server
+  namespace: mcp-servers
+
+resources:
+  - deployment.yaml
+
+namespace: mcp-servers
+
+commonLabels:
+  app.kubernetes.io/name: firefly-mcp-server
+  app.kubernetes.io/component: mcp-server

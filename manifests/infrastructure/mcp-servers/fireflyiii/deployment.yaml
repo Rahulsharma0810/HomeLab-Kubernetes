@@ -1,0 +1,97 @@
+# manifests/infrastructure/mcp-servers/fireflyiii/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-mcp-server
+  namespace: mcp-servers
+  labels:
+    app: firefly-mcp-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-mcp-server
+  template:
+    metadata:
+      labels:
+        app: firefly-mcp-server
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+      containers:
+      - name: firefly-mcp
+        image: rahulsharma0810/firefly-iii-mcp-server:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+        - name: FIREFLY_III_BASE_URL
+          value: "http://firefly-iii.firefly-iii-system.svc.cluster.local"
+        - name: FIREFLY_III_PAT
+          valueFrom:
+            secretKeyRef:
+              name: firefly-mcp-secrets
+              key: firefly-pat
+        - name: FIREFLY_III_PRESET
+          value: "default"
+        - name: PORT
+          value: "3000"
+        - name: LOG_LEVEL
+          value: "info"
+        # resources:
+        #   requests:
+        #     memory: "128Mi"
+        #     cpu: "100m"
+        #   limits:
+        #     memory: "512Mi"
+        #     cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: firefly-mcp-service
+  namespace: mcp-servers
+  labels:
+    app: firefly-mcp-server
+spec:
+  type: ClusterIP
+  selector:
+    app: firefly-mcp-server
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
+    protocol: TCP
