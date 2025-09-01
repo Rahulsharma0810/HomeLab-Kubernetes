@@ -41,7 +41,7 @@ spec:
               name: firefly-mcp-secrets
               key: firefly-pat
         - name: FIREFLY_III_PRESET
-          value: "default"
+          value: "full"
         - name: PORT
           value: "3000"
         - name: LOG_LEVEL
