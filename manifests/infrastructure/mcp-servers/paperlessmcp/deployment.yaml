@@ -1,0 +1,93 @@
+# manifests/infrastructure/mcp-servers/paperlessmcp/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: paperless-mcp-server
+    namespace: mcp-servers
+    labels:
+        app: paperless-mcp-server
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: paperless-mcp-server
+            app.kubernetes.io/part-of: mcp-servers
+    template:
+        metadata:
+            labels:
+                app: paperless-mcp-server
+                app.kubernetes.io/part-of: mcp-servers
+        spec:
+            securityContext:
+                runAsNonRoot: true
+                runAsUser: 1001
+                runAsGroup: 1001
+                fsGroup: 1001
+                seccompProfile:
+                    type: RuntimeDefault
+            containers:
+              - name: paperless-mcp
+                image: ghcr.io/nloui/paperless-mcp:latest
+                imagePullPolicy: Always
+                ports:
+                  - containerPort: 3000
+                    name: http
+                env:
+                  - name: PAPERLESS_BASE_URL
+                    value: "http://paperlessngx.paperless-system.svc.cluster.local"
+                  - name: PAPERLESS_API_TOKEN
+                    valueFrom:
+                        secretKeyRef:
+                            name: paperless-mcp-secrets
+                            key: paperless-api-token
+                  - name: PORT
+                    value: "3000"
+                  - name: LOG_LEVEL
+                    value: "info"
+                livenessProbe:
+                    httpGet:
+                        path: /health
+                        port: 3000
+                    initialDelaySeconds: 30
+                    periodSeconds: 30
+                    timeoutSeconds: 5
+                    failureThreshold: 3
+                readinessProbe:
+                    httpGet:
+                        path: /health
+                        port: 3000
+                    initialDelaySeconds: 10
+                    periodSeconds: 10
+                    timeoutSeconds: 3
+                    failureThreshold: 3
+                securityContext:
+                    allowPrivilegeEscalation: false
+                    readOnlyRootFilesystem: true
+                    capabilities:
+                        drop:
+                          - ALL
+                volumeMounts:
+                  - name: tmp
+                    mountPath: /tmp
+            volumes:
+              - name: tmp
+                emptyDir: {}
+            restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: paperless-mcp-service
+    namespace: mcp-servers
+    labels:
+        app: paperless-mcp-server
+spec:
+    type: ClusterIP
+    selector:
+        app: paperless-mcp-server
+    ports:
+      - name: http
+        port: 80
+        targetPort: 3000
+        protocol: TCP
