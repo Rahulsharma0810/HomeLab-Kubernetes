@@ -28,7 +28,7 @@ spec:
       hostname: &hostname n8n.rvsharma.com
       url: &url https://n8n.rvsharma.com
     image:
-      repository: naskio/neon8n:latest
+      repository: naskio/neon8n
       pullPolicy: IfNotPresent
       tag: "latest"
     main:
