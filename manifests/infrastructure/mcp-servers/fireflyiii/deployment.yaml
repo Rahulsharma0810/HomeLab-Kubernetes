@@ -91,11 +91,11 @@ metadata:
   labels:
     app: firefly-mcp-server
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: firefly-mcp-server
   ports:
   - name: http
-    port: 80
     targetPort: 3000
-    protocol: TCP
+    port: 3000
+    nodePort: 31000
