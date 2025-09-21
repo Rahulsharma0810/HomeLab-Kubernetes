@@ -1,3 +1,5 @@
+# manifests/infrastructure/paperless-system/paperlessngx-deployment.yaml
+
 # manifests/infrastructure/paperless-system/deployment.yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -128,7 +130,7 @@ spec:
     spec:
       containers:
       - name: paperlessngx-container
-        image: ghcr.io/paperless-ngx/paperless-ngx:2.17.1
+        image: ghcr.io/paperless-ngx/paperless-ngx:latest
         ports:
         - containerPort: 8000
         volumeMounts:
