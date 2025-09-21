@@ -33,6 +33,9 @@ spec:
 
     firefly-iii:
       enabled: true
+      image:
+        repository: fireflyiii/core
+        tag: latest
       config:
         env:
           DB_CONNECTION: pgsql
