@@ -1,4 +1,4 @@
-# manifests/infrastructure/n8n/release.yaml
+# /Users/rvs/Repositories/SVNs/Github-Rahulsharma0810/271_Labs/HomeLab-Kubernetes/manifests/infrastructure/n8n/release.yaml
 
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
@@ -28,7 +28,7 @@ spec:
       hostname: &hostname n8n.rvsharma.com
       url: &url https://n8n.rvsharma.com
     image:
-      repository: naskio/neon8n
+      repository: sharmarahul0810/n8n-python
       pullPolicy: IfNotPresent
       tag: "latest"
     main:
