@@ -1,4 +1,4 @@
-# manifests/infrastructure/ollama/release.yaml
+# /Users/rvs/Repositories/SVNs/Github-Rahulsharma0810/271_Labs/HomeLab-Kubernetes/manifests/infrastructure/ollama/release.yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -52,7 +52,7 @@ spec:
       enabled: false
     image:
       repository: ollama/ollama
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
       tag: latest
     ollama:
       gpu:
