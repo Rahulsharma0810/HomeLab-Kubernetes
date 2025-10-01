@@ -1,4 +1,4 @@
-# /Users/rvs/Repositories/SVNs/Github-Rahulsharma0810/271_Labs/HomeLab-Kubernetes/manifests/infrastructure/n8n/release.yaml
+# manifests/infrastructure/n8n/release.yaml
 
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
@@ -113,6 +113,9 @@ spec:
       replicaCount: 1
     worker:
       enabled: true
+      image:
+        repository: n8nio/runners
+        tag: nightly
       replicaCount: 1
       concurrency: 10
       extraEnv: *extraEnv
