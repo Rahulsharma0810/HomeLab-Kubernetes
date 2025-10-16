@@ -7,3 +7,4 @@ tmp_backups/**
 =======
 .DS_Store
 >>>>>>> f496631 (Changes Afet Pull)
+secrets.yaml
