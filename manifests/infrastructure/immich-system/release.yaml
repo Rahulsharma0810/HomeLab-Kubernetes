@@ -110,7 +110,6 @@ spec:
         repository: ghcr.io/immich-app/immich-machine-learning
         # tag: v1.137.3-cuda
         pullPolicy: Always
-      runtimeClassName: nvidia
       # resources:
       #   limits:
       #     nvidia.com/gpu: 1
