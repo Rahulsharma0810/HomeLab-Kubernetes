@@ -1,8 +1,0 @@
-# manifests/infrastructure/cloudflare-zero-trust-operator/cloudflare-zerotrust-service-token-ollama.yaml
-apiVersion: cloudflare.zelic.io/v1alpha1
-kind: CloudflareServiceToken
-metadata:
-    name: ollama-access-service-token
-    namespace: cloudflare-zero-trust-operator
-spec:
-    name: ollama-access-service-token

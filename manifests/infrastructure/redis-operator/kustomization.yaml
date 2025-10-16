@@ -6,4 +6,3 @@ resources:
 - release.yaml
 - redis-paperless-cluster.yaml
 - redis-immich-cluster.yaml
-- redis-openwebui-cluster.yaml
