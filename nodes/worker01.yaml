@@ -63,13 +63,5 @@ machine:
   - device: /dev/vde
     partitions:
     - mountpoint: /var/mnt/ssd_data_Lexar_120GB_2
-  kernel:
-    modules:
-    - name: nvidia
-    - name: nvidia_uvm
-    - name: nvidia_drm
-    - name: nvidia_modeset
   sysctls:
     net.core.bpf_jit_harden: 1
-  nodeLabels:
-    feature.node.kubernetes.io/pci-10de.present: "true"

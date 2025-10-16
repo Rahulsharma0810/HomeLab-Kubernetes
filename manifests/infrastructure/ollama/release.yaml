@@ -46,7 +46,6 @@ spec:
     #   value: "3m"
     # - name: OLLAMA_MAX_VRAM
     #   value: "20Gi"
-    runtimeClassName: "nvidia"
     replicaCount: 1
     knative:
       enabled: false
@@ -56,12 +55,7 @@ spec:
       tag: latest
     ollama:
       gpu:
-        enabled: true
-        type: "nvidia"
-        number: 1
-        nvidiaResource: "nvidia.com/gpu"
-        mig:
-          enabled: false
+        enabled: false
       models:
         pull:
         - qwen3:8b
