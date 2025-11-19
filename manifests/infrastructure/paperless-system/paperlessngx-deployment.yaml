@@ -131,6 +131,7 @@ spec:
       containers:
       - name: paperlessngx-container
         image: ghcr.io/paperless-ngx/paperless-ngx:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         volumeMounts:
