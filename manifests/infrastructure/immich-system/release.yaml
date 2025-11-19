@@ -84,7 +84,7 @@ spec:
             key: password
     image:
       # Helm Char Generally has a older version of immich, so we are using the on demand image
-      tag: v1.137.3
+      tag: release
     immich:
       metrics:
         enabled: false
