@@ -30,6 +30,9 @@ spec:
       # Overrides the image tag whose default is the chart appVersion.
       tag: "2.0.2" # {"$imagepolicy": "flux-system:uptime-kuma:tag"}
 
+    strategy:
+      type: Recreate
+
     volume:
       enabled: true
       accessMode: ReadWriteOnce
