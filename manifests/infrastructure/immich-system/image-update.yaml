@@ -59,11 +59,15 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: 'chore: update immich images
+      messageTemplate: |
+        Automated image update
         
-        {{ range .Changed.FileChanges -}}
-        - {{ .Path }}: {{ .NewValue }}
-        {{ end -}}'
+        Automation name: {{ .AutomationObject }}
+        
+        Files:
+        {{ range $filename, $_ := .Changed.FileChanges -}}
+        - {{ $filename }}
+        {{ end -}}
     push:
       branch: main
   update:
