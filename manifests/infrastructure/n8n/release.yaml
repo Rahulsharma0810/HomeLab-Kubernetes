@@ -30,7 +30,7 @@ spec:
     image:
       repository: sharmarahul0810/n8n-python
       pullPolicy: IfNotPresent
-      tag: "2.2.0"
+      tag: "2.2.0" # {"$imagepolicy": "flux-system:n8n-custom:tag"}
     main:
       extraEnv: &extraEnv
         N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS:

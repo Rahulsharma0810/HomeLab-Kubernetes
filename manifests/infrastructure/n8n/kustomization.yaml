@@ -5,3 +5,4 @@ resources:
 - namespace.yaml
 - release.yaml
 - tunnel-binding-ingress.yaml
+- image-update.yaml
