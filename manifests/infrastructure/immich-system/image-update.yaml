@@ -59,7 +59,11 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+      messageTemplate: 'chore: update immich images
+        
+        {{ range .Changed.FileChanges -}}
+        - {{ .Path }}: {{ .NewValue }}
+        {{ end -}}'
     push:
       branch: main
   update:
