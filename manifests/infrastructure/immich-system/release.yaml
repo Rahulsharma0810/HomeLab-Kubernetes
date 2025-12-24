@@ -65,7 +65,7 @@ spec:
         kind: HelmRepository
         name: immich-charts
         namespace: flux-system
-      version: "*"
+      version: "0.9.3"
   values:
     env:
       REDIS_HOSTNAME: "redis-immich-cluster.cnrds-system.svc.cluster.local"
