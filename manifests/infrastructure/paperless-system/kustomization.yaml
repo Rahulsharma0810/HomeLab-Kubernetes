@@ -6,6 +6,7 @@ resources:
   - pre-consumption.yaml
   - paperlessngx-deployment.yaml
   - tunnel-binding-ingress.yaml
+  - image-update.yaml
 
 # Disabling for now, as local modals are not helpful.
 # - paperless-ai.yaml

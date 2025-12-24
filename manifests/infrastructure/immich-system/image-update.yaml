@@ -1,0 +1,68 @@
+# manifests/infrastructure/immich-system/image-update.yaml
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: immich-server
+  namespace: flux-system
+spec:
+  image: ghcr.io/immich-app/immich-server
+  interval: 1h0m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: immich-server
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: immich-server
+  policy:
+    semver:
+      range: ">=1.0.0"
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: immich-machine-learning
+  namespace: flux-system
+spec:
+  image: ghcr.io/immich-app/immich-machine-learning
+  interval: 1h0m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: immich-machine-learning
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: immich-machine-learning
+  policy:
+    semver:
+      range: ">=1.0.0"
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: immich-auto-update
+  namespace: flux-system
+spec:
+  interval: 30m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: |
+        chore: update immich images to {{range .Updated.Images}}{{println .}}{{end}}
+    push:
+      branch: main
+  update:
+    path: ./manifests/infrastructure/immich-system
+    strategy: Setters
