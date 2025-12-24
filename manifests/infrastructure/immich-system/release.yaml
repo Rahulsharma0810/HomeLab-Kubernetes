@@ -84,7 +84,7 @@ spec:
             key: password
     image:
       # Helm Char Generally has a older version of immich, so we are using the on demand image
-      tag: release # {"$imagepolicy": "flux-system:immich-server:tag"}
+      tag: v2.4.1 # {"$imagepolicy": "flux-system:immich-server:tag"}
     immich:
       metrics:
         enabled: false
@@ -103,12 +103,11 @@ spec:
       image:
         repository: ghcr.io/immich-app/immich-server
         pullPolicy: Always
-
     machine-learning:
       enabled: true
       image:
         repository: ghcr.io/immich-app/immich-machine-learning
-        tag: release # {"$imagepolicy": "flux-system:immich-machine-learning:tag"}
+        tag: v2.4.1 # {"$imagepolicy": "flux-system:immich-machine-learning:tag"}
         pullPolicy: Always
       # resources:
       #   limits:
