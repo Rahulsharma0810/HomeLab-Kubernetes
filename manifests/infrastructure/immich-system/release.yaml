@@ -107,7 +107,7 @@ spec:
       enabled: true
       image:
         repository: ghcr.io/immich-app/immich-machine-learning
-        tag: v2.5.0 # {"$imagepolicy": "flux-system:immich-machine-learning:tag"}
+        tag: v2.5.2 # {"$imagepolicy": "flux-system:immich-machine-learning:tag"}
         pullPolicy: Always
       # resources:
       #   limits:
